@@ -39,7 +39,7 @@ def logout(request):
     auth_logout(request)
     return HttpResponseRedirect('/login/')
 
-def register(register):
+def register(request):
     if not request.user.is_authenticated():
         if request.method == 'POST'
             form = myforms.RegisterForm(request.POST)
