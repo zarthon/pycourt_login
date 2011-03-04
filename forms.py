@@ -4,17 +4,17 @@ from django.core.validators import MinLengthValidator
 import hashlib
 from django.utils.translation import ugettext_lazy as _
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length = 25)
-#    username = forms.RegexField(max_length = 10,regex=r'^[1-9][0-9]{9}')
+#    username = forms.CharField(max_length = 25)
+    username = forms.RegexField(max_length = 10,regex=r'^[1-9][0-9]{8}')
     password = forms.CharField(widget =forms.PasswordInput)
 
 class RegisterForm(forms.ModelForm):
- #   username = forms.RegexField(max_length = 25,regex=r'^[1-9][0-9]{9}')
-    username = forms.CharField(max_length = 25)
+    username = forms.RegexField(max_length = 25,regex=r'^[1-9][0-9]{8}')
+ #   username = forms.CharField(max_length = 25)
     first_name = forms.CharField(max_length = 60)
     last_name = forms.CharField(max_length=60)
-    email = forms.EmailField()
-    #email = forms.RegexField(regex=r'^[1-9][0-9]{9}@daiict.ac.in')
+ #   email = forms.EmailField()
+    email = forms.RegexField(regex=r'^[1-9][0-9]{8}@daiict.ac.in')
     password1 = forms.CharField(widget = forms.PasswordInput)
     password2 = forms.CharField(widget = forms.PasswordInput)
     class Meta:
