@@ -1,13 +1,13 @@
 from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login, logout as auth_logout
-from django.contrib.auth.decoraters import login_required 
+from django.contrib.auth.decorators import login_required 
 from django.contrib.auth.models import User
-from django.http import HttpRespons, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 '''Import forms and User profile'''
-
+from pycourt_login import forms as myforms
 def index(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/logout')
@@ -41,7 +41,7 @@ def logout(request):
 
 def register(request):
     if not request.user.is_authenticated():
-        if request.method == 'POST'
+        if request.method == 'POST':
             form = myforms.RegisterForm(request.POST)
             if form.is_valid():
                 form.save()
