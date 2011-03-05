@@ -3,6 +3,22 @@ from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 import hashlib
 from django.utils.translation import ugettext_lazy as _
+
+class ForgotForm(forms.Form):
+    username = forms.RegexField(max_length = 25, regex=r'^[1-9][0-9]{8}')
+    
+'''    def clean_username(self):
+        username1 = self.cleaned_data["username"]
+        try:
+            user = User.objects.get(username=username1)
+        except DoesNotExist:
+            raise forms.ValidationError(_("The specified Username does not exist"))
+        return username
+
+    class Meta:
+        model = User
+        fields = ("username")
+'''
 class LoginForm(forms.Form):
 #    username = forms.CharField(max_length = 25)
     username = forms.RegexField(max_length = 10,regex=r'^[1-9][0-9]{8}')

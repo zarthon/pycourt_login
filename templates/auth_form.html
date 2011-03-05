@@ -15,7 +15,9 @@
     <input type="submit" value="Login" class="submit" />
     <input type="hidden" name="next" value="/" />
   </div>
-</form>
+  </form>
+  
+  
 <form action="/signup/" method="post" id="signup-form"{% if not signup %} style="display: none;"{% endif %}>
     {% csrf_token %}
   {% if signup_form.username.errors and data %}<div class="error">{{ signup_form.username.errors }}</div>{% endif %}

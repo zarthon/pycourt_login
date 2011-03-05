@@ -6,10 +6,10 @@ $(function() {
 
     if (activeLogin != '') {
         active = $('#' + activeLogin.toLowerCase());
-        $("#signup, #login").bind("click", function() { SwapLogin($(this).html()); return false; });
+        $("#signup, #login",).bind("click", function() { SwapLogin($(this).html()); return false; });
 
-        $("#signup-form input:not(.submit), #login-form input:not(.submit), #done-form textarea").focus(function() { $(this).parent().addClass("focused") });
-        $("#signup-form input:not(.submit), #login-form input:not(.submit), #done-form textarea").blur(function() { $(this).parent().removeClass("focused") });
+        $("#signup-form input:not(.submit), #login-form input:not(.submit),  #done-form textarea").focus(function() { $(this).parent().addClass("focused") });
+        $("#signup-form input:not(.submit), #login-form input:not(.submit),  #done-form textarea").blur(function() { $(this).parent().removeClass("focused") });
     }
 
     $('#no-problem').bind("click", function() { $(this).parent().css('display', 'none'); });

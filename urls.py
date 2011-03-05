@@ -17,7 +17,8 @@ urlpatterns = patterns('',
     (r'^$',index),
     (r'^login/',login),
     (r'^signup/',register),
-    (r'^logout/',logout)
+    (r'^logout/',logout),
+    (r'^forget/',forgot_password)
 )
 
 if settings.DEBUG:
