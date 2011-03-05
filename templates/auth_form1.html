@@ -1,0 +1,15 @@
+<form action="/forget/" method="post" id="forget-form">
+    {% if form.errors %}
+    <div class="error">Sorry, I don't think that's not a valid username.</div>
+  {% endif %}
+    {% csrf_token %}
+  <div id="forget-username" class="clearfix">
+    <label for="username">User name:</label>
+    <input type="text" name="username" value="" id="username" />
+  </div>
+  <div id="login-submit" class="submit clearfix">
+    <input type="submit" value="Login" class="submit" />
+    <input type="hidden" name="next" value="/" />
+  </div>
+</form>
+
