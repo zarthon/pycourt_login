@@ -5,31 +5,25 @@ import hashlib
 from django.utils.translation import ugettext_lazy as _
 
 class ForgotForm(forms.Form):
-    username = forms.RegexField(max_length = 25, regex=r'^[1-9][0-9]{8}')
-    
-'''    def clean_username(self):
-        username1 = self.cleaned_data["username"]
-        try:
-            user = User.objects.get(username=username1)
-        except DoesNotExist:
-            raise forms.ValidationError(_("The specified Username does not exist"))
-        return username
-
+    username = forms.RegexField(max_length = 10, regex=r'^[1-9][0-9]{8}')
     class Meta:
         model = User
-        fields = ("username")
-'''
+        fields = ("username",)
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            raise forms.ValidationError(_("The specified Username does not exist"))
+
 class LoginForm(forms.Form):
-#    username = forms.CharField(max_length = 25)
     username = forms.RegexField(max_length = 10,regex=r'^[1-9][0-9]{8}')
     password = forms.CharField(widget =forms.PasswordInput)
 
 class RegisterForm(forms.ModelForm):
     username = forms.RegexField(max_length = 25,regex=r'^[1-9][0-9]{8}')
- #   username = forms.CharField(max_length = 25)
     first_name = forms.CharField(max_length = 60)
     last_name = forms.CharField(max_length=60)
- #   email = forms.EmailField()
     email = forms.RegexField(regex=r'^[1-9][0-9]{8}@daiict.ac.in')
     password1 = forms.CharField(widget = forms.PasswordInput)
     password2 = forms.CharField(widget = forms.PasswordInput)

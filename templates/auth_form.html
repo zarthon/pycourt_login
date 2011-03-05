@@ -1,5 +1,5 @@
-<form action="/login/" method="post" id="login-form"{% if signup %} style="display: none;"{% endif %}>
-    {% if form.errors %}
+<form action="/login/" method="post" id="login-form"{% if not login %} style="display: none;"{% endif %}>
+    {% if form.errors and data %}
     <div class="error">Sorry, I don't think that's not a valid username or password.</div>
   {% endif %}
     {% csrf_token %}
@@ -16,7 +16,19 @@
     <input type="hidden" name="next" value="/" />
   </div>
   </form>
-  
+  <form action="/forget/" method="post" id="forget-form"{% if not forget %} style="display: none;"{% endif %}>
+      {% if form.errors and data %}<div class="error">{% if not form.username.errors %}{{form.errors}}{% endif %} {{form.username.errors}}</div>{% endif %}
+    {% csrf_token %}
+  <div id="forget-username" class="clearfix">
+    <label for="username">User name:</label>
+    <input type="text" name="username" value="" id="username" />
+  </div>
+  <div id="login-submit" class="submit clearfix">
+    <input type="submit" value="Login" class="submit" />
+    <input type="hidden" name="next" value="/" />
+  </div>
+</form>
+
   
 <form action="/signup/" method="post" id="signup-form"{% if not signup %} style="display: none;"{% endif %}>
     {% csrf_token %}
