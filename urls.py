@@ -19,7 +19,8 @@ urlpatterns = patterns('',
     (r'^signup/',register),
     (r'^logout/',logout),
     (r'^forget/',forgot_password),
-    (r'^resetpassword\.htm',resetpassword)
+#    (r'^resetpassword\.htm',resetpassword),
+    (r'resetpass/$',resetpassword)
 )
 
 if settings.DEBUG:

@@ -1,3 +1,25 @@
+ <form action="/resetpass/" method="post" id="reset-form"{% if not reset %} style="display: none;"{% endif %}>
+    {% if form.errors and data %}
+    <div class="error">Passwords do not match.</div>
+  {% endif %}
+  {% csrf_token %}
+  <div id="passwordChangeKey" class"clearfix">
+      <input type="hidden" name="passwordChangeKey" value={{passwordChangeKey}} />
+  </div>
+  <div id="password1" class="clearfix">
+    <label for="password1">New Password:</label>
+    <input type="password" name="password1" value="" id="password1" />
+  </div>
+  <div id="password2" class="clearfix">
+    <label for="password2">Repeat Password:</label>
+    <input type="password" name="password2" value="" id="password2" />
+  </div>
+  <div id="password-submit" class="submit clearfix">
+    <input type="submit" value="Submit" class="submit" />
+    <input type="hidden" name="next" value="/" />
+  </div>
+  </form>
+
 <form action="/login/" method="post" id="login-form"{% if not login %} style="display: none;"{% endif %}>
     {% if form.errors and data %}
     <div class="error">Sorry, I don't think that's not a valid username or password.</div>
@@ -16,6 +38,9 @@
     <input type="hidden" name="next" value="/" />
   </div>
   </form>
+
+
+
   <form action="/forget/" method="post" id="forget-form"{% if not forget %} style="display: none;"{% endif %}>
       {% if form.errors and data %}<div class="error">{% if not form.username.errors %}{{form.errors}}{% endif %} {{form.username.errors}}</div>{% endif %}
     {% csrf_token %}
