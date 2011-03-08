@@ -72,9 +72,10 @@ def forgot_password(request):
             mail_body += '<p>Regards,<br />from Pycourt</p>'           
             msg = EmailMessage(mail_subject,mail_body,"200801066@daiict.ac.in",[str(user.email)])
             msg.content_subtype = "html"
-#            msg.send()
+            msg.send()
+            return HttpResponse(str(user.email))
 #            user.email_user(mail_subject,mail_body,"200801066@daiict.ac.in")
-            return HttpResponse(mail_body)
+#            return HttpResponse(mail_body)
         else:
             return render_to_response('forget.html',{'form':form,'forget':True,'data':request.POST},context_instance=RequestContext(request))
             #return HttpResponseRedirect('/login')
