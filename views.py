@@ -15,9 +15,9 @@ from django.core.mail import EmailMultiAlternatives
 from pycourt_login.models import PasswordCHangeRequest 
 def index(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/logout')
+        return HttpResponseRedirect('/home')
     else:
-        return HttpResponseRedirect('/login')
+        return HttpResponseRedirect('/home')
 
 def login(request):
     if not request.user.is_authenticated():
@@ -27,8 +27,7 @@ def login(request):
             #user.groups.add('temp')
             if user is not None:
                 auth_login(request,user)
-                print user.get_all_permissions()
-                return HttpResponseRedirect('/logout/')
+                return HttpResponseRedirect('/home/')
             else:
                 return HttpResponse('fail')
         else:
@@ -72,10 +71,10 @@ def forgot_password(request):
             mail_body += '<p>Regards,<br />from Pycourt</p>'           
             msg = EmailMessage(mail_subject,mail_body,"200801066@daiict.ac.in",[str(user.email)])
             msg.content_subtype = "html"
-            msg.send()
-            return HttpResponse(str(user.email))
+#            msg.send()
+#            return HttpResponse(str(user.email))
 #            user.email_user(mail_subject,mail_body,"200801066@daiict.ac.in")
-#            return HttpResponse(mail_body)
+            return HttpResponse(mail_body)
         else:
             return render_to_response('forget.html',{'form':form,'forget':True,'data':request.POST},context_instance=RequestContext(request))
             #return HttpResponseRedirect('/login')
@@ -102,4 +101,7 @@ def resetpassword(request):
             return render_to_response("resetpassword.html",{'form':form,'reset':True,'data':request.POST},context_instance=RequestContext(request))
  
 
-
+def home(request):
+    home = True
+    return render_to_response('home.html',locals(),context_instance=RequestContext(request))
+        

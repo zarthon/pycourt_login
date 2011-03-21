@@ -20,7 +20,8 @@ urlpatterns = patterns('',
     (r'^logout/',logout),
     (r'^forget/',forgot_password),
 #    (r'^resetpassword\.htm',resetpassword),
-    (r'resetpass/$',resetpassword)
+    (r'^resetpass/$',resetpassword),
+    (r'^home/',home)
 )
 
 if settings.DEBUG:
