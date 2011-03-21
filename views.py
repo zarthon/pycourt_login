@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+
+from django.contrib.auth.models import Group
+from pycourt_login.models import *
 '''Import forms and User profile'''
 from pycourt_login import forms as myforms
 from django.core.mail import *
@@ -13,6 +16,7 @@ import datetime
 from pycourt_login.dataplus import *
 from django.core.mail import EmailMultiAlternatives
 from pycourt_login.models import PasswordCHangeRequest 
+
 def index(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/home')
@@ -27,6 +31,8 @@ def login(request):
             #user.groups.add('temp')
             if user is not None:
                 auth_login(request,user)
+                temp = UserProfile.objects.get(user = user)
+                print temp.is_counter , temp.is_student
                 return HttpResponseRedirect('/home/')
             else:
                 return HttpResponse('fail')
@@ -45,6 +51,17 @@ def register(request):
         if form.is_valid():
             form.save()
             user = authenticate(username = request.POST["username"],password=request.POST["password1"])
+            if user.username == '123456789' or user.username == '123456788' or user.username == '123456777':
+                counter = True
+                student = False
+                userprof = UserProfile(user = user,is_counter = counter,is_student=student)
+                userprof.save()
+
+            else:
+                counter = False
+                student = True
+                userprof = UserProfile(user = user,is_counter = counter,is_student=student)
+                userprof.save()
             auth_login(request,user)
             return HttpResponseRedirect('/')
         else:
@@ -86,18 +103,14 @@ def resetpassword(request):
     if request.method == 'GET':
         return render_to_response("resetpassword.html",{'passwordChangeKey':dictGetval(request.REQUEST,"passwordChangeKey"),'reset':True,'data':request.POST},context_instance=RequestContext(request))
     elif request.method == 'POST':
-        print request.REQUEST.keys()
-        print request.REQUEST.values()
         form = myforms.ResetForm(request.POST)
         if form.is_valid() and change_req:
             user = change_req.account
-            print dictGetval(request.REQUEST,"password2")
             user.set_password(dictGetval(request.REQUEST,"password2"))
             user.save()
             change_req.delete()
             return HttpResponseRedirect('/')
         else:
-            print form
             return render_to_response("resetpassword.html",{'form':form,'reset':True,'data':request.POST},context_instance=RequestContext(request))
  
 

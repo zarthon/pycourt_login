@@ -1,5 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
+
+class UserProfile(models.Model):
+    user = models.ForeignKey(User)
+    is_counter = models.BooleanField()
+    is_student = models.BooleanField()
 
 class PasswordCHangeRequest(models.Model):
     account  = models.ForeignKey(User)
