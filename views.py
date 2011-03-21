@@ -15,7 +15,7 @@ from django.core.mail import *
 import datetime
 from pycourt_login.dataplus import *
 from django.core.mail import EmailMultiAlternatives
-from pycourt_login.models import PasswordCHangeRequest 
+from pycourt_login.models import PasswordCHangeRequest, Dishes
 
 def index(request):
     if request.user.is_authenticated():
@@ -116,5 +116,7 @@ def resetpassword(request):
 
 def home(request):
     home = True
+    dishes = Dishes.objects.all()
+    dishes_true = True
     return render_to_response('home.html',locals(),context_instance=RequestContext(request))
         

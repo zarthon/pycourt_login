@@ -23,6 +23,4 @@ class Dishes(models.Model):
     dish_name = models.CharField(max_length = 40)
     dish_price = models.IntegerField()
 
-class Counter(models.Model):
-    account = models.ForeignKey(User)
 

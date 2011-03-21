@@ -78,7 +78,7 @@
       </form>
       <div id="done-nav">
         <ul>
-          <li><a href="#today" class="active" id="today-nav">Today</a></li>
+          <li><a href="#today" class="active" id="today-nav">Counter1</a></li>
           <li><a href="#yesterday" id="yesterday-nav">Yesterday</a></li>
           <li><a href="#past7days" id="past7days-nav">Past 7 days</a></li>
           <li><a href="#this-month" id="thismonth-nav">This month</a></li>
@@ -87,25 +87,15 @@
       </div>
       <div id="done-list">
         <div id="today">
-          {% if successes_today %}
+          {% if dishes_true %}
           <ul>
-            {% for success in successes_today %}
-              <li class="clearfix{% if success.friend %} friend{% endif %}"{% if disable_friends and success.friend %} style="display: none;"{% endif %}>
+            {% for dish in dishes %}
                 <p class="success">
                   <span></span>
-                  {% if success.friend %}{{ success.user.username }} {% endif %}{{ success.description }}
+                  <li>{{dish.dish_name}} {{ dish.dish_price }}</li>
                 </p>
-                {% if not success.friend %}
-                  <a href="/delete/{{ success.id }}">
-                    <img src="http://media.finisht.com/images/delete.png" alt="Delete" title="Delete" />
-                  </a>
-                {% endif %}
-                <span class="done-on">{{ success.completed_on|timesince }} ago</span>
-              </li>
             {% endfor %}
           </ul>
-          {% else %}
-          <div class="do-something">You haven't done anything today!  Get to work!</div>
           {% endif %}
         </div>
         <div id="yesterday" style="display: none;">
