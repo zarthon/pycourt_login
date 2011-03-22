@@ -22,9 +22,6 @@ class Dishes(models.Model):
     dish_id = models.IntegerField(primary_key = True)
     dish_name = models.CharField(max_length = 40)
     dish_price = models.IntegerField()
-
-class Availability(models.Model):
     counter1 = models.BooleanField()
     counter2 = models.BooleanField()
     counter3 = models.BooleanField()
-    itemCode = models.ForeignKey(Dishes)

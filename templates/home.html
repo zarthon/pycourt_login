@@ -2,11 +2,7 @@
 
 {% block body_styles %} id="homepage"{% if user.is_authenticated %} class="logged-in"{% endif %}{% endblock %}
 
-{% block js %}
-<script type="text/javascript">
-  var activeLogin = 'Login';
-</script>
-{% endblock %}
+
 
 {% block content %}
   {% if not user.is_authenticated %}
@@ -45,6 +41,27 @@
     </div>
   </div>
   {% else %}
+  <script type="text/javascript">
+  var activeDone = 'today'
+
+
+function SwapDone(current) {
+    if (current != activeDone) {
+        var ctemp = document.getElementById(current+"-nav");
+        ctemp.setAttribute("class",'active');
+        var actemp = document.getElementById(activeDone+"-nav");
+        actemp.removeAttribute("class");
+        var cstemp = document.getElementById(current);
+        cstemp.setAttribute("style",'display: block');
+        var tmp = document.getElementById(activeDone);
+        tmp.setAttribute("style",'display: none');
+        activeDone = current;
+        return false;
+    } else {
+        return false;
+    }
+}
+  </script>
   <div id="main" class="clearfix">
     {% include "navigation.html" %}
     {% if request.GET %}
@@ -78,18 +95,16 @@
       </form>
       <div id="done-nav">
         <ul>
-          <li><a href="#today" class="active" id="today-nav">Counter1</a></li>
-          <li><a href="#yesterday" id="yesterday-nav">Yesterday</a></li>
-          <li><a href="#past7days" id="past7days-nav">Past 7 days</a></li>
-          <li><a href="#this-month" id="thismonth-nav">This month</a></li>
-          <li><a href="#last-month" id="lastmonth-nav">Last month</a></li>
+          <li><a href="javascript:SwapDone('today');" class="active" id="today-nav">Counter 1</a></li>
+          <li><a href="javascript:SwapDone('yesterday');" id="yesterday-nav">Counter 2</a></li>
+          <li><a href="javascript:SwapDone('past7days');" id="past7days-nav">Counter 3</a></li>
         </ul>
       </div>
       <div id="done-list">
         <div id="today">
-          {% if dishes_true %}
+          {% if counter_1 %}
           <ul>
-            {% for dish in dishes %}
+            {% for dish in counter_1 %}
                 <p class="success">
                   <span></span>
                   <li>{{dish.dish_name}} {{ dish.dish_price }}</li>
@@ -99,21 +114,13 @@
           {% endif %}
         </div>
         <div id="yesterday" style="display: none;">
-          {% if successes_yesterday %}
+          {% if counter_2 %}
           <ul>
-            {% for success in successes_yesterday %}
-              <li class="clearfix{% if success.friend %} friend{% endif %}"{% if disable_friends and success.friend %} style="display: none;"{% endif %}>
+            {% for dish in counter_2 %}
                 <p class="success">
                   <span></span>
-                  {% if success.friend %}{{ success.user.username }} {% endif %}{{ success.description }}
+                  <li>{{ dish.dish_name }} {{ dish.dish_price }}</li>
                 </p>
-                {% if not success.friend %}
-                  <a href="/delete/{{ success.id }}">
-                    <img src="http://media.finisht.com/images/delete.png" alt="Delete" title="Delete" />
-                  </a>
-                {% endif %}
-                <span class="done-on">yesterday at {{ success.completed_on|date:"P" }}</span>
-              </li>
             {% endfor %}
           </ul>
           {% else %}
@@ -121,74 +128,19 @@
           {% endif %}
         </div>
         <div id="past7days" style="display: none;">
-          {% if successes_this_week %}
+          {% if counter_3 %}
           <ul>
-            {% for success in successes_this_week %}
-              <li class="clearfix{% if success.friend %} friend{% endif %}"{% if disable_friends and success.friend %} style="display: none;"{% endif %}>
+            {% for dish in counter_3 %}
                 <p class="success">
                   <span></span>
-                  {% if success.friend %}{{ success.user.username }} {% endif %}{{ success.description }}
+                  <li>{{ dish.dish_name}} {{ dish.dish_price }}</li>
                 </p>
-                {% if not success.friend %}
-                  <a href="/delete/{{ success.id }}">
-                    <img src="http://media.finisht.com/images/delete.png" alt="Delete" title="Delete" />
-                  </a>
-                {% endif %}
-                <span class="done-on">{{ success.completed_on|date:"D" }} at {{ success.completed_on|date:"P" }}</span>
-              </li>
             {% endfor %}
           </ul>
           {% else %}
           <div class="do-something">You haven't done anything the past 7 days!  What a bum!</div>
           {% endif %}
         </div>
-        <div id="thismonth" style="display: none;">
-          {% if successes_this_month %}
-          <ul>
-            {% for success in successes_this_month %}
-              <li class="clearfix{% if success.friend %} friend{% endif %}"{% if disable_friends and success.friend %} style="display: none;"{% endif %}>
-                <p class="success">
-                  <span></span>
-                  {% if success.friend %}{{ success.user.username }} {% endif %}{{ success.description }}
-                </p>
-                {% if not success.friend %}
-                  <a href="/delete/{{ success.id }}">
-                    <img src="http://media.finisht.com/images/delete.png" alt="Delete" title="Delete" />
-                  </a>
-                {% endif %}
-                <span class="done-on">{{ success.completed_on|date:"D" }}, {{ success.completed_on|date:"M j" }}</span>
-              </li>
-            {% endfor %}
-          </ul>
-          {% else %}
-          <div class="do-something">You haven't done anything this month!  Find a job!</div>
-          {% endif %}
-        </div>
-        <div id="lastmonth" style="display: none;">
-          {% if successes_last_month %}
-          <ul>
-            {% for success in successes_last_month %}
-              <li class="clearfix{% if success.friend %} friend{% endif %}"{% if disable_friends and success.friend %} style="display: none;"{% endif %}>
-                <p class="success">
-                  <span></span>
-                  {% if success.friend %}{{ success.user.username }} {% endif %}{{ success.description }}
-                </p>
-                {% if not success.friend %}
-                  <a href="/delete/{{ success.id }}">
-                    <img src="http://media.finisht.com/images/delete.png" alt="Delete" title="Delete" />
-                  </a>
-                {% endif %}
-                <span class="done-on">{{ success.completed_on|date:"D" }}, {{ success.completed_on|date:"M j" }}</span>
-              </li>
-            {% endfor %}
-          </ul>
-          {% else %}
-          <div class="do-something">You didn't do anything last month!  Get a life!</div>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
   {% endif %}
 {% endblock %}
 

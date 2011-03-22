@@ -118,5 +118,9 @@ def home(request):
     home = True
     dishes = Dishes.objects.all()
     dishes_true = True
+    counter_1 = dishes.filter(counter1 = True)
+    counter_2 = dishes.filter(counter2 = True)
+    counter_3 = dishes.filter(counter3 = True)
+
     return render_to_response('home.html',locals(),context_instance=RequestContext(request))
         
