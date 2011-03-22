@@ -1,3 +1,25 @@
+<form action="/login/" method="post" id="login-form"{% if forget %} style="display: none;"{% endif %} {% if signup %} style="display: none;"{% endif %} {% if reset %} style="display: none;"{% endif %}>
+    {% if form.errors and data %}
+    <div class="error">Sorry, I don't think that's not a valid username or password.</div>
+  {% endif %}
+    {% csrf_token %}
+  <div id="login-username" class="clearfix">
+    <label for="username">User name:</label>
+    <input type="text" name="username" value="" id="username" />
+  </div>
+  <div id="login-password" class="clearfix">
+    <label for="password">Password:</label>
+    <input type="password" name="password" value="" id="password" />
+  </div>
+<div id = "forgot" class = "clearfix">
+<a href="/forget/" id = "forgot">Forgot Password</a>
+</div>
+  <div id="login-submit" class="submit clearfix">
+    <input type="submit" value="Login" class="submit" />
+    <input type="hidden" name="next" value="/" />
+  </div>
+  </form>
+
  <form action="/resetpass/" method="post" id="reset-form"{% if not reset %} style="display: none;"{% endif %}>
     {% if form.errors and data %}
     <div class="error">Passwords do not match.</div>
@@ -20,24 +42,6 @@
   </div>
   </form>
 
-<form action="/login/" method="post" id="login-form"{% if not login %} style="display: none;"{% endif %}>
-    {% if form.errors and data %}
-    <div class="error">Sorry, I don't think that's not a valid username or password.</div>
-  {% endif %}
-    {% csrf_token %}
-  <div id="login-username" class="clearfix">
-    <label for="username">User name:</label>
-    <input type="text" name="username" value="" id="username" />
-  </div>
-  <div id="login-password" class="clearfix">
-    <label for="password">Password:</label>
-    <input type="password" name="password" value="" id="password" />
-  </div>
-  <div id="login-submit" class="submit clearfix">
-    <input type="submit" value="Login" class="submit" />
-    <input type="hidden" name="next" value="/" />
-  </div>
-  </form>
 
 
 
@@ -87,6 +91,10 @@
     <label for="id_password2">Again:</label>
     <input id="id_password2" type="password" name="password2" maxlength="60" value="{{ data.password2 }}"/>
   </div>
+<div id = "forgot" class = "clearfix">
+<a href="/forget/" id = "forgot">Forgot Password</a>
+</div>
+
   <div id="signup-submit" class="submit clearfix">
     <input type="submit" value="Signup" class="submit" />
   </div>

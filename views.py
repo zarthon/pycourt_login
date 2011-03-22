@@ -31,6 +31,9 @@ def login(request):
             #user.groups.add('temp')
             if user is not None:
                 auth_login(request,user)
+                request.session.set_expiry(30)
+                print request.session.get_expiry_date()
+                request.session['member_id'] = user.id
                 temp = UserProfile.objects.get(user = user)
                 print temp.is_counter , temp.is_student
                 return HttpResponseRedirect('/home/')
@@ -43,7 +46,7 @@ def login(request):
 
 def logout(request): 
     auth_logout(request)
-    return HttpResponseRedirect('/login/')
+    return render_to_response('logout.html',{},context_instance=RequestContext(request))
 
 def register(request):
     if not request.user.is_authenticated():

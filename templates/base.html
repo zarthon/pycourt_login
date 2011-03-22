@@ -13,20 +13,28 @@
 <meta http-equiv="Content-Language" content="en" />
 
 <link rel="stylesheet" href="/pycourt/css/finisht.css" media="all" type="text/css" />
-<link rel="icon" href="/pycourt/css/favicon.ico" />
-
-<script type="text/javascript" src="pycourt/script.js"></script>
+<link rel="icon" href="/pycourt/favicon.ico" />
+<script type="text/javascript" src="/pycourt/jquery.js"></script>
+<script type="text/javascript" src="/pycourt/script.js"></script>
+<script type="text/javascript">
+</script>
+{% block js %}{% endblock %}
 
 </head>
 
 <body{% block body_styles %}{% endblock %}>
+<a href ='/home/'><IMG SRC="/pycourt/python.png" height="35%" width="70%"></a>
 
 <div id="content" class="frame">
   <div id="content-inner">
     {% block content %}{% endblock %}
   </div>
 </div>
-
+<div id="footer" class="frame">
+  <div id="footer-inner">
+   PyCourt is an online cafeteria management system developed in <a href="http://www.djangoproject.com">Django</a>.
+  </div>
+</div>
 
 </body>
 </html>

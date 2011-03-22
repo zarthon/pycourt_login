@@ -2,12 +2,10 @@
 {% block js %}
 <script type="text/javascript">var activeForget = 'forget';</script>
 {% endblock %}
-
 {%block content %}
     <div id = "auth-page">
         <div id="login-signup">
-            <h3><a id="login" href="/login/">Login</a> / <a id="signup" href="/signup/"id="signup">Signup</a>/ <span
-                    id="forget">Forget</span> </h3>
+            <h3><span id="forget">Password Recovery</span> </h3>
             {% include "auth_form.html" %}
         </div>
     </div>
