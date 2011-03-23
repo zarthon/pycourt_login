@@ -23,7 +23,8 @@ urlpatterns = patterns('',
     (r'^resetpass/$',resetpassword),
     (r'^home/',home),
     (r'^profile/',profile),
-    (r'^setting/',setting)
+    (r'^setting/',setting),
+    (r'^accounts/login',home),
 )
 
 if settings.DEBUG:
