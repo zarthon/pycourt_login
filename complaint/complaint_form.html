@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {%block content %}
+        {% csrf_token %}
     <h1>Please write yout complaint</h1>
 
     {% if form.errors %}
@@ -10,6 +11,7 @@
     {% endif %}
 
     <form action="" method="post">
+        {% csrf_token %}
         <table>
             {{ form.as_table }}
         </table>

@@ -3,6 +3,7 @@
 from django.shortcuts import render_to_response
 from pycourt_login.complaint.forms import ComplaintForm
 from django.http import HttpResponse,HttpResponseRedirect
+from django.template import RequestContext
 
 def complaint(request):
 	if request.method == 'POST':
@@ -14,8 +15,8 @@ def complaint(request):
 				cd['subject'],
 				message_body,
 				'200801066@daiict.ac.in',
-				['cmc@daiict.ac.in'], fail_silently=False)"""
+				['200801066@daiict.ac.in'], fail_silently=False)"""
 			return HttpResponseRedirect('/home')
 	else:
 		form = ComplaintForm()
-	return render_to_response('complaint_form.html', {'form': form})
+	return render_to_response('complaint_form.html', {'form': form},context_instance=RequestContext(request))
