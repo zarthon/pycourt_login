@@ -35,7 +35,7 @@ class Orders(models.Model):
     order_id = models.CharField(max_length=60)
     student_id = models.ForeignKey(User)
     status = models.BooleanField()
-    date = models.DateField()
-    time = models.TimeField()
+    date = models.DateField(auto_now_add=True)
+    time = models.TimeField(auto_now_add=True)
     counterid = models.IntegerField()
 

@@ -17,7 +17,7 @@ $(function() {
     
     $('#done-list li a,  a.delete').bind("click", function() {
         $(this).parent().css('background-color', '#F7D4D4');
-        if (confirm("You sure you want to do that?")) { orderlist = orderlist+ $(this).attr('id'); $("#orders").val(orderlist);alert($("#orders").val()); return false; }
+        if (confirm("You sure you want to do that?")) { orderlist = orderlist+ $(this).attr('id')+','; $("#orders").val(orderlist);alert($("#orders").val()); return false; }
         else { $(this).parent().css('background-color', '#EEEEEE'); return false; }
     });
 
