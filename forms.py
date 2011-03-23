@@ -73,5 +73,23 @@ class RegisterForm(forms.ModelForm):
             user.save()
         return user
 
+class SettingForm(forms.ModelForm):
+
+    email = forms.RegexField(regex=r'^[1-9][0-9]{8}@daiict.ac.in')
+    class Meta:
+        model = User
+        fields = ('first_name','last_name','email')
+
+
+    def save(self, commit=True):
+        user = super(SettingForm,self).save(commit=False)
+        user.email=(self.cleaned_data["email"])
+        user.first_name=(self.cleaned_data["first_name"])
+        user.last_name = (self.cleaned_data["last_name"])
+        if commit:
+            user.save()
+        return user
+
+
 
     

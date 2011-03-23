@@ -25,3 +25,11 @@ class Dishes(models.Model):
     counter1 = models.BooleanField()
     counter2 = models.BooleanField()
     counter3 = models.BooleanField()
+'''    
+class Orders(models.Model):
+    orderid = models.AutoField()
+    status = models.BooleanField()
+    date = models.DateField()
+    time = models.TimeField()
+    counterid = models.IntegerField()
+'''

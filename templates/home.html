@@ -93,6 +93,7 @@ function SwapDone(current) {
           <input type="checkbox" id="with-friends-check"{% if not disable_friends %} checked="checked"{% endif %} /><label for="with-friends-check"> with friends</label>
         </div>
       </form>
+  {% if userprofile.is_student %}
       <div id="done-nav">
         <ul>
           <li><a href="javascript:SwapDone('today');" class="active" id="today-nav">Counter 1</a></li>
@@ -141,6 +142,7 @@ function SwapDone(current) {
           <div class="do-something">You haven't done anything the past 7 days!  What a bum!</div>
           {% endif %}
         </div>
+  {% endif %}
   {% endif %}
 {% endblock %}
 

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}My Dashboard{% endblock %}
+
+{% block content %}
+<b>Settings</b>
+<form action="" method="post" id="setting-form">
+    {% csrf_token %}
+    {% for field in signup_form.visible_fields %}
+    <div {% if field.errors %}class="error"{% else %}class = "clearfix"{% endif %}>
+        {% for err in field.errors %}
+            <span class="error">{{ err }}</span>
+        {% endfor %}
+        {{ field.label_tag }}<br/>
+        {{ field }}
+    </div>
+    {% endfor %}
+    <p><input type="submit" value="submit" /></p>
+    </form>
+
+{% endblock %}

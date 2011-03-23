@@ -31,7 +31,7 @@ def login(request):
             #user.groups.add('temp')
             if user is not None:
                 auth_login(request,user)
-                request.session.set_expiry(30)
+                request.session.set_expiry(300)
                 print request.session.get_expiry_date()
                 request.session['member_id'] = user.id
                 temp = UserProfile.objects.get(user = user)
@@ -120,10 +120,41 @@ def resetpassword(request):
 def home(request):
     home = True
     dishes = Dishes.objects.all()
-    dishes_true = True
+    userprof = UserProfile.objects.all()
+    userprofile=None
+    for u in userprof:
+        if u.user.username == request.user.username:
+            userprofile = u
+
+    #print userprofile.user.username
     counter_1 = dishes.filter(counter1 = True)
     counter_2 = dishes.filter(counter2 = True)
     counter_3 = dishes.filter(counter3 = True)
 
     return render_to_response('home.html',locals(),context_instance=RequestContext(request))
-        
+
+@login_required
+def profile(request):
+    user = request.user
+    return render_to_response('profile.html',locals(),context_instance=RequestContext(request))
+
+@login_required
+def setting(request):
+    user = request.user
+    forms = myforms.SettingForm(instance=request.user)
+    print "OUTSIDE POST"
+    print forms
+    if request.method == 'POST':
+        print "INSIDE POST"
+        print request.POST
+        forms = myforms.SettingForm(request.POST,instance=request.user)
+        print "asdsda"
+        print forms
+        if forms.is_valid():
+            forms.save()
+            return HttpResponseRedirect('/home/')
+        else:
+            request.user = user
+      #      return render_to_response('setting.html',{'signup_form':forms,'data':request.POST},context_instance=RequestContext(request))
+    return render_to_response('setting.html',{'signup_form':forms,'data':request.POST,'user':user},context_instance=RequestContext(request))
+
