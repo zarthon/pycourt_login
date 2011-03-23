@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{%block content %}
+    <h1>Please write yout complaint</h1>
+
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
