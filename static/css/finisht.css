@@ -4,7 +4,7 @@ fieldset, img {border: 0;}
 address, caption, cite, code, dfn, em, strong, th, var {font-style: normal;}
 ol, ul {list-style: none;}
 caption, th {text-align: left;}
-h1, h2, h3, h4, h5, h6 {font-size: 100%; font-weight: normal;}
+h1, h2, h3, h4, h5, h6 {font-size: 100%; font-weight:bold;}
 q:before, q:after {content: '';}
 abbr, acronym {border: 0;}
 
@@ -16,15 +16,17 @@ abbr, acronym {border: 0;}
 	visibility: hidden;
 }
 
-.clearfix {display: inline-block;}
+.clearfix {display:inline;}
 
-/* \*/
+
 * html .clearfix {height: 1%;}
-.clearfix {display: block;}
-/* */
+.clearfix {display:block;
+			outline-style:none;}
+
 
 body {
     font: 62.5% Helvetica, Verdana, Arial, Helvetica, sans-serif;
+	
 }
 
 body a {
@@ -35,13 +37,13 @@ em {
     font-style: italic;
 }
 
+
 .frame {
 	width: 778px;
 	margin: 0 auto;
 }
 
-#header {
-    background: url('images/bg.jpg') top left repeat-x;
+#header {    background: url('images/bg.jpg') top left repeat-x;
     padding-bottom: 25px;
     border-bottom: 4px solid #497A32;
 }
@@ -53,6 +55,10 @@ em {
 
 #header img {
     margin-left: 10px;
+}
+
+.footer_base {
+	width: inherit;
 }
 
 #add-friend {
@@ -97,10 +103,11 @@ em {
 
 #homepage #content, #error-page #content {
     padding: 50px 0;
+	padding-top: 10px;
 }
 
 #main {
-  margin-top: 50px;
+  margin-top: 1px;
 }
 
 .logged-in #content {
@@ -113,14 +120,31 @@ em {
 
 #left {
   float: left;
-  width: 62%;
+  width: 60%;
 }
 
 #right {
   float: left;
-  width: 38%;
+  width: 40%;
 }
 
+
+#forgot2{
+	float:left;
+	width:60%;
+}
+#forgot3{
+	float:left;
+	
+}
+
+
+.forgot1 {
+	size: 40px;
+	padding: 0;
+	margin-bottom: 20;
+	font:Verdana, Geneva, sans-serif;
+}
 #homepage h1, #error-page h1 {
     font-size: 2.4em;
     font-weight: bold;
@@ -204,13 +228,30 @@ em {
 
 #login-signup div.submit {
   padding: 0;
+  padding-left: 214px;
+  
 }
 
 #login-signup div.submit input {
-  float: right;
-  width: auto;
-  margin: 10px;
-  margin-bottom: 20px;
+  	width: auto;
+    margin-bottom: 20px;
+}
+
+.logout{
+	font-size:14px;
+	display:block;
+	padding-bottom:140px;
+	text-align:center;
+	background-color:#DDD;
+}
+
+.logout1{
+	font-size:14px;
+	display:block;
+	padding-bottom:140px;
+	text-align:center;
+	background-color:#F3F3F3;
+	margin-bottom: 70px;
 }
 
 #hello {
@@ -445,6 +486,8 @@ em {
     color: #8D8D8D;
     font-size: 1.1em;
     padding-bottom: 15px;
+	width: 100%;
+	text-align: center;
 }
 
 #footer a {
@@ -458,6 +501,14 @@ em {
 #footer-inner {
     background-color: #EEE;
     padding: 10px;
+	width: 100%;
+}
+
+.line1 {
+	width: 300px;
+	align: left;
+	margin-top: 20px;
+	color:#DDD;
 }
 
 #sub-footer {
@@ -472,8 +523,12 @@ em {
 }
 
 .promo {
-  margin-top: 40px;
-  margin-right: 20px;
+  margin-top: 30px;
+  margin-right: 30px;
+}
+
+#header1{
+	margin-top: 1px;
 }
 
 .first {

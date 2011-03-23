@@ -8,39 +8,39 @@
   {% if not user.is_authenticated %}
   <h1>PyCourt.</h1>
   <p>Pycourt is for Students to order <em>food</em> online.</p>
-  <div id="main" class="clearfix">
-    <div id="left">
-      <div class="promo first">
-        <h2>Why?</h2>
-        <div class="promo-content">
-          If you're like us, you finish tasks assigned to you from several sources &ndash; email, bug trackers, support tickets, face-to-face interactions, etc.  It's difficult to find a list of all the things you've done.
-        </div>
-      </div>
-      <div class="promo">
-        <img src="http://media.finisht.com/images/what-ive-done.gif" alt="At a glance reporting" title="At a glance reporting" />
-        <h2>At a glance reporting</h2>
-        <div class="promo-content">
-          There comes a point in time where it'd be nice to see what you've done in the past, so we made that easy.
-        </div>
-      </div>
-      <div class="promo">
-        <img src="http://media.finisht.com/images/done.gif" alt="One-touch operation!" title="One-touch operation!" />
-        <h2>One-touch operation!</h2>
-        <div class="promo-content">
-          No one needs another hoop to jump through in their workflow.  Just type, submit, done.
-        </div>
-      </div>
-    </div>
-    <div id="right">
-        <div id = "auth-page">
-             <div id="login-signup">
-                 <h3><a href="/login/" id="login">Login</a> / <a href="/signup/" id="signup">Signup</a></h3>
-                {% include "auth_form.html" %}
-              </div>
-          </div>
-    </div>
-  </div>
-  {% else %}
+<div id="main" class="clearfix">
+	<div id="left">
+		<div id="header1" class="promo">
+      	<h2>Topic 1</h2>
+       		<div class="promo-content">
+			Blank
+        		</div>
+      	</div>
+		<hr class= "line1" align = "left" size="1">
+		<div class="promo">
+      	<h2>Topic 2</h2>
+      		<div class="promo-content">
+          		Blank
+        		</div>
+      	</div>
+		<hr class= "line1" align = "left" size="1">
+      	<div class="promo">
+      	<h2>Topic 3</h2>
+        		<div class="promo-content">
+        	  	Blank
+        		</div>
+      	</div>
+	</div>
+    	<div id="right">
+   		<div id="login-signup">
+		<h3><span id="login">Login</span> / <a href="/signup/" id="signup">Signup</a></h3>
+           {% include "auth_form.html" %}
+           </div>
+		
+  	</div>
+</div>
+
+ {% else %}
   <script type="text/javascript">
   var activeDone = 'today'
 

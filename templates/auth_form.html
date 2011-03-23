@@ -11,13 +11,13 @@
     <label for="password">Password:</label>
     <input type="password" name="password" value="" id="password" />
   </div>
-<div id = "forgot" class = "clearfix">
-<a href="/forget/" id = "forgot">Forgot Password</a>
+<div id ="forgot">
+<a href="/forget/" id = "forgot2" class="forgot1"><font size = "1.3px">Forgotten Your Password ?</font></a>
+
 </div>
   <div id="login-submit" class="submit clearfix">
-    <input type="submit" value="Login" class="submit" />
-    <input type="hidden" name="next" value="/" />
-  </div>
+    <input type="submit" value="Login" class="submit"/>
+     </div>
   </form>
 
  <form action="/resetpass/" method="post" id="reset-form"{% if not reset %} style="display: none;"{% endif %}>
@@ -92,7 +92,7 @@
     <input id="id_password2" type="password" name="password2" maxlength="60" value="{{ data.password2 }}"/>
   </div>
 <div id = "forgot" class = "clearfix">
-<a href="/forget/" id = "forgot">Forgot Password</a>
+<a href="/forget/" id = "forgot">Forgotten Your Password?</a>
 </div>
 
   <div id="signup-submit" class="submit clearfix">
