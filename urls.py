@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from pycourt_login.views import *
+from pycourt_login.complaint.views import *
 from django.conf import settings
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -26,6 +27,8 @@ urlpatterns = patterns('',
     (r'^setting/',setting),
     (r'^accounts/login',home),
     (r'^order/',order),
+	(r'^complaint/',complaint),
+
 )
 
 if settings.DEBUG:
