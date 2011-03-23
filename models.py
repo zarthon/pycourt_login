@@ -18,6 +18,11 @@ class BalanceAccount(models.Model):
     counter2_balance = models.IntegerField()
     counter3_balance = models.IntegerField()
 
+class CounterAccount(models.Model):
+    account = models.ForeignKey(User)
+    balance = models.IntegerField()
+
+
 class Dishes(models.Model):
     dish_id = models.IntegerField(primary_key = True)
     dish_name = models.CharField(max_length = 40)
@@ -25,11 +30,12 @@ class Dishes(models.Model):
     counter1 = models.BooleanField()
     counter2 = models.BooleanField()
     counter3 = models.BooleanField()
-'''    
+ 
 class Orders(models.Model):
-    orderid = models.AutoField()
+    order_id = models.CharField(max_length=60)
+    student_id = models.ForeignKey(User)
     status = models.BooleanField()
     date = models.DateField()
     time = models.TimeField()
     counterid = models.IntegerField()
-'''
+

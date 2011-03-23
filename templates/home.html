@@ -108,7 +108,9 @@ function SwapDone(current) {
             {% for dish in counter_1 %}
                 <p class="success">
                   <span></span>
-                  <li>{{dish.dish_name}} {{ dish.dish_price }}</li>
+                  <li>{{dish.dish_name}} {{ dish.dish_price }}
+                  <a href= "/order/{{dish.dish_id}}count1/"><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
+                  </li>
                 </p>
             {% endfor %}
           </ul>
@@ -120,7 +122,9 @@ function SwapDone(current) {
             {% for dish in counter_2 %}
                 <p class="success">
                   <span></span>
-                  <li>{{ dish.dish_name }} {{ dish.dish_price }}</li>
+                  <li>{{ dish.dish_name }} {{ dish.dish_price }}
+                  <a href= "/order/{{dish.dish_id}}count2/"><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
+                  </li>
                 </p>
             {% endfor %}
           </ul>
@@ -134,7 +138,9 @@ function SwapDone(current) {
             {% for dish in counter_3 %}
                 <p class="success">
                   <span></span>
-                  <li>{{ dish.dish_name}} {{ dish.dish_price }}</li>
+                  <li>{{ dish.dish_name}} {{ dish.dish_price }}
+                  <a href= "/order/{{dish.dish_id}}count3/"><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
+                </li>
                 </p>
             {% endfor %}
           </ul>

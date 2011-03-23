@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     (r'^profile/',profile),
     (r'^setting/',setting),
     (r'^accounts/login',home),
+    (r'^order/(?P<orderno>[a-z0-9]+)/$',order),
 )
 
 if settings.DEBUG:

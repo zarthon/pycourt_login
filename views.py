@@ -158,3 +158,43 @@ def setting(request):
       #      return render_to_response('setting.html',{'signup_form':forms,'data':request.POST},context_instance=RequestContext(request))
     return render_to_response('setting.html',{'signup_form':forms,'data':request.POST,'user':user},context_instance=RequestContext(request))
 
+@login_required
+def order(request,orderno):
+    user = request.user
+    orderid = orderno.split('count')
+    print orderid
+    if orderid[1] == '1':
+        counter = '123456789'
+    elif orderid[1]=='2':
+        counter = '123456788'
+    else:
+        counter = '123456777'
+
+    counterac = User.objects.get(username=counter)
+    dish = Dishes.objects.get(dish_id = int(orderid[0]))
+    account1 = BalanceAccount.objects.get(account=user)
+    account2 = CounterAccount.objects.get(account=counterac)
+
+    order = Orders(order_id=orderno,student_id=user,status=False,date=datetime.date,time=datetime.time,counterid=counter)
+
+    if orderid[1] == '1' and account1.counter1_balance >= dish.dish_price:
+        account1.counter1_balance = account1.counter1_balance -dish.dish_price
+        account2.balance = account2.balance + dish.dish_price
+
+    elif orderid[1]=='2'and account1.counter2_balance >= dish.dish_price:
+        account1.counter1_balance = account1.counter1_balance -dish.dish_price
+        account2.balance = account2.balance + dish.dish_price
+
+        counter = '123456788'
+    else:
+        if account1.counter3_balance >= dish.dish_price:
+            account1.counter3_balance = account1.counter3_balance -dish.dish_price
+            account2.balance = account2.balance + dish.dish_price
+        counter = '123456777'
+
+    print account1.counter1_balance
+    print account2.balance
+    return HttpResponse(str(order.student_id.username)+'////'+str(order.order_id)+'////'+str(order.counterid))
+
+
+
