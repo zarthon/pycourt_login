@@ -1,5 +1,6 @@
 var activeLogin = '';
 var activeDone = 'today';
+var orderlist = '';
 
 $(function() {
     $("a").click(function() {this.blur();});
@@ -14,10 +15,9 @@ $(function() {
 
     $('#no-problem').bind("click", function() { $(this).parent().css('display', 'none'); });
     
-    $("#done-nav a").bind("click", function() {SwapDone($(this)); return false;});
-    $('#done-list li a, #friends-list li a.delete').bind("click", function() {
+    $('#done-list li a,  a.delete').bind("click", function() {
         $(this).parent().css('background-color', '#F7D4D4');
-        if (confirm("You sure you want to do that?")) { return true; }
+        if (confirm("You sure you want to do that?")) { orderlist = orderlist+ $(this).attr('id'); $("#orders").val(orderlist);alert($("#orders").val()); return false; }
         else { $(this).parent().css('background-color', '#EEEEEE'); return false; }
     });
 

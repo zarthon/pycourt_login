@@ -77,10 +77,11 @@ function SwapDone(current) {
     </div>
     {% endif %}
     <div id="add-success">
-      <form action="/" method="post" id="done-form">
+        <form action="/order/" method="post" id="done-form">
+            {% csrf_token %}
         <div class="add-success-input clearfix">
-          <label for="id_description">What did you do?</label>
-          <textarea id="id_description" name="description" rows="5" cols="60"></textarea>
+            <label for="id_description">What did you do?</label>
+            <input type="text" name="order" value="" id="orders" style="display:none;">
           <input type="submit" value="Done" />
         </div>
       </form>
@@ -109,7 +110,7 @@ function SwapDone(current) {
                 <p class="success">
                   <span></span>
                   <li>{{dish.dish_name}} {{ dish.dish_price }}
-                  <a href= "/order/{{dish.dish_id}}count1/"><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
+                  <a id = "{{dish.dish_id}}count1" href= "/order/{{dish.dish_id}}count1/"><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
                   </li>
                 </p>
             {% endfor %}
@@ -123,7 +124,7 @@ function SwapDone(current) {
                 <p class="success">
                   <span></span>
                   <li>{{ dish.dish_name }} {{ dish.dish_price }}
-                  <a href= "/order/{{dish.dish_id}}count2/"><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
+                  <a id= "{{dish.dish_id}}count2" href= "/order/{{dish.dish_id}}count2/"><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
                   </li>
                 </p>
             {% endfor %}
@@ -139,7 +140,7 @@ function SwapDone(current) {
                 <p class="success">
                   <span></span>
                   <li>{{ dish.dish_name}} {{ dish.dish_price }}
-                  <a href= "/order/{{dish.dish_id}}count3/"><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
+                  <a id= "{{dish.dish_id}}count3" href= "/order/{{dish.dish_id}}count3/"><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
                 </li>
                 </p>
             {% endfor %}

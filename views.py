@@ -159,8 +159,14 @@ def setting(request):
     return render_to_response('setting.html',{'signup_form':forms,'data':request.POST,'user':user},context_instance=RequestContext(request))
 
 @login_required
-def order(request,orderno):
+def order(request):
     user = request.user
+    if(request.method == 'POST'):
+        print request.POST
+
+    return HttpResponse("LOL")
+
+    '''
     orderid = orderno.split('count')
     print orderid
     if orderid[1] == '1':
@@ -195,6 +201,7 @@ def order(request,orderno):
     print account1.counter1_balance
     print account2.balance
     return HttpResponse(str(order.student_id.username)+'////'+str(order.order_id)+'////'+str(order.counterid))
+    '''
 
 
 
