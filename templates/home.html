@@ -8,38 +8,48 @@
 <script type="text/javascript">
   var activeLogin = 'Login';
 </script>
+
+<!-- This "main" division shows login form and news -->
 <div id="main" class="clearfix">
 	<h1>Header pending</h1>
+	
+	<!-- Start of "left" division which shows news -->
 	<div id="left">
 		<div id="header1" class="promo">
       		<h2>Topic 1</h2>
        		<div class="promo-content">
 				Blank
        		</div>
-      	</div>
+    	</div>
 		<hr class= "line1" align = "left" size="1">
-			<div class="promo">
+		<div class="promo">
       		<h2>Topic 2</h2>
       			<div class="promo-content">
           		Blank
         		</div>
       		</div>
-			<hr class= "line1" align = "left" size="1">
+		<hr class= "line1" align = "left" size="1">
       		<div class="promo">
       		<h2>Topic 3</h2>
         		<div class="promo-content">
         	  	Blank
         		</div>
-      	</div>
+      		</div>
 	</div>
-    <div id="right">
+	<!-- End of "left" division thats shows news -->
+
+
+	<!-- Start of the "right" division which shows login form -->   
+	<div id="right">
    		<div id="login-signup">
 		<h3><span id="login">Login</span> | <a href="/signup/" id="signup">Signup</a></h3>
         {% include "auth_form.html" %}
          </div>
 	</div>
-</div>
+	<!-- End of "right" division -->
 
+</div>
+<!-- end of main division -->
 
  
 {% else %}
@@ -64,14 +74,10 @@ function SwapDone(current) {
     }
 }
 </script>
+
+<!-- Mark the "main" division. There can be only 1 in the document but only one of them is executed at a time -->
 <div id="main" class="clearfix">
 {% include "navigation.html" %}
-{% if request.GET %}
-	<div id="thanks" class="clearfix">
-	<span>Thanks for doing that!</span>
-    <a href="#" id="no-problem">No problem</a>
-    </div>
-{% endif %}
 {% if delete %}
 	<div id="thanks" class="clearfix">
 	<span>I've deleted that for you</span>
@@ -99,28 +105,9 @@ function SwapDone(current) {
     <h3>Menu</h3>
   
   
-  	<script type="text/javascript">
-    function foodlistfilter (phrase, _id){
-    var words = phrase.value.toLowerCase().split(" ");
-    var table = document.getElementById(_id);
-    var ele;
-    for (var r = 1; r < table.rows.length; r++){
-        ele = table.rows[r].innerHTML.replace(/<[^>]+>/g,"");
-            var displayStyle = 'none';
-            for (var i = 0; i < words.length; i++) {
-            if (ele.toLowerCase().indexOf(words[i])>=0)
-            displayStyle = '';
-            else {
-            displayStyle = 'none';
-            break;
-            }
-            }
-        table.rows[r].style.display = displayStyle;
-    }
-}
-    </script>  
-   	 <form>
-	<b>Please filter the food to order</b>
+  	<script type="text/javascript" src="/pycourt/filterfoodlist.js"></script>
+   	<form>
+	<b>Filter List for Food Items</b>
 	<input type="text" onkeyup="foodlistfilter(this, 'sf', '1')" name="filt">
 	</form>				 
 	<div id="done-nav">
