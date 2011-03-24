@@ -136,7 +136,7 @@ function SwapDone(current) {
 		<table id="sf" cellspacing="1" cellpadding="2" border="0" width="100%">
 		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
 		{% for dish in counter_1 %}
-			<tr><td id = "{{dish.dish_id}}count1a" > {{ dish.dish_id }} </td>
+			<tr><td id = "{{dish.dish_id}}count1a" > {{ dish.id }} </td>
 				<td id = "{{dish.dish_id}}count1b" > {{ dish.dish_name }} </td>
 				<td id = "{{dish.dish_id}}count1c" > {{ dish.dish_price }} </td>
 				<td><a id = "{{dish.dish_id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
@@ -155,7 +155,7 @@ function SwapDone(current) {
 		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
 
 			{% for dish in counter_2 %}
-                <tr><td id = "{{dish.dish_id}}count2a" > {{ dish.dish_id }} </td>
+                <tr><td id = "{{dish.dish_id}}count2a" > {{ dish.id }} </td>
 				<td id = "{{dish.dish_id}}count2b" > {{ dish.dish_name }} </td>
 				<td id = "{{dish.dish_id}}count2c" > {{ dish.dish_price }} </td>
 				<td><a id = "{{dish.dish_id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
@@ -177,7 +177,7 @@ function SwapDone(current) {
 		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
 
             {% for dish in counter_3 %}
-             <tr><td id = "{{dish.dish_id}}count3a" > {{ dish.dish_id }} </td>
+             <tr><td id = "{{dish.dish_id}}count3a" > {{ dish.id }} </td>
 				<td id = "{{dish.dish_id}}count3b" > {{ dish.dish_name }} </td>
 				<td id = "{{dish.dish_id}}count3c" > {{ dish.dish_price }} </td>
 				<td><a id = "{{dish.dish_id}}count3" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
