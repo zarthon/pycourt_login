@@ -3,7 +3,7 @@ var activeDone = 'today';
 var orderlist = '';
 var tempname = '';
 var tempprice = '';
-
+var tempid ='';
 
 $(function() {
     $("a").click(function() {this.blur();});
@@ -20,21 +20,25 @@ $(function() {
 
     $('#no-problem').bind("click", function() { $(this).parent().css('display', 'none'); });
     
-    $('#done-list li a,  a.delete').bind("click", function() {
-        $(this).parent().css('background-color', '#F7D4D4');
-        if (confirm("Add to Order list?")) { orderlist = orderlist+ $(this).attr('id')+','; $("#orders").val(orderlist); 
+    $('#sf a,  a.delete').bind("click", function() {
+        if (confirm("Add to Order list?")) { orderlist = orderlist+ $(this).attr('id')+','; $("#orders").val(orderlist);
+		var tempparent = $(this).parent();
+        $(tempparent).parent().css('background-color', '#F7D4D4');
 		var temp = $(this).attr('id') + 'a';
 		var temp1 = ('#' + temp); 
 		var temp2 = $(this).attr('id') + 'b';
 		var temp3 = ('#' + temp2);
-		tempname = $(temp1).text();  
-		tempprice = $(temp3).text();
+		var temp4 = $(this).attr('id') + 'c';
+		var temp5 = ('#' + temp4);
+		tempid = $(temp1).text();
+		tempname = $(temp3).text(); 
+		tempprice = $(temp5).text();
 		$("table#t1 tr:last").after('<tr><th class="t1">'+ tempname+'</th><th class="t1">' + tempprice + '</th></tr>'); return false;
-				
+		/*<th class="t1">' + tempid +'</th>*/
 		
 		}
 		
-        else { $(this).parent().css('background-color', '#EEEEEE'); return false; }
+        else { $(this).parent().parent().css('background-color', '#EEEEEE'); return false; }
     });
 
     $('#done-list li:last-child').css('border-bottom', '1px solid #E5E5E5');

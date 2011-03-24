@@ -97,7 +97,32 @@ function SwapDone(current) {
     </div>
     <div id="what-ive-done" class="clearfix">
     <h3>Menu</h3>
-    
+  
+  
+  	<script type="text/javascript">
+    function foodlistfilter (phrase, _id){
+    var words = phrase.value.toLowerCase().split(" ");
+    var table = document.getElementById(_id);
+    var ele;
+    for (var r = 1; r < table.rows.length; r++){
+        ele = table.rows[r].innerHTML.replace(/<[^>]+>/g,"");
+            var displayStyle = 'none';
+            for (var i = 0; i < words.length; i++) {
+            if (ele.toLowerCase().indexOf(words[i])>=0)
+            displayStyle = '';
+            else {
+            displayStyle = 'none';
+            break;
+            }
+            }
+        table.rows[r].style.display = displayStyle;
+    }
+}
+    </script>  
+   	 <form>
+	<b>Please filter the food to order</b>
+	<input type="text" onkeyup="foodlistfilter(this, 'sf', '1')" name="filt">
+	</form>				 
 	<div id="done-nav">
     <ul>
 		<li><a href="javascript:SwapDone('today');" class="active" id="today-nav">Counter 1</a></li>
@@ -108,35 +133,16 @@ function SwapDone(current) {
     <div id="done-list">
 		<div id="today">
         {% if counter_1 %}
-        <ul class = "order_list">
-			<p class="success">
-				<li class = "order_row">
-					<div id ="list">
-						<div id="left_list">
-						<b><font size ="2"><p class = "menu_list">Item</p></font>
-						</div>
-						<div id="right_list">
-						<font size ="2"><p class = "menu_list">Price</p></font></b>
-						</div>
-					</div>
-				</li>
-            </p>
-        {% for dish in counter_1 %}
-			<p class="success">
-            <li class = "order_row">
-			<div id ="list">
-				<div id ="left_list">
-					<p id ="{{dish.dish_id}}count1a" class = "menu_list"><font size = "2.4">{{dish.dish_name}}</font></p>
-				</div>
-				<div id="right_list">
-					<p id ="{{dish.dish_id}}count1b" class="menu_list"><font size ="2.4">Rs {{ dish.dish_price }} /-</font></p>
-				</div>
-				<a id = "{{dish.dish_id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a>
-			</div>
-            </li>
-            </p>
+		<table id="sf" cellspacing="1" cellpadding="2" border="0" width="100%">
+		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
+		{% for dish in counter_1 %}
+			<tr><td id = "{{dish.dish_id}}count1a" > {{ dish.dish_id }} </td>
+				<td id = "{{dish.dish_id}}count1b" > {{ dish.dish_name }} </td>
+				<td id = "{{dish.dish_id}}count1c" > {{ dish.dish_price }} </td>
+				<td><a id = "{{dish.dish_id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
         {% endfor %}
-        </ul>
+       	</table>
+
 		{% else %}
           <div class="do-something">Database not populated !</div>
         {% endif %}
@@ -145,37 +151,18 @@ function SwapDone(current) {
         <div id="yesterday" style="display: none;">
         
 		{% if counter_2 %}
-          <ul>
-			<p class="success">
-            <li class = "order_row">
-			<div id ="list">
-				<div id="left_list">
-				<b><font size ="2"><p class = "menu_list">Item</p></font></b>
-				</div>
-				<div id="right_list">
-				<b><font size ="2"><p class = "menu_list">Price</p></font></b>
-				</div>
-            </li>
-            </p>
-
+          <table id="sf" cellspacing="1" cellpadding="2" border="0" width="100%">
+		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
 
 			{% for dish in counter_2 %}
-                <p class="success">
-                  <li>
-				  <div id="list">
-					<div id="left_list">
-						<p id ="{{dish.dish_id}}count2a" class="menu_list"><font size ="2.4">{{ dish.dish_name }}</font></p>
-					</div>
-					<div id ="right_list">
-						<p id ="{{dish.dish_id}}count2b" class="menu_list"><font size ="2.4">Rs {{ dish.dish_price }}/-</font></p>
-					</div>
-					<a id= "{{dish.dish_id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></div>
-                  </li>
-                </p>
+                <tr><td id = "{{dish.dish_id}}count2a" > {{ dish.dish_id }} </td>
+				<td id = "{{dish.dish_id}}count2b" > {{ dish.dish_name }} </td>
+				<td id = "{{dish.dish_id}}count2c" > {{ dish.dish_price }} </td>
+				<td><a id = "{{dish.dish_id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
 				
             {% endfor %}
 			
-          </ul>
+          </table>
           {% else %}
           <div class="do-something">Database not populated!</div>
           {% endif %}
@@ -185,35 +172,17 @@ function SwapDone(current) {
 
         <div id="past7days" style="display: none;">
           {% if counter_3 %}
-          <ul>
-			<p class="success">
-				<li class = "order_row">
-					<div id ="list">
-						<div id="left_list">
-							<b><font size ="2"><p class = "menu_list">Item</p></font></b>
-						</div>
-						<div id="right_list">
-							<b><font size ="2"><p class = "menu_list">Price</p></font></b>
-						</div>
-					</div>
-				</li>
-            </p>
+
+          <table id="sf" cellspacing="1" cellpadding="2" border="0" width="100%">
+		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
+
             {% for dish in counter_3 %}
-             <p class="success">
-				<li>
-					<div id="list">
-						<div id="left_list">
-							<p id ="{{dish.dish_id}}count3a" class="menu_list"><font size ="2.4">{{ dish.dish_name}}</font></p>
-						</div>
-						<div id="right_list">
-							<p id ="{{dish.dish_id}}count3b" class="menu_list"><font size ="2.4">Rs {{ dish.dish_price }}/-</font></p>
-						</div>
-						<a id= "{{dish.dish_id}}count3" href="/order" ><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a>
-					</div>
-                </li>
-              </p>
+             <tr><td id = "{{dish.dish_id}}count3a" > {{ dish.dish_id }} </td>
+				<td id = "{{dish.dish_id}}count3b" > {{ dish.dish_name }} </td>
+				<td id = "{{dish.dish_id}}count3c" > {{ dish.dish_price }} </td>
+				<td><a id = "{{dish.dish_id}}count3" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
             {% endfor %}
-          </ul>
+          </table>
           {% else %}
           <div class="do-something">Database not populated !</div>
           {% endif %}
