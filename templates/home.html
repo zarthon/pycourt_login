@@ -8,38 +8,48 @@
 <script type="text/javascript">
   var activeLogin = 'Login';
 </script>
+
+<!-- This "main" division shows login form and news -->
 <div id="main" class="clearfix">
 	<h1>Header pending</h1>
+	
+	<!-- Start of "left" division which shows news -->
 	<div id="left">
 		<div id="header1" class="promo">
       		<h2>Topic 1</h2>
        		<div class="promo-content">
 				Blank
        		</div>
-      	</div>
+    	</div>
 		<hr class= "line1" align = "left" size="1">
-			<div class="promo">
+		<div class="promo">
       		<h2>Topic 2</h2>
       			<div class="promo-content">
           		Blank
         		</div>
       		</div>
-			<hr class= "line1" align = "left" size="1">
+		<hr class= "line1" align = "left" size="1">
       		<div class="promo">
       		<h2>Topic 3</h2>
         		<div class="promo-content">
         	  	Blank
         		</div>
-      	</div>
+      		</div>
 	</div>
-    <div id="right">
+	<!-- End of "left" division thats shows news -->
+
+
+	<!-- Start of the "right" division which shows login form -->   
+	<div id="right">
    		<div id="login-signup">
 		<h3><span id="login">Login</span> | <a href="/signup/" id="signup">Signup</a></h3>
         {% include "auth_form.html" %}
          </div>
 	</div>
-</div>
+	<!-- End of "right" division -->
 
+</div>
+<!-- end of main division -->
 
  
 {% else %}
