@@ -4,10 +4,12 @@
 {% block content %}
 <div id="main" class="clearfix">
     {% include "navigation.html" %}
-<h2>{{ user.first_name }} {{ user.last_name }}</h2>
-
-<h3>Information</h3>
-<p>
-    <b>Email:</b> {{ user.email }}<br/>
-    </p></div>
+	<div id = "profile">
+		<h1>{{ user.first_name }} {{ user.last_name }}'s Profile</h1>
+		<br><br>
+		<p>
+		<b>Email id : </b> {{ user.email }}<br/>
+		</p>
+	</div>
+</div>
 {% endblock %}

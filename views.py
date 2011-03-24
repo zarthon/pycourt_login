@@ -38,7 +38,7 @@ def login(request):
                 print temp.is_counter , temp.is_student
                 return HttpResponseRedirect('/home/')
             else:
-                return HttpResponse('fail')
+                return render_to_response('wrong.html',{},context_instance=RequestContext(request))
         else:
             return render_to_response('login.html',{'form':forms,'login':True,'data':request.POST},context_instance=RequestContext(request))
     else:
@@ -164,46 +164,50 @@ def order(request):
     orders = list()
     if(request.method == 'POST'):
         print request.POST
-    orderno = request.POST["order"]
-    orderlist = orderno.split(',')
-    for i in range(0,len(orderlist)-1):
-        orderid = orderlist[i].split("count")
-        if orderid[1] == '1':
-            counter = '123456789'
-        elif orderid[1]=='2':
-            counter = '123456788'
-        else:
-            counter = '123456777'
-        print counter
-    
-        counterac = User.objects.get(username=counter)
-        dish = Dishes.objects.get(dish_id = int(orderid[0]))
-        account1 = BalanceAccount.objects.get(account=user)
-        account2 = CounterAccount.objects.get(account=counterac)
-        order = Orders(order_id=orderlist[i],student_id=user,status=False,counterid=int(counter))
-        orders.append(order)
-
-        if orderid[1] == '1' and account1.counter1_balance >= dish.dish_price:
-            account1.counter1_balance = account1.counter1_balance -dish.dish_price
-            account2.balance = account2.balance + dish.dish_price
-
-        elif orderid[1]=='2'and account1.counter2_balance >= dish.dish_price:
-            account1.counter1_balance = account1.counter1_balance -dish.dish_price
-            account2.balance = account2.balance + dish.dish_price
-
-            counter = '123456788'
-        else:
-            if account1.counter3_balance >= dish.dish_price:
-                account1.counter3_balance = account1.counter3_balance -dish.dish_price
-                account2.balance = account2.balance + dish.dish_price
-            counter = '123456777'
+        orderno = request.POST["order"]
+        orderlist = orderno.split(',')
+        print orderlist
+        for i in range(0,len(orderlist)-1):
+            orderid = orderlist[i].split("count")
+            if orderid[1] == '1':
+                counter = '123456789'
+            elif orderid[1]=='2':
+                counter = '123456788'
+            else:
+                counter = '123456777'
+            print counter
         
-        print account1.counter1_balance
-        print order.order_id, order.student_id,order.status,order.date 
-        account1.save()
-        account2.save()
-        order.save()
-    return HttpResponse(str(order.student_id.username)+'////'+str(order.order_id)+'////'+str(order.counterid))
+            counterac = User.objects.get(username=counter)
+            dish = Dishes.objects.get(dish_id = int(orderid[0]))
+            account1 = BalanceAccount.objects.get(account=user)
+            account2 = CounterAccount.objects.get(account=counterac)
+
+            order = Order(order_id=orderlist[i],student_id=user,status=False,counterid=int(counter),datetime=datetime.datetime.now())
+            print  "order"
+            print type(order)
+            orders.append(order)
+
+            if orderid[1] == '1' and account1.counter1_balance >= dish.dish_price:
+                account1.counter1_balance = account1.counter1_balance -dish.dish_price
+                account2.balance = account2.balance + dish.dish_price
+
+            elif orderid[1]=='2'and account1.counter2_balance >= dish.dish_price:
+                account1.counter1_balance = account1.counter1_balance -dish.dish_price
+                account2.balance = account2.balance + dish.dish_price
+
+                counter = '123456788'
+            else:
+                if account1.counter3_balance >= dish.dish_price:
+                    account1.counter3_balance = account1.counter3_balance -dish.dish_price
+                    account2.balance = account2.balance + dish.dish_price
+                counter = '123456777'
+            
+            print account1.counter1_balance
+            print order.order_id, order.student_id,order.status,order.datetime 
+            account1.save()
+            account2.save()
+            order.save()
+        return HttpResponse(str(order.student_id.username)+'////'+str(order.order_id)+'////'+str(order.counterid))
     
 
 

@@ -3,46 +3,48 @@
 {% block body_styles %} id="homepage"{% if user.is_authenticated %} class="logged-in"{% endif %}{% endblock %}
 
 
-
 {% block content %}
-  {% if not user.is_authenticated %}
-  <h1>PyCourt.</h1>
-  <p>Pycourt is for Students to order <em>food</em> online.</p>
+{% if not user.is_authenticated %}
+<script type="text/javascript">
+  var activeLogin = 'Login';
+</script>
 <div id="main" class="clearfix">
+	<h1>Header pending</h1>
 	<div id="left">
 		<div id="header1" class="promo">
-      	<h2>Topic 1</h2>
+      		<h2>Topic 1</h2>
        		<div class="promo-content">
-			Blank
-        		</div>
+				Blank
+       		</div>
       	</div>
 		<hr class= "line1" align = "left" size="1">
-		<div class="promo">
-      	<h2>Topic 2</h2>
-      		<div class="promo-content">
+			<div class="promo">
+      		<h2>Topic 2</h2>
+      			<div class="promo-content">
           		Blank
         		</div>
-      	</div>
-		<hr class= "line1" align = "left" size="1">
-      	<div class="promo">
-      	<h2>Topic 3</h2>
+      		</div>
+			<hr class= "line1" align = "left" size="1">
+      		<div class="promo">
+      		<h2>Topic 3</h2>
         		<div class="promo-content">
         	  	Blank
         		</div>
       	</div>
 	</div>
-    	<div id="right">
+    <div id="right">
    		<div id="login-signup">
-		<h3><span id="login">Login</span> / <a href="/signup/" id="signup">Signup</a></h3>
-           {% include "auth_form.html" %}
-           </div>
-		
-  	</div>
+		<h3><span id="login">Login</span> | <a href="/signup/" id="signup">Signup</a></h3>
+        {% include "auth_form.html" %}
+         </div>
+	</div>
 </div>
 
- {% else %}
-  <script type="text/javascript">
-  var activeDone = 'today'
+
+ 
+{% else %}
+<script type="text/javascript">
+var activeDone = 'today'
 
 
 function SwapDone(current) {
@@ -61,95 +63,162 @@ function SwapDone(current) {
         return false;
     }
 }
-  </script>
-  <div id="main" class="clearfix">
-    {% include "navigation.html" %}
-    {% if request.GET %}
-    <div id="thanks" class="clearfix">
-      <span>Thanks for doing that!</span>
-      <a href="#" id="no-problem">No problem</a>
+</script>
+<div id="main" class="clearfix">
+{% include "navigation.html" %}
+{% if request.GET %}
+	<div id="thanks" class="clearfix">
+	<span>Thanks for doing that!</span>
+    <a href="#" id="no-problem">No problem</a>
     </div>
-    {% endif %}
-    {% if delete %}
-    <div id="thanks" class="clearfix">
-      <span>I've deleted that for you</span>
-      <a href="#" id="no-problem">Thanks</a>
+{% endif %}
+{% if delete %}
+	<div id="thanks" class="clearfix">
+	<span>I've deleted that for you</span>
+	<a href="#" id="no-problem">Thanks</a>
     </div>
     {% endif %}
     <div id="add-success">
-        <form action="/order/" method="post" id="done-form">
-            {% csrf_token %}
-        <div class="add-success-input clearfix">
-            <label for="id_description">What did you do?</label>
-            <input type="text" name="order" value="" id="orders" style="display:none;">
-          <input type="submit" value="Checkout" />
+    <form action="/order/" method="post" id="done-form">
+    {% csrf_token %}
+		<div class="add-success-input clearfix">
+        <label for="id_description">What did you do?</label>
+		<table id="t1">
+		<tbody>
+		<tr>
+		<th class="t1_h">Item Ordered</th><th class = "t1_h">Price</th>
+		</tr>
+		</tbody>
+		</table>
+		<input type="text" name="order" value="" id="orders" style="display:none;"/>
+        <input type="submit" value="Order" style="float:left;"/>
         </div>
-      </form>
+    </form>
     </div>
     <div id="what-ive-done" class="clearfix">
-      <h3>What <span id="whats-done">{% if not disable_friends and has_friends %}we've{% else %}I've{% endif %}</span> done:</h3>
-      <form id="with-friends-form" method="post" action=".">
-        <div id="with-friends">
-          <img src="http://media.finisht.com/images/loading.gif" alt="Loading" title="Loading" id="loading-friends" style="display: none;" />
-          <input type="checkbox" id="with-friends-check"{% if not disable_friends %} checked="checked"{% endif %} /><label for="with-friends-check"> with friends</label>
-        </div>
-      </form>
-  {% if userprofile.is_student %}
-      <div id="done-nav">
-        <ul>
-          <li><a href="javascript:SwapDone('today');" class="active" id="today-nav">Counter 1</a></li>
-          <li><a href="javascript:SwapDone('yesterday');" id="yesterday-nav">Counter 2</a></li>
-          <li><a href="javascript:SwapDone('past7days');" id="past7days-nav">Counter 3</a></li>
+    <h3>Menu</h3>
+    
+	<div id="done-nav">
+    <ul>
+		<li><a href="javascript:SwapDone('today');" class="active" id="today-nav">Counter 1</a></li>
+		<li><a href="javascript:SwapDone('yesterday');" id="yesterday-nav">Counter 2</a></li>
+        <li><a href="javascript:SwapDone('past7days');" id="past7days-nav">Counter 3</a></li>
+	</ul>
+    </div>
+    <div id="done-list">
+		<div id="today">
+        {% if counter_1 %}
+        <ul class = "order_list">
+			<p class="success">
+				<li class = "order_row">
+					<div id ="list">
+						<div id="left_list">
+						<b><font size ="2"><p class = "menu_list">Item</p></font>
+						</div>
+						<div id="right_list">
+						<font size ="2"><p class = "menu_list">Price</p></font></b>
+						</div>
+					</div>
+				</li>
+            </p>
+        {% for dish in counter_1 %}
+			<p class="success">
+            <li class = "order_row">
+			<div id ="list">
+				<div id ="left_list">
+					<p id ="{{dish.dish_id}}count1a" class = "menu_list"><font size = "2.4">{{dish.dish_name}}</font></p>
+				</div>
+				<div id="right_list">
+					<p id ="{{dish.dish_id}}count1b" class="menu_list"><font size ="2.4">Rs {{ dish.dish_price }} /-</font></p>
+				</div>
+				<a id = "{{dish.dish_id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a>
+			</div>
+            </li>
+            </p>
+        {% endfor %}
         </ul>
-      </div>
-      <div id="done-list">
-        <div id="today">
-          {% if counter_1 %}
-          <ul>
-            {% for dish in counter_1 %}
-                <p class="success">
-                  <span></span>
-                  <li>{{dish.dish_name}} {{ dish.dish_price }}
-                  <a id = "{{dish.dish_id}}count1" href="/order"><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
-                  </li>
-                </p>
-            {% endfor %}
-          </ul>
-          {% endif %}
+		{% else %}
+          <div class="do-something">Database not populated !</div>
+        {% endif %}
         </div>
+
         <div id="yesterday" style="display: none;">
-          {% if counter_2 %}
+        
+		{% if counter_2 %}
           <ul>
-            {% for dish in counter_2 %}
+			<p class="success">
+            <li class = "order_row">
+			<div id ="list">
+				<div id="left_list">
+				<b><font size ="2"><p class = "menu_list">Item</p></font></b>
+				</div>
+				<div id="right_list">
+				<b><font size ="2"><p class = "menu_list">Price</p></font></b>
+				</div>
+            </li>
+            </p>
+
+
+			{% for dish in counter_2 %}
                 <p class="success">
-                  <span></span>
-                  <li>{{ dish.dish_name }} {{ dish.dish_price }}
-                  <a id= "{{dish.dish_id}}count2" href="/order"><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
+                  <li>
+				  <div id="list">
+					<div id="left_list">
+						<p id ="{{dish.dish_id}}count2a" class="menu_list"><font size ="2.4">{{ dish.dish_name }}</font></p>
+					</div>
+					<div id ="right_list">
+						<p id ="{{dish.dish_id}}count2b" class="menu_list"><font size ="2.4">Rs {{ dish.dish_price }}/-</font></p>
+					</div>
+					<a id= "{{dish.dish_id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></div>
                   </li>
                 </p>
+				
             {% endfor %}
+			
           </ul>
           {% else %}
-          <div class="do-something">You you didn't do anything yesterday!  You fail!</div>
+          <div class="do-something">Database not populated!</div>
           {% endif %}
         </div>
+
+
+
         <div id="past7days" style="display: none;">
           {% if counter_3 %}
           <ul>
+			<p class="success">
+				<li class = "order_row">
+					<div id ="list">
+						<div id="left_list">
+							<b><font size ="2"><p class = "menu_list">Item</p></font></b>
+						</div>
+						<div id="right_list">
+							<b><font size ="2"><p class = "menu_list">Price</p></font></b>
+						</div>
+					</div>
+				</li>
+            </p>
             {% for dish in counter_3 %}
-                <p class="success">
-                  <span></span>
-                  <li>{{ dish.dish_name}} {{ dish.dish_price }}
-                  <a id= "{{dish.dish_id}}count3" href="/order" ><img src="/pycourt/images/delete.png" alt="order" title="Order"></a>
+             <p class="success">
+				<li>
+					<div id="list">
+						<div id="left_list">
+							<p id ="{{dish.dish_id}}count3a" class="menu_list"><font size ="2.4">{{ dish.dish_name}}</font></p>
+						</div>
+						<div id="right_list">
+							<p id ="{{dish.dish_id}}count3b" class="menu_list"><font size ="2.4">Rs {{ dish.dish_price }}/-</font></p>
+						</div>
+						<a id= "{{dish.dish_id}}count3" href="/order" ><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a>
+					</div>
                 </li>
-                </p>
+              </p>
             {% endfor %}
           </ul>
           {% else %}
-          <div class="do-something">You haven't done anything the past 7 days!  What a bum!</div>
+          <div class="do-something">Database not populated !</div>
           {% endif %}
         </div>
-  {% endif %}
+  
   {% endif %}
 {% endblock %}
 

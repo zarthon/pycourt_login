@@ -1,13 +1,18 @@
 var activeLogin = '';
 var activeDone = 'today';
 var orderlist = '';
+var tempname = '';
+var tempprice = '';
+
 
 $(function() {
     $("a").click(function() {this.blur();});
+	
 
     if (activeLogin != '') {
         active = $('#' + activeLogin.toLowerCase());
-        $("#signup, #login").bind("click", function() { SwapLogin($(this).html()); return false; });
+		
+        $("#signup, #login").bind("click", function() { SwapLogin($(this).html());return false; });
 
         $("#signup-form input:not(.submit), #login-form input:not(.submit),  #done-form textarea").focus(function() { $(this).parent().addClass("focused") });
         $("#signup-form input:not(.submit), #login-form input:not(.submit),  #done-form textarea").blur(function() { $(this).parent().removeClass("focused") });
@@ -17,7 +22,18 @@ $(function() {
     
     $('#done-list li a,  a.delete').bind("click", function() {
         $(this).parent().css('background-color', '#F7D4D4');
-        if (confirm("You sure you want to do that?")) { orderlist = orderlist+ $(this).attr('id')+','; $("#orders").val(orderlist);alert($("#orders").val()); return false; }
+        if (confirm("Add to Order list?")) { orderlist = orderlist+ $(this).attr('id')+','; $("#orders").val(orderlist); 
+		var temp = $(this).attr('id') + 'a';
+		var temp1 = ('#' + temp); 
+		var temp2 = $(this).attr('id') + 'b';
+		var temp3 = ('#' + temp2);
+		tempname = $(temp1).text();  
+		tempprice = $(temp3).text();
+		$("table#t1 tr:last").after('<tr><th class="t1">'+ tempname+'</th><th class="t1">' + tempprice + '</th></tr>'); return false;
+				
+		
+		}
+		
         else { $(this).parent().css('background-color', '#EEEEEE'); return false; }
     });
 
@@ -26,21 +42,7 @@ $(function() {
 
     $('#friend-input').focus(function() { if ($(this).attr('value') == 'friend\'s username') { $(this).attr('value',''); } });
 
-    $('#with-friends-check').bind('click', function() {
-        $('#loading-friends').toggle()
-        $.ajax({
-            type: 'GET',
-            url: '/toggle_friends/',
-            success: function() {
-                $('#loading-friends').toggle();
-                $('.friend').toggle();
-                if (hasFriends == true) {
-                    if ($('#whats-done').html() == 'we\'ve') { $('#whats-done').html('I\'ve'); }
-                    else { $('#whats-done').html('we\'ve'); }
-                }
-            }
-        });
-    });
+    
     
     $('#id_description').focus();
 });
