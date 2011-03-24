@@ -105,13 +105,7 @@ function SwapDone(current) {
     <h3>Menu</h3>
   
   
-  	<!-- Foodlist Filter Form -->
   	<script type="text/javascript" src="/pycourt/filterfoodlist.js"></script>
-   	<form>
-		<b>Filter List for Food Items</b>
-		<input type="text" onkeyup="foodlistfilter(this, 'foodlist_1', '1')" name="filt">
-	</form>				 
-	<!-- End of Foodlist filter form -->
 	
 	<div id="done-nav">
     <ul>
@@ -123,6 +117,10 @@ function SwapDone(current) {
     <div id="done-list">
 		<div id="today">
         {% if counter_1 %}
+		<form>
+        	<b>Filter List for Food Items</b>
+			<input type="text" onkeyup="foodlistfilter(this, 'foodlist_1', '1')" name="filt">
+	    </form> 
 		<table id="foodlist_1" cellspacing="1" cellpadding="2" border="0" width="100%">
 		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
 		{% for dish in counter_1 %}
@@ -141,6 +139,10 @@ function SwapDone(current) {
         <div id="yesterday" style="display: none;">
         
 		{% if counter_2 %}
+		  <form>
+		    <b>Filter List for Food Items</b>
+			<input type="text" onkeyup="foodlistfilter(this, 'foodlist_2', '1')" name="filt">
+			</form> 
           <table id="foodlist_2" cellspacing="1" cellpadding="2" border="0" width="100%">
 		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
 
@@ -162,7 +164,10 @@ function SwapDone(current) {
 
         <div id="past7days" style="display: none;">
           {% if counter_3 %}
-
+			<form>
+          		<b>Filter List for Food Items</b>
+		  		<input type="text" onkeyup="foodlistfilter(this, 'foodlist_3', '1')" name="filt">
+			</form> 
           <table id="foodlist_3" cellspacing="1" cellpadding="2" border="0" width="100%">
 		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
 
