@@ -55,26 +55,9 @@
 
  
 {% else %}
-<script type="text/javascript">
-var activeDone = 'today'
 
 
-function SwapDone(current) {
-    if (current != activeDone) {
-        var ctemp = document.getElementById(current+"-nav");
-        ctemp.setAttribute("class",'active');
-        var actemp = document.getElementById(activeDone+"-nav");
-        actemp.removeAttribute("class");
-        var cstemp = document.getElementById(current);
-        cstemp.setAttribute("style",'display: block');
-        var tmp = document.getElementById(activeDone);
-        tmp.setAttribute("style",'display: none');
-        activeDone = current;
-        return false;
-    } else {
-        return false;
-    }
-}
+
 </script>
 
 <!-- Mark the "main" division. There can be only 1 in the document but only one of them is executed at a time -->
@@ -88,9 +71,9 @@ function SwapDone(current) {
 
 		<div id="done-nav">
 			<ul>
-			<li><a href="javascript:SwapDone('today');" class="active" id="today-nav">Counter 1</a></li>
-			<li><a href="javascript:SwapDone('yesterday');" id="yesterday-nav">Counter 2</a></li>
-			<li><a href="javascript:SwapDone('past7days');" id="past7days-nav">Counter 3</a></li>
+			<li><a href="today" class="active" id="today-nav">Counter 1</a></li>
+			<li><a href="yesterday" id="yesterday-nav">Counter 2</a></li>
+			<li><a href="past7days" id="past7days-nav">Counter 3</a></li>
 			</ul>
 		</div>
     <div id="done-list">

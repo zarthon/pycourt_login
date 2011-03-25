@@ -49,6 +49,8 @@ $(function() {
     
     
     $('#id_description').focus();
+	$("#done-nav a").bind("click", function() {SwapDone($(this).attr("href"));
+											return false;});
 });
 
 function SwapLogin(current) {
@@ -63,7 +65,7 @@ function SwapLogin(current) {
 }
 
 function SwapDone(current) {
-    current = current.html().toLowerCase().replace(' ','').replace(' ','');
+    current = current.toLowerCase();
     if (current != activeDone) {
         $('#' + current + '-nav').addClass('active');
         $('#' + activeDone + '-nav').removeClass('active');

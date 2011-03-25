@@ -180,7 +180,7 @@ def order(request):
             print counter
         
             counterac = User.objects.get(username=counter)
-            dish = Dishes.objects.get(dish_id = int(orderid[0]))
+            dish = Dishes.objects.get(id = int(orderid[0]))
             account2 = CounterAccount.objects.get(account=counterac)
             if orderid[1] == '1':
                 if account1.counter1_balance >= dish.dish_price:
