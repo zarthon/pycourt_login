@@ -10,9 +10,10 @@
 </script>
 
 <!-- This "main" division shows login form and news -->
+
 <div id="main" class="clearfix">
-	<h1>Header pending</h1>
-	
+	<h1>Header pending !!</h1>
+
 	<!-- Start of "left" division which shows news -->
 	<div id="left">
 		<div id="header1" class="promo">
@@ -36,6 +37,7 @@
         		</div>
       		</div>
 	</div>
+
 	<!-- End of "left" division thats shows news -->
 
 
@@ -78,103 +80,122 @@ function SwapDone(current) {
 <!-- Mark the "main" division. There can be only 1 in the document but only one of them is executed at a time -->
 <div id="main" class="clearfix">
 {% include "navigation.html" %}
-{% if delete %}
-	<div id="thanks" class="clearfix">
-	<span>I've deleted that for you</span>
-	<a href="#" id="no-problem">Thanks</a>
-    </div>
-    {% endif %}
-    <div id="add-success">
-    <form action="/order/" method="post" id="done-form">
-    {% csrf_token %}
-		<div class="add-success-input clearfix">
-        <label for="id_description">What did you do?</label>
-		<table id="t1">
-		<tbody>
-		<tr>
-		<th class="t1_h">Item Ordered</th><th class = "t1_h">Price</th>
-		</tr>
-		</tbody>
-		</table>
-		<input type="text" name="order" value="" id="orders" style="display:none;"/>
-        <input type="submit" value="Order" style="float:left;"/>
-        </div>
-    </form>
-    </div>
     <div id="what-ive-done" class="clearfix">
-    <h3>Menu</h3>
+		<h3>Menu</h3>
   
   
-  	<script type="text/javascript" src="/pycourt/filterfoodlist.js"></script>
-   	<form>
-	<b>Filter List for Food Items</b>
-	<input type="text" onkeyup="foodlistfilter(this, 'sf', '1')" name="filt">
-	</form>				 
-	<div id="done-nav">
-    <ul>
-		<li><a href="javascript:SwapDone('today');" class="active" id="today-nav">Counter 1</a></li>
-		<li><a href="javascript:SwapDone('yesterday');" id="yesterday-nav">Counter 2</a></li>
-        <li><a href="javascript:SwapDone('past7days');" id="past7days-nav">Counter 3</a></li>
-	</ul>
-    </div>
+  		<script type="text/javascript" src="/pycourt/filterfoodlist.js"></script>
+
+		<div id="done-nav">
+			<ul>
+			<li><a href="javascript:SwapDone('today');" class="active" id="today-nav">Counter 1</a></li>
+			<li><a href="javascript:SwapDone('yesterday');" id="yesterday-nav">Counter 2</a></li>
+			<li><a href="javascript:SwapDone('past7days');" id="past7days-nav">Counter 3</a></li>
+			</ul>
+		</div>
     <div id="done-list">
 		<div id="today">
-        {% if counter_1 %}
-		<table id="sf" cellspacing="1" cellpadding="2" border="0" width="100%">
-		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
-		{% for dish in counter_1 %}
-			<tr><td id = "{{dish.dish_id}}count1a" > {{ dish.id }} </td>
-				<td id = "{{dish.dish_id}}count1b" > {{ dish.dish_name }} </td>
-				<td id = "{{dish.dish_id}}count1c" > {{ dish.dish_price }} </td>
+			{% if counter_1 %}
+			<div class="search_box">
+				<form>
+        		<b>Search </b>
+				<input type="text" onkeyup="foodlistfilter(this, 'foodlist_1', '1')" name="filt">
+				</form>
+			</div>
+			
+			<table id="foodlist_1" cellspacing="1" cellpadding="2" border="0" width="100%">
+			<tr><td class="t1_h"> Dish ID </td> <td class="t1_h">  Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td>
+			{% for dish in counter_1 %}
+			<tr><td id = "{{dish.dish_id}}count1a" class="t1"> {{ dish.id }} </td>
+				<td id = "{{dish.dish_id}}count1b" class="t1"> {{ dish.dish_name }} </td>
+				<td id = "{{dish.dish_id}}count1c" class="t1"> {{ dish.dish_price }} </td>
 				<td><a id = "{{dish.dish_id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
-        {% endfor %}
-       	</table>
+			{% endfor %}
+		  	</table>
+			
 
-		{% else %}
-          <div class="do-something">Database not populated !</div>
-        {% endif %}
+			{% else %}
+		    <div class="do-something">Database not populated !</div>
+			{% endif %}
         </div>
 
         <div id="yesterday" style="display: none;">
         
-		{% if counter_2 %}
-          <table id="sf" cellspacing="1" cellpadding="2" border="0" width="100%">
-		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
+			{% if counter_2 %}
+			<div class="search_box">
+				<form>
+				<b>Search </b>
+				<input type="text" onkeyup="foodlistfilter(this, 'foodlist_2', '1')" name="filt">
+				</form> 
+			</div>
+			<table id="foodlist_2" cellspacing="1" cellpadding="2" border="0" width="100%">
+			<tr><td class="t1_h"> Dish ID </td> <td class="t1_h"> Dish Name </td> <td class="t1_h"> Dish Price </td>
 
 			{% for dish in counter_2 %}
-                <tr><td id = "{{dish.dish_id}}count2a" > {{ dish.id }} </td>
-				<td id = "{{dish.dish_id}}count2b" > {{ dish.dish_name }} </td>
-				<td id = "{{dish.dish_id}}count2c" > {{ dish.dish_price }} </td>
-				<td><a id = "{{dish.dish_id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
-				
+            <tr><td id = "{{dish.dish_id}}count2a" class="t1"> {{ dish.id }} </td>
+			<td id = "{{dish.dish_id}}count2b" class="t1"> {{ dish.dish_name }} </td>
+			<td id = "{{dish.dish_id}}count2c" class="t1"> {{ dish.dish_price }} </td>
+			<td><a id = "{{dish.dish_id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
+
             {% endfor %}
-			
-          </table>
-          {% else %}
-          <div class="do-something">Database not populated!</div>
-          {% endif %}
-        </div>
+
+			</table>
+			{% else %}
+			<div class="do-something">Database not populated!</div>
+			{% endif %}
+		</div>
 
 
 
-        <div id="past7days" style="display: none;">
-          {% if counter_3 %}
-
-          <table id="sf" cellspacing="1" cellpadding="2" border="0" width="100%">
-		<tr><td> Dish ID </td> <td>  Dish Name </td> <td> Dish Price </td>
+		<div id="past7days" style="display: none;">
+			 {% if counter_3 %}
+			 <div class="search_box">
+				<form>
+          		<b>Search</b>
+		  		<input type="text" onkeyup="foodlistfilter(this, 'foodlist_3', '1')" name="filt">
+				</form> 
+			</div>
+			<table id="foodlist_3" cellspacing="1" cellpadding="2" border="0" width="100%">
+			<tr><td class="t1_h"> Dish ID </td> <td class="t1_h">  Dish Name </td> <td class = "t1_h"> Dish Price </td>
 
             {% for dish in counter_3 %}
-             <tr><td id = "{{dish.dish_id}}count3a" > {{ dish.id }} </td>
-				<td id = "{{dish.dish_id}}count3b" > {{ dish.dish_name }} </td>
-				<td id = "{{dish.dish_id}}count3c" > {{ dish.dish_price }} </td>
-				<td><a id = "{{dish.dish_id}}count3" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
+            <tr><td id = "{{dish.dish_id}}count3a" class="t1"> {{ dish.id }} </td>
+			<td id = "{{dish.dish_id}}count3b" class="t1"> {{ dish.dish_name }} </td>
+			<td id = "{{dish.dish_id}}count3c" class="t1"> {{ dish.dish_price }} </td>
+			<td><a id = "{{dish.dish_id}}count3" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
             {% endfor %}
-          </table>
-          {% else %}
-          <div class="do-something">Database not populated !</div>
-          {% endif %}
-        </div>
-  
+			</table>
+			{% else %}
+			<div class="do-something">Database not populated !</div>
+			{% endif %}
+			</div>
+		</div>
+	</div>
+
+
+	<div id="add-success">
+		<form action="/order/" method="post" id="done-form">
+		{% csrf_token %}
+		<div class="add-success-input clearfix">
+			<div style= "padding-top:10px; padding-bottom:7px;">
+				<label style = "background-color:#EEEEEE; margin-left:15px; padding:15px; margin-top:10px; padding-top:7px;	padding-bottom:10px; font-size:12px; display:inline; color:#000; font-weight:bold;">Order</label>
+			</div>
+			<div id="order_cart">
+				<table id="t1" cellspacing="1" cellpadding="2" border="0" width="50%">
+				<tbody>
+				<tr>
+				<th class="t1_h">Item Ordered</th><th class = "t1_h">Price</th>
+				</tr>
+				</tbody>
+				</table>
+				<input type="text" name="order" value="" id="orders" style="display:none;"/>
+				<input type="submit" value="Order" style="float:left;"/>
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+    
   {% endif %}
 {% endblock %}
 
