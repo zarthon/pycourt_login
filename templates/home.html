@@ -56,24 +56,22 @@
  
 {% else %}
 
-
-
-</script>
-
 <!-- Mark the "main" division. There can be only 1 in the document but only one of them is executed at a time -->
 <div id="main" class="clearfix">
 {% include "navigation.html" %}
-    <div id="what-ive-done" class="clearfix">
-		<h3>Menu</h3>
+<div id="what-ive-done" class="clearfix">
+    {% if userprofile.is_student and not userprofile.is_counter %}
+<!-- Executed if the profile is of student -->
+		<h3>menu</h3>
   
   
   		<script type="text/javascript" src="/pycourt/filterfoodlist.js"></script>
 
 		<div id="done-nav">
 			<ul>
-			<li><a href="today" class="active" id="today-nav">Counter 1</a></li>
-			<li><a href="yesterday" id="yesterday-nav">Counter 2</a></li>
-			<li><a href="past7days" id="past7days-nav">Counter 3</a></li>
+			<li><a href="today" class="active" id="today-nav">counter 1</a></li>
+			<li><a href="yesterday" id="yesterday-nav">counter 2</a></li>
+			<li><a href="past7days" id="past7days-nav">counter 3</a></li>
 			</ul>
 		</div>
     <div id="done-list">
@@ -81,24 +79,24 @@
 			{% if counter_1 %}
 			<div class="search_box">
 				<form>
-        		<b>Search </b>
+        		<b>search </b>
 				<input type="text" onkeyup="foodlistfilter(this, 'foodlist_1', '1')" name="filt">
 				</form>
 			</div>
 			
 			<table id="foodlist_1" cellspacing="1" cellpadding="2" border="0" width="100%">
-			<tr><td class="t1_h"> Dish ID </td> <td class="t1_h">  Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td>
+			<tr><td class="t1_h"> dish id </td> <td class="t1_h">  dish name </td> <td class="t1_h"> dish price </td><td class="t1_h"></td>
 			{% for dish in counter_1 %}
 			<tr><td id = "{{dish.id}}count1a" class="t1"> {{ dish.id }} </td>
 				<td id = "{{dish.id}}count1b" class="t1"> {{ dish.dish_name }} </td>
 				<td id = "{{dish.id}}count1c" class="t1"> {{ dish.dish_price }} </td>
-				<td><a id = "{{dish.id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
+				<td><a id = "{{dish.id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"></a></td></tr>
 			{% endfor %}
 		  	</table>
 			
 
 			{% else %}
-		    <div class="do-something">Database not populated !</div>
+		    <div class="do-something">database not populated !</div>
 			{% endif %}
         </div>
 
@@ -107,24 +105,24 @@
 			{% if counter_2 %}
 			<div class="search_box">
 				<form>
-				<b>Search </b>
+				<b>search </b>
 				<input type="text" onkeyup="foodlistfilter(this, 'foodlist_2', '1')" name="filt">
 				</form> 
 			</div>
 			<table id="foodlist_2" cellspacing="1" cellpadding="2" border="0" width="100%">
-			<tr><td class="t1_h"> Dish ID </td> <td class="t1_h"> Dish Name </td> <td class="t1_h"> Dish Price </td>
+			<tr><td class="t1_h"> dish id </td> <td class="t1_h"> dish name </td> <td class="t1_h"> dish price </td>
 
 			{% for dish in counter_2 %}
             <tr><td id = "{{dish.id}}count2a" class="t1"> {{ dish.id }} </td>
 			<td id = "{{dish.id}}count2b" class="t1"> {{ dish.dish_name }} </td>
 			<td id = "{{dish.id}}count2c" class="t1"> {{ dish.dish_price }} </td>
-			<td><a id = "{{dish.id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
+			<td><a id = "{{dish.id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"></a></td></tr>
 
             {% endfor %}
 
 			</table>
 			{% else %}
-			<div class="do-something">Database not populated!</div>
+			<div class="do-something">database not populated!</div>
 			{% endif %}
 		</div>
 
@@ -134,22 +132,22 @@
 			 {% if counter_3 %}
 			 <div class="search_box">
 				<form>
-          		<b>Search</b>
+          		<b>search</b>
 		  		<input type="text" onkeyup="foodlistfilter(this, 'foodlist_3', '1')" name="filt">
 				</form> 
 			</div>
 			<table id="foodlist_3" cellspacing="1" cellpadding="2" border="0" width="100%">
-			<tr><td class="t1_h"> Dish ID </td> <td class="t1_h">  Dish Name </td> <td class = "t1_h"> Dish Price </td>
+			<tr><td class="t1_h"> dish id </td> <td class="t1_h">  dish name </td> <td class = "t1_h"> dish price </td>
 
             {% for dish in counter_3 %}
             <tr><td id = "{{dish.id}}count3a" class="t1"> {{ dish.id }} </td>
 			<td id = "{{dish.id}}count3b" class="t1"> {{ dish.dish_name }} </td>
 			<td id = "{{dish.id}}count3c" class="t1"> {{ dish.dish_price }} </td>
-			<td><a id = "{{dish.id}}count3" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
+			<td><a id = "{{dish.id}}count3" href="/order"><img src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"></a></td></tr>
             {% endfor %}
 			</table>
 			{% else %}
-			<div class="do-something">Database not populated !</div>
+			<div class="do-something">database not populated !</div>
 			{% endif %}
 			</div>
 		</div>
@@ -178,8 +176,37 @@
 		</form>
 	</div>
 </div>
-    
-  {% endif %}
+    {% else %}     
+    <!-- Executed if the profile is of counter -->
+    <h3>Current Orders</h3>
+		<div id="done-nav">
+			<ul>
+                <li><a href="today" class="active" id="today-nav">{{user.username}}</a></li>
+			</ul>
+		</div>
+    <div id="done-list">
+        <div id="today">
+            {% if orders %}
+			
+			<table id="orderlist_1" cellspacing="1" cellpadding="2" border="0" width="100%">
+			<tr><td class="t1_h"> Dish Id </td> <td class="t1_h"> Student Id  </td> <td class="t1_h"> Status </td><td class="t1_h"></td>
+			{% for order in orders %}
+			<tr><td id = "{{order.order_id}}a" class="t1"> {{ order.dish.dish_name }} </td>
+				<td id = "{{dish.id}}count1b" class="t1"> {{ order.student_id }} </td>
+				<td id = "{{dish.id}}count1c" class="t1"> {{ order.status }} </td>
+				<td><a id = "{{dish.id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"></a></td></tr>
+			{% endfor %}
+		  	</table>
+			
+
+			{% else %}
+		    <div class="do-something">database not populated !</div>
+			{% endif %}
+
+		</div>
+
+    {% endif %}
+{% endif %}
 {% endblock %}
 
 {% block sub_footer %}

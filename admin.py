@@ -7,6 +7,6 @@ class DishesAdmin(admin.ModelAdmin):
 
 admin.site.register(UserProfile)
 admin.site.register(Dishes,DishesAdmin)
-admin.site.register(Order)
+admin.site.register(Orders)
 admin.site.register(BalanceAccount)
 admin.site.register(CounterAccount)

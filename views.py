@@ -118,20 +118,33 @@ def resetpassword(request):
  
 
 def home(request):
-    home = True
-    dishes = Dishes.objects.all()
     userprof = UserProfile.objects.all()
     userprofile=None
     for u in userprof:
         if u.user.username == request.user.username:
             userprofile = u
 
-    #print userprofile.user.username
-    counter_1 = dishes.filter(counter1 = True)
-    counter_2 = dishes.filter(counter2 = True)
-    counter_3 = dishes.filter(counter3 = True)
+    if request.user.is_authenticated():
+        home = True
+        dishes = Dishes.objects.all()
+    
+        #print userprofile.user.username
 
-    return render_to_response('home.html',locals(),context_instance=RequestContext(request))
+        counter_1 = dishes.filter(counter1 = True)
+        counter_2 = dishes.filter(counter2 = True)
+        counter_3 = dishes.filter(counter3 = True)
+        order_list = list()
+        if userprofile.is_counter == True:
+            user  = userprofile.user
+            orders = Orders.objects.filter(counterid=int(user.username),status=False)
+            for o in orders:
+                t = o.order_id
+                r = t.split('count')
+                dish = Dishes.objects.get(id=r[0])
+                print dish.dish_name
+        return render_to_response('home.html',locals(),context_instance=RequestContext(request))
+    else:
+        return render_to_response('home.html',locals(),context_instance=RequestContext(request))
 
 @login_required
 def profile(request):
@@ -206,7 +219,7 @@ def order(request):
                     return HttpResponse("not enough balance in counter3")
             t= datetime.datetime.now()
             print t
-            order = Order(order_id=orderlist[i],student_id=user,status=False,counterid=int(counter),datetime=datetime.datetime.now())
+            order = Orders(order_id=orderlist[i],student_id=user,status=False,counterid=int(counter),datetime=datetime.datetime.now(),dish=dish)
             orders.append(order)
             account2_list.append(account2)
             count +=1
