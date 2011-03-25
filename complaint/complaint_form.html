@@ -2,19 +2,28 @@
 
 {%block content %}
         {% csrf_token %}
-    <h1>Please write yout complaint</h1>
+	{% include "navigation.html" %}
+	<div id = "complaint_main" class = "frame">
 
-    {% if form.errors %}
-        <p style="color: red;">
-            Please correct the error{{ form.errors|pluralize }} below.
-        </p>
-    {% endif %}
+		<div id = "inner_complaint" class = "frame">
+    
+			<h1 id="complaint_header">Please write your complaint</h1>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <input type="submit" value="Submit">
-    </form>
+		{% if form.errors %}
+		    <p style="color: red;">
+		        Please correct the error{{ form.errors|pluralize }} below.
+		    </p>
+		{% endif %}
+		<div id = "innerform" class = "form">
+				<font color = "706D6D"><form action="" method="post" id="complaint_from">
+					{% csrf_token %}
+						<table cellspacing="10" cellpadding="2" border="0" width="100%">
+					     {{ form.as_table }}
+						  </table>
+					  <input type="submit" value="Submit">
+				</form>
+				<font>
+			</div>
+		</div>
+	</div>
 {% endblock %}

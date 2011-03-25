@@ -26,6 +26,7 @@ abbr, acronym {border: 0;}
 
 body {
     font: 62.5% Helvetica, Verdana, Arial, Helvetica, sans-serif;
+	background-color:#FEFEFE;
 	
 }
 
@@ -58,23 +59,60 @@ em {
 	margin-left: 260px;
 }
 
+#complaint_main
+{
+	background-color:#EEEEEE;
+	margin-top:50px; 
+	margin-bottom:70px;
+}
+
+#inner_complaint{
+	padding:20px;
+}
+
+#innerform{
+	margin-top:20px;
+}
+#complaint_header{
+	font-size: 14px;
+}
+
+.search_box{
+	font-size:13px;
+	float:right;
+	margin-bottom:10px;
+	background-color:#D8D8D8;
+	padding:6px;
+	border:thin;
+	border-color:#000;
+}
+
+#order_cart{
+	background-color:#EEEEEE;
+	padding:15px;
+	padding-top:25px;
+}
+.form{
+	font-size:12px;
+	font-color:#EFEFEF;
+}
 #t1{
 	background-color:#EEEEEE;
 }
+
 .t1_h{
 	
 	padding:4px;
 	padding-left:15px;
 	font-size:12px;
-	width: 100px;
 	font-weight:bolder;
+	background-color:#D8D8D8
 }
 
 .t1{
 	padding:4px;
 	padding-left:15px;
 	font-size:12px;
-	width: 100px;
 	font-weight:lighter;
 }
 
@@ -89,6 +127,10 @@ em {
   padding: 30px !important;
 }
 
+
+.menu_table{
+	font-size:10px;
+}
 #header img {
     margin-left: 10px;
 }
@@ -354,12 +396,13 @@ em {
 #hello {
   float: left;
   padding: 15px;
-  font-style: italic;
+  font-size:15px;
+  text-transform:capitalize;
 }
 
 #navigation {
   font-size: 1.2em;
-  background-color: #3B6228;
+  background-color: #4D8433;
   color: #FFF;
 }
 
@@ -535,6 +578,7 @@ em {
   background-color: #EEEEEE;
   padding: 15px;
 }
+
 
 #done-list li {
   display: block;
