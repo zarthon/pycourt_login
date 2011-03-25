@@ -20,7 +20,7 @@ $(function() {
 
     $('#no-problem').bind("click", function() { $(this).parent().css('display', 'none'); });
     
-    $('#sf a,  a.delete').bind("click", function() {
+    $('#foodlist_1 a, #foodlist_2 a, #foodlist_3 a,  a.delete').bind("click", function() {
         if (confirm("Add to Order list?")) { orderlist = orderlist+ $(this).attr('id')+','; $("#orders").val(orderlist);
 		var tempparent = $(this).parent();
         $(tempparent).parent().css('background-color', '#F7D4D4');

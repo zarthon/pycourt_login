@@ -389,10 +389,13 @@ em {
 	display:block;
 	padding-bottom:140px;
 	text-align:center;
-	background-color:#F3F3F3;
+	background-color:#EEEEEE;
 	margin-bottom: 70px;
+	margin-top:51px;
 }
-
+#wrong_msg{
+	padding-top:140px;
+}
 #hello {
   float: left;
   padding: 15px;
@@ -579,6 +582,9 @@ em {
   padding: 15px;
 }
 
+#wrong_password{
+	background-color:#EEEEEE;
+}
 
 #done-list li {
   display: block;
