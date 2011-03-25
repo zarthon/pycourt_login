@@ -136,6 +136,13 @@ def home(request):
         order_list = list()
         if userprofile.is_counter == True:
             user  = userprofile.user
+            if user.username == '123456789':
+                count = 0
+            elif user.username == '123456788':
+                count = 1
+            elif user.username == '123456777':
+                count = 2
+            counter = [counter_1,counter_2,counter_3][count]
             orders = Orders.objects.filter(counterid=int(user.username),status=False)
             for o in orders:
                 t = o.order_id

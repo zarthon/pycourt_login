@@ -182,6 +182,7 @@
 		<div id="done-nav">
 			<ul>
                 <li><a href="today" class="active" id="today-nav">{{user.username}}</a></li>
+                <li><a href="yesterday" class="active" id="yesterday-nav">Dish List</a></li>
 			</ul>
 		</div>
     <div id="done-list">
@@ -203,6 +204,31 @@
 		    <div class="do-something">database not populated !</div>
 			{% endif %}
 
+		</div>
+        <div id="yesterday" style="display: none;">
+        
+			{% if counter%}
+			<div class="search_box">
+				<form>
+				<b>search </b>
+				<input type="text" onkeyup="foodlistfilter(this, 'foodlist_2', '1')" name="filt">
+				</form> 
+			</div>
+			<table id="foodlist_2" cellspacing="1" cellpadding="2" border="0" width="100%">
+			<tr><td class="t1_h"> dish id </td> <td class="t1_h"> dish name </td> <td class="t1_h"> dish price </td>
+
+			{% for dish in counter %}
+            <tr><td id = "{{dish.id}}count2a" class="t1"> {{ dish.id }} </td>
+			<td id = "{{dish.id}}count2b" class="t1"> {{ dish.dish_name }} </td>
+			<td id = "{{dish.id}}count2c" class="t1"> {{ dish.dish_price }} </td>
+			<td><a id = "{{dish.id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"></a></td></tr>
+
+            {% endfor %}
+
+			</table>
+			{% else %}
+			<div class="do-something">database not populated!</div>
+			{% endif %}
 		</div>
 
     {% endif %}

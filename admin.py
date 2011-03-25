@@ -5,7 +5,11 @@ class DishesAdmin(admin.ModelAdmin):
 	list_display = ('dish_name','dish_price')
 	search_fields = ('dish_name',)
 
-admin.site.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+	list_display = ('is_counter',)
+	search_fields = ('user.username',)
+
+admin.site.register(UserProfile,UserProfileAdmin)
 admin.site.register(Dishes,DishesAdmin)
 admin.site.register(Orders)
 admin.site.register(BalanceAccount)
