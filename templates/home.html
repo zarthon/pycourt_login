@@ -106,10 +106,10 @@ function SwapDone(current) {
 			<table id="foodlist_1" cellspacing="1" cellpadding="2" border="0" width="100%">
 			<tr><td class="t1_h"> Dish ID </td> <td class="t1_h">  Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td>
 			{% for dish in counter_1 %}
-			<tr><td id = "{{dish.dish_id}}count1a" class="t1"> {{ dish.id }} </td>
-				<td id = "{{dish.dish_id}}count1b" class="t1"> {{ dish.dish_name }} </td>
-				<td id = "{{dish.dish_id}}count1c" class="t1"> {{ dish.dish_price }} </td>
-				<td><a id = "{{dish.dish_id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
+			<tr><td id = "{{dish.id}}count1a" class="t1"> {{ dish.id }} </td>
+				<td id = "{{dish.id}}count1b" class="t1"> {{ dish.dish_name }} </td>
+				<td id = "{{dish.id}}count1c" class="t1"> {{ dish.dish_price }} </td>
+				<td><a id = "{{dish.id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
 			{% endfor %}
 		  	</table>
 			
@@ -132,10 +132,10 @@ function SwapDone(current) {
 			<tr><td class="t1_h"> Dish ID </td> <td class="t1_h"> Dish Name </td> <td class="t1_h"> Dish Price </td>
 
 			{% for dish in counter_2 %}
-            <tr><td id = "{{dish.dish_id}}count2a" class="t1"> {{ dish.id }} </td>
-			<td id = "{{dish.dish_id}}count2b" class="t1"> {{ dish.dish_name }} </td>
-			<td id = "{{dish.dish_id}}count2c" class="t1"> {{ dish.dish_price }} </td>
-			<td><a id = "{{dish.dish_id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
+            <tr><td id = "{{dish.id}}count2a" class="t1"> {{ dish.id }} </td>
+			<td id = "{{dish.id}}count2b" class="t1"> {{ dish.dish_name }} </td>
+			<td id = "{{dish.id}}count2c" class="t1"> {{ dish.dish_price }} </td>
+			<td><a id = "{{dish.id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
 
             {% endfor %}
 
@@ -159,10 +159,10 @@ function SwapDone(current) {
 			<tr><td class="t1_h"> Dish ID </td> <td class="t1_h">  Dish Name </td> <td class = "t1_h"> Dish Price </td>
 
             {% for dish in counter_3 %}
-            <tr><td id = "{{dish.dish_id}}count3a" class="t1"> {{ dish.id }} </td>
-			<td id = "{{dish.dish_id}}count3b" class="t1"> {{ dish.dish_name }} </td>
-			<td id = "{{dish.dish_id}}count3c" class="t1"> {{ dish.dish_price }} </td>
-			<td><a id = "{{dish.dish_id}}count3" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
+            <tr><td id = "{{dish.id}}count3a" class="t1"> {{ dish.id }} </td>
+			<td id = "{{dish.id}}count3b" class="t1"> {{ dish.dish_name }} </td>
+			<td id = "{{dish.id}}count3c" class="t1"> {{ dish.dish_price }} </td>
+			<td><a id = "{{dish.id}}count3" href="/order"><img src="/pycourt/add.png" alt="order" title="Order" class = "add_to_cart"></a></td></tr>
             {% endfor %}
 			</table>
 			{% else %}
