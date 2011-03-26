@@ -8,9 +8,11 @@ class DishesAdmin(admin.ModelAdmin):
 class UserProfileAdmin(admin.ModelAdmin):
 	list_display = ('is_counter',)
 	search_fields = ('user.username',)
-
+class OrderssAdmin(admin.ModelAdmin):
+    list_display = ('order_id','student_id','counterid')
+    search_fields = ('student_id',)
 admin.site.register(UserProfile,UserProfileAdmin)
 admin.site.register(Dishes,DishesAdmin)
-admin.site.register(Orders)
+admin.site.register(Orderss,OrderssAdmin)
 admin.site.register(BalanceAccount)
 admin.site.register(CounterAccount)

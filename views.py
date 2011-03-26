@@ -120,11 +120,15 @@ def resetpassword(request):
 def home(request):
     userprof = UserProfile.objects.all()
     userprofile=None
+
     for u in userprof:
         if u.user.username == request.user.username:
             userprofile = u
-
+        
     if request.user.is_authenticated():
+        if userprofile is None:
+            return HttpResponse("UserProfile doesnot exist")
+
         home = True
         dishes = Dishes.objects.all()
     
@@ -142,8 +146,14 @@ def home(request):
                 count = 1
             elif user.username == '123456777':
                 count = 2
+            else:
+                return HttpResponse("Counter is not registered")
+
             counter = [counter_1,counter_2,counter_3][count]
-            orders = Orders.objects.filter(counterid=int(user.username),status=False)
+            orders = Orderss.objects.filter(counterid=int(user.username),status=False)
+            if orders is None:
+                return HttpResponse("No Current Orders in Database for given counterid")
+
             for o in orders:
                 t = o.order_id
                 r = t.split('count')
@@ -156,7 +166,10 @@ def home(request):
 @login_required
 def profile(request):
     user = request.user
-    return render_to_response('profile.html',locals(),context_instance=RequestContext(request))
+    if user is None:
+        return HttpResponse("User Not Found")
+    else:
+        return render_to_response('profile.html',locals(),context_instance=RequestContext(request))
 
 @login_required
 def setting(request):
@@ -187,10 +200,14 @@ def order(request):
     if(request.method == 'POST'):
         orderno = request.POST["order"]
         orderlist = orderno.split(',')
-        account1 = BalanceAccount.objects.get(account=user)
 
+        #Student Account is account1
+        account1 = BalanceAccount.objects.get(account=user)
+        
         for i in range(0,len(orderlist)-1):
-            orderid = orderlist[i].split("count")
+            order_param = orderlist[i].split("%")
+            quantity = order_param[1]
+            orderid = order_param[0].split("count")
             if orderid[1] == '1':
                 counter = '123456789'
             elif orderid[1]=='2':
@@ -199,34 +216,38 @@ def order(request):
                 counter = '123456777'
             print counter
         
-            counterac = User.objects.get(username=counter)
             dish = Dishes.objects.get(id = int(orderid[0]))
+
+            counterac = User.objects.get(username=counter)
             account2 = CounterAccount.objects.get(account=counterac)
+
             if orderid[1] == '1':
-                if account1.counter1_balance >= dish.dish_price:
-                    account1.counter1_balance = account1.counter1_balance -dish.dish_price
-                    account2.balance = account2.balance + dish.dish_price
+                print account1.counter1_balance, int(quantity)*int(dish.dish_price)
+                if account1.counter1_balance >= int(quantity)*int(dish.dish_price):
+                    account1.counter1_balance = account1.counter1_balance - int(quantity)*int(dish.dish_price)
+                    account2.balance = account2.balance + int(quantity)*int(dish.dish_price)
                     counter = '123456789'
                 else:
                     return HttpResponse("not enough balance in counter1")
 
             elif orderid[1]=='2':
-                if account1.counter2_balance >= dish.dish_price:
-                    account1.counter1_balance = account1.counter1_balance -dish.dish_price
-                    account2.balance = account2.balance + dish.dish_price
+                if account1.counter2_balance >= int(quantity)*int(dish.dish_price):
+                    account1.counter1_balance = account1.counter1_balance - int(quantity)*int(dish.dish_price)
+                    account2.balance = account2.balance + int(quantity)*int(dish.dish_price)
                     counter = '123456788'
                 else:
                     return HttpResponse("not enough balance in counter2")
             else:
-                if account1.counter3_balance >= dish.dish_price:
-                    account1.counter3_balance = account1.counter3_balance -dish.dish_price
-                    account2.balance = account2.balance + dish.dish_price
+                if account1.counter3_balance >= int(quantity)*int(dish.dish_price):
+                    account1.counter3_balance = account1.counter3_balance - int(quantity)*int(dish.dish_price)
+                    account2.balance = account2.balance + int(quantity)*int(dish.dish_price)
                     counter = '123456777'
                 else:
                     return HttpResponse("not enough balance in counter3")
             t= datetime.datetime.now()
-            print t
-            order = Orders(order_id=orderlist[i],student_id=user,status=False,counterid=int(counter),datetime=datetime.datetime.now(),dish=dish)
+
+            order = Orderss(order_id=orderlist[i],student_id=user,status=False,counterid=int(counter),datetime=datetime.datetime.now(),dish=dish,quantity=int(quantity))
+
             orders.append(order)
             account2_list.append(account2)
             count +=1
