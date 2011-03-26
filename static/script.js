@@ -7,7 +7,7 @@ var tempid ='';
 var tempqty = '';
 var tempoid = '';
 var rowCounter = 0;
-
+var counter_no = '';
 //what is this function doing
 $(document).ready(function() {
     $("#qty_no").keydown(function(event) {
@@ -75,6 +75,10 @@ $(function() {
                                     tempname = $(temp1).text(); 
                                     tempprice = $(temp3).text();
                                     var temp7 = "#" + p;
+                                    var c = tempoid.split("count");
+                                 
+                                    var count_no = c[1].split("%");
+                                    counter_no = count_no[0];
                                     
                                     $('#menu_t').css('display','none');
                                     $('#quantity-form').css('display','');
@@ -94,6 +98,7 @@ $(function() {
                         				$('#' + rowCounter + '_1').text(tempname);
                         				$('#' + rowCounter + '_2').text(tempprice);
                         				$('#' + rowCounter + '_3').text(tempqty);
+                                        $('#' + rowCounter + '_4').text(counter_no);
                         				$('#row_' + rowCounter).removeClass("hide");
 		                            }
 			                        else
@@ -121,7 +126,6 @@ $(document).ready(function(){
                                             tem_orderlist += temp[j]+',';
                                         }
                                     } 
-                                    alert(tem_orderlist);
                                     orderlist = tem_orderlist;
 									$("#orders").val(orderlist);											  
 				    				$('#row_' + rowCounter).addClass("hide");
