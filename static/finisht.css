@@ -59,6 +59,9 @@ em {
 	margin-left: 260px;
 }
 
+#numeric{
+	size:2px;
+}
 #complaint_main
 {
 	background-color:#EEEEEE;
@@ -656,10 +659,21 @@ em {
 .line1 {
 	width: 300px;
 	align: left;
+	size:1px;
 	margin-top: 20px;
-	color:#DDD;
+	color:#F9F9F9;
+	
 }
 
+#quantity-form{
+	font-size:13px;
+	margin:50px;
+	margin-left:250px;
+	
+}
+.hide{
+	display:none;
+}
 #sub-footer {
   height: 99px;
   background-color: #487858;

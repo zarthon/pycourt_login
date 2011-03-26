@@ -11,3 +11,22 @@
 7) list of current orders at the homepage
 11) counter id in order cart
 12) quantity in order carts
+13) Position of your order
+14) account summary(vendor site)
+15) display students balances
+16) drop dwon menu
+17) change status of dish
+18) change availability of dish 
+
+
+MYwork:
+update changes
+implement delete
+implement quantity field in order
+implement account summary in both(navigation.html)
+
+Future:
+ratings
+favorites
+
+
