@@ -82,11 +82,12 @@ $(function() {
 
 		$("#qty_sub").bind("click",function(){
                                     tempqty = $("#qty_no").attr("value"); 
-									for(var j=0;j<tempqty;j++)
+								/*	for(var j=0;j<tempqty;j++)
 									{
 									    orderlist = orderlist + tempoid + ','; 
-								    }
-									("#orders").val(orderlist);											  
+								    }*/
+                                    orderlist = orderlist + tempoid +'%'+tempqty+',';
+									$("#orders").val(orderlist);											  
 		                            if(rowCounter <= 10)
 		   	                        {
                         				rowCounter = rowCounter+1;
@@ -113,6 +114,7 @@ $(document).ready(function(){
 		$('#t1 img').bind("click", function(){
 		        					var img_id = $(this).attr("id").substring(3,4);
 									slideRows(img_id);
+                                    alert(img_id);
 				    				$('#row_' + rowCounter).addClass("hide");
 									rowCounter = rowCounter - 1;
 									return false;});
