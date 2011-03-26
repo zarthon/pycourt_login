@@ -140,7 +140,7 @@ def home(request):
         order_list = list()
         if userprofile.is_counter == True:
             user  = userprofile.user
-            counter_account = CounterAccount(account = request.user)
+            counter_account = CounterAccount.objects.get(account = request.user)
             if user.username == '123456789':
                 count = 0
             elif user.username == '123456788':
