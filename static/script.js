@@ -114,15 +114,21 @@ $(document).ready(function(){
 		$('#t1 img').bind("click", function(){
 		        					var img_id = $(this).attr("id").substring(3,4);
 									slideRows(img_id);
-                                    alert(img_id);
+                                    var temp = orderlist.split(",");
+                                    var tem_orderlist = '';
+                                    for(var j=0;j<temp.length-1;j++){
+                                        if(j != img_id-1){
+                                            tem_orderlist += temp[j]+',';
+                                        }
+                                    } 
+                                    alert(tem_orderlist);
+                                    orderlist = tem_orderlist;
+									$("#orders").val(orderlist);											  
 				    				$('#row_' + rowCounter).addClass("hide");
 									rowCounter = rowCounter - 1;
 									return false;});
 
-});
-
-
-						   
+});						   
 
 function SwapLogin(current) {
     activeLoginLower = activeLogin.toLowerCase();
