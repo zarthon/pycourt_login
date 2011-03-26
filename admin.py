@@ -13,6 +13,6 @@ class OrderssAdmin(admin.ModelAdmin):
     search_fields = ('student_id',)
 admin.site.register(UserProfile,UserProfileAdmin)
 admin.site.register(Dishes,DishesAdmin)
-admin.site.register(Orderss,OrderssAdmin)
+admin.site.register(Ordersss,OrderssAdmin)
 admin.site.register(BalanceAccount)
 admin.site.register(CounterAccount)

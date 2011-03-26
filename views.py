@@ -151,7 +151,7 @@ def home(request):
                 return render_to_response("ShowMessage.html",{'msg_heading':'Error','msg_html':'Counter\'s User id Doesnot exist in Database'},context_instance = RequestContext(request))
 
             counter = [counter_1,counter_2,counter_3][count]
-            orders = Orderss.objects.filter(counterid=int(user.username),status=False)
+            orders = Ordersss.objects.filter(counterid=int(user.username),status=False)
             if orders is None:
                 return render_to_response("ShowMessage.html",{'msg_heading':'Error','msg_html':'No Current Orders in                    Database'},context_instance = RequestContext(request))
             else:
@@ -208,7 +208,10 @@ def order(request):
 
         #Student Account is account1
         account1 = BalanceAccount.objects.get(account=user)
-        
+        now = datetime.datetime.now()
+        timestamp = now.strftime("%Y%m%d%H%M%S")
+        transid = request.user.username+timestamp
+        print transid
         for i in range(0,len(orderlist)-1):
             order_param = orderlist[i].split("%")
             quantity = order_param[1]
@@ -250,7 +253,7 @@ def order(request):
                 else:
                     return render_to_response("ShowMessage.html",{'msg_html':'Insufficient Balance in Counter 3. Order                        is Discarded. Place new Order','msg_heading':'Insufficient Balance'},context_instance = RequestContext(request))
 
-            order = Orderss(order_id=orderlist[i],student_id=user,status=False,counterid=int(counter),datetime=datetime.datetime.now(),dish=dish,quantity=int(quantity))
+            order = Ordersss(order_id=orderlist[i],student_id=user,status=False,counterid=int(counter),datetime=datetime.datetime.now(),dish=dish,quantity=int(quantity),transaction_id=transid)
 
             orders.append(order)
             account2_list.append(account2)
@@ -267,4 +270,13 @@ def order(request):
 
 @login_required
 def history(request):
-    pass
+   userprof = UserProfile.objects.get(user= request.user) 
+   print userprof
+   if userprof.is_student:
+       past_orders = Ordersss.objects.filter(student_id = request.user)
+       return render_to_response("accountsummary.html",locals(),context_instance=RequestContext(request))
+   elif userprof.is_counter:
+       pass
+   else:
+       return render_to_response("ShowMessage.html",{'msg_heading':'Trying to Hack this site!','msg_html':'UserProfile Does Not Exist'},contex_instance=RequestContext(request))
+   return HttpResponse("hello")
