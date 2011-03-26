@@ -265,4 +265,6 @@ def order(request):
         return HttpResponseRedirect('/?thanks')
 
 
-
+@login_required
+def history(request):
+    pass

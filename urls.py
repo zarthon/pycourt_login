@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     (r'^accounts/login',home),
     (r'^order/',order),
 	(r'^complaint/',complaint),
+	(r'^orderhist/',history),
     url(r'^jqchat/',include('pycourt_login.jqchat.urls'))
 
 )

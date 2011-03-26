@@ -105,6 +105,7 @@ $(function() {
                                     {
                         				alert("Maximum Order Limit Reached !!");
                                     }
+                                    if(rowCounter >0 )$('#add-success').fadeIn('6000','linear');
                                 	return false ;});
 	
 		
@@ -130,6 +131,7 @@ $(document).ready(function(){
 									$("#orders").val(orderlist);											  
 				    				$('#row_' + rowCounter).addClass("hide");
 									rowCounter = rowCounter - 1;
+                                    if(rowCounter ==0)$('#add-success').fadeOut('3000','swing','complete');
 									return false;});
 
 });						   

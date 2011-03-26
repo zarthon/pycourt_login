@@ -1,3 +1,4 @@
+======DONE=========
 1) Add models to admin site
 2) Add temp Dishes and counter
 3) Show dishes on home
@@ -9,7 +10,10 @@
 7) list of current orders at the homepage
 11) counter id in order cart
 12) quantity in order carts
+24) Show current balance and revenue for student and counter homepages
+21) Common Show message.htm for error messages
 
+========PENDING=========
 6) editing of dishes on each counter home page
 13) Position of your order
 14) account summary(vendor site)
@@ -19,7 +23,6 @@
 18) change availability of dish 
 19) Error Messages for the invalid data
 20) Check for 0 quantity
-21) Common Show message.htm for error messages
 22) Also bind the quatity enter function with the order (more user friendly)
 23) generic Showmessage.htm 
 
