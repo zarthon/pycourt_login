@@ -127,7 +127,7 @@ def home(request):
         
     if request.user.is_authenticated():
         if userprofile is None:
-            return HttpResponse("UserProfile doesnot exist")
+            return render_to_response("ShowMessage.html",{'msg_heading':'Error','msg_html':'User is not Counter and Student'},context_instance = RequestContext(request))
 
         home = True
         dishes = Dishes.objects.all()
@@ -140,6 +140,7 @@ def home(request):
         order_list = list()
         if userprofile.is_counter == True:
             user  = userprofile.user
+            counter_account = CounterAccount(account = request.user)
             if user.username == '123456789':
                 count = 0
             elif user.username == '123456788':
@@ -147,18 +148,22 @@ def home(request):
             elif user.username == '123456777':
                 count = 2
             else:
-                return HttpResponse("Counter is not registered")
+                return render_to_response("ShowMessage.html",{'msg_heading':'Error','msg_html':'Counter\'s User id Doesnot exist in Database'},context_instance = RequestContext(request))
 
             counter = [counter_1,counter_2,counter_3][count]
             orders = Orderss.objects.filter(counterid=int(user.username),status=False)
             if orders is None:
-                return HttpResponse("No Current Orders in Database for given counterid")
+                return render_to_response("ShowMessage.html",{'msg_heading':'Error','msg_html':'No Current Orders in                    Database'},context_instance = RequestContext(request))
+            else:
+                for o in orders:
+                    t = o.order_id
+                    r = t.split('count')
+                    dish = Dishes.objects.get(id=r[0])
+                    print dish.dish_name
 
-            for o in orders:
-                t = o.order_id
-                r = t.split('count')
-                dish = Dishes.objects.get(id=r[0])
-                print dish.dish_name
+        elif userprofile.is_student == True:
+                student_account = BalanceAccount.objects.get(account=request.user)
+                print student_account.counter1_balance
         return render_to_response('home.html',locals(),context_instance=RequestContext(request))
     else:
         return render_to_response('home.html',locals(),context_instance=RequestContext(request))
@@ -167,7 +172,7 @@ def home(request):
 def profile(request):
     user = request.user
     if user is None:
-        return HttpResponse("User Not Found")
+        return render_to_response("ShowMessage.html",{'msg_heading':'Error','msg_html':'LOL'},context_instance = RequestContext(request))
     else:
         return render_to_response('profile.html',locals(),context_instance=RequestContext(request))
 
@@ -228,23 +233,22 @@ def order(request):
                     account2.balance = account2.balance + int(quantity)*int(dish.dish_price)
                     counter = '123456789'
                 else:
-                    return HttpResponse("not enough balance in counter1")
+                    return render_to_response("ShowMessage.html",{'msg_html':'Insufficient Balance in Counter 1. Order                        is Discarded. Place new Order','msg_heading':'Insufficient Balance'},context_instance = RequestContext(request))
 
             elif orderid[1]=='2':
                 if account1.counter2_balance >= int(quantity)*int(dish.dish_price):
-                    account1.counter1_balance = account1.counter1_balance - int(quantity)*int(dish.dish_price)
+                    account1.counter2_balance = account1.counter2_balance - int(quantity)*int(dish.dish_price)
                     account2.balance = account2.balance + int(quantity)*int(dish.dish_price)
                     counter = '123456788'
                 else:
-                    return HttpResponse("not enough balance in counter2")
+                    return render_to_response("ShowMessage.html",{'msg_html':'Insufficient Balance in Counter 2. Order                        is Discarded. Place new Order','msg_heading':'Insufficient Balance'},context_instance = RequestContext(request))
             else:
                 if account1.counter3_balance >= int(quantity)*int(dish.dish_price):
                     account1.counter3_balance = account1.counter3_balance - int(quantity)*int(dish.dish_price)
                     account2.balance = account2.balance + int(quantity)*int(dish.dish_price)
                     counter = '123456777'
                 else:
-                    return HttpResponse("not enough balance in counter3")
-            t= datetime.datetime.now()
+                    return render_to_response("ShowMessage.html",{'msg_html':'Insufficient Balance in Counter 3. Order                        is Discarded. Place new Order','msg_heading':'Insufficient Balance'},context_instance = RequestContext(request))
 
             order = Orderss(order_id=orderlist[i],student_id=user,status=False,counterid=int(counter),datetime=datetime.datetime.now(),dish=dish,quantity=int(quantity))
 

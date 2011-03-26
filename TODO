@@ -21,6 +21,7 @@
 20) Check for 0 quantity
 21) Common Show message.htm for error messages
 22) Also bind the quatity enter function with the order (more user friendly)
+23) generic Showmessage.htm 
 
 MYwork:
 implement account summary in both(navigation.html)

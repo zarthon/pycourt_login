@@ -80,10 +80,15 @@
 			<label for="qty">Enter the Quantity to order : </label>
 			<input type="text" id="qty_no" value="1" size="1" style="margin-bottom:15px">
 			<img src="/pycourt/add.png" id="qty_sub" style="padding-top:10px;">
+                
 			</form>
 		<div id="menu_t">
 		<div id="today">
-			{% if counter_1 %}
+            {% if counter_1 %}
+            <!--Counter Balance of User -->
+            <div class="balance">
+                <b>Current Balance: Rs {{ student_account.counter1_balance }} /-</b>
+            </div>
 			<div class="search_box">
 				<form>
         		<b>Search </b>
@@ -110,7 +115,10 @@
 
         <div id="yesterday" style="display:none">
         
-			{% if counter_2 %}
+            {% if counter_2 %}
+            <div class="balance">
+                <b>Current Balance: Rs {{ student_account.counter2_balance }} /-</b>
+                </div>
 			<div class="search_box">
 				<form>
 				<b>Search </b>
@@ -136,7 +144,10 @@
 
 
 		<div id="past7days" style="display:none">
-			 {% if counter_3 %}
+            {% if counter_3 %}
+            <div class="balance">
+                <b>Current Balance: Rs {{ student_account.counter3_balance }} /-</b>
+            </div>
 			 <div class="search_box">
 				<form>
           		<b>Search</b>
@@ -235,7 +246,7 @@
 				<form>
 				<b>search </b>
 				<input type="text" onkeyup="foodlistfilter(this, 'foodlist_2', '1')" name="filt">
-				</form> 
+                </form>
 			</div>
 			<table id="foodlist_2" cellspacing="1" cellpadding="2" border="0" width="100%">
 			<tr><td class="t1_h"> dish id </td> <td class="t1_h"> dish name </td> <td class="t1_h"> dish price </td>

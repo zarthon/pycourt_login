@@ -89,7 +89,15 @@ em {
 	border:thin;
 	border-color:#000;
 }
-
+.balance{
+	font-size:13px;
+	float:left;
+	margin-bottom:10px;
+	background-color:#D8D8D8;
+	padding:6px;
+	border:thin;
+	border-color:#000;
+}
 #order_cart{
 	background-color:#EEEEEE;
 	padding:15px;
