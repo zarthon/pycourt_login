@@ -5,12 +5,12 @@
 8) add the mysql feature
 9) View and Edit Profile
 10) Complaints for CMC
-
 4) different homepages of users
-6) editing of dishes on each counter home page
 7) list of current orders at the homepage
 11) counter id in order cart
 12) quantity in order carts
+
+6) editing of dishes on each counter home page
 13) Position of your order
 14) account summary(vendor site)
 15) display students balances
@@ -20,11 +20,9 @@
 19) Error Messages for the invalid data
 20) Check for 0 quantity
 21) Common Show message.htm for error messages
+22) Also bind the quatity enter function with the order (more user friendly)
 
 MYwork:
-update changes
-implement delete
-implement quantity field in order
 implement account summary in both(navigation.html)
 
 Future:
