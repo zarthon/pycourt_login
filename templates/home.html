@@ -99,11 +99,12 @@
 			<table id="foodlist_1" cellspacing="1" cellpadding="1" border="0" width="100%">
 			<tr><td class="t1_h">  Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td>
 			
+			
 			{% for dish in counter_1 %}
 			
 			<tr><td id = "{{dish.id}}count1a" class="t1"> {{ dish.dish_name }} </td>
 				<td id = "{{dish.id}}count1b" class="t1"> {{ dish.dish_price }} </td>
-				<td class = "today"><img src="/pycourt/add.png" id = "{{dish.id}}count1" alt="order" title="Order" class = "add_to_cart"></td></tr>
+				<td class = "today"><img src="/pycourt/add.png" id = "{{dish.id}}count1" alt="order" title="Order" class = "add_to_cart" align="right"></td></tr>
 			{% endfor %}
 		  	</table>
 			
@@ -126,12 +127,12 @@
 				</form> 
 			</div>
 			<table id="foodlist_2" cellspacing="1" cellpadding="2" border="0" width="100%">
-			<tr><td class="t1_h"> Dish ID </td> <td class="t1_h"> Dish Name </td> <td class="t1_h"> Dish Price </td>
+			<tr><td class="t1_h"> Dish Name </td> <td class="t1_h"> Dish Price </td><td></td></tr>
 
 			{% for dish in counter_2 %}
             <tr><td id = "{{dish.id}}count2a" class="t1"> {{ dish.dish_name }} </td>
 			<td id = "{{dish.id}}count2b" class="t1"> {{ dish.dish_price }} </td>
-			<td class= "yesterday"><img src="/pycourt/add.png" id = "{{dish.id}}count2" alt="order" title="Order" class = "add_to_cart"></td></tr>
+			<td class= "yesterday"><img src="/pycourt/add.png" id = "{{dish.id}}count2" alt="order" title="Order" class = "add_to_cart" align="right"></td></tr>
 
             {% endfor %}
 
@@ -155,12 +156,12 @@
 				</form> 
 			</div>
 			<table id="foodlist_3" cellspacing="1" cellpadding="2" border="0" width="100%">
-			<tr><td class="t1_h"> Dish ID </td> <td class="t1_h">  Dish Name </td> <td class = "t1_h"> Dish Price </td>
+			<tr><td class="t1_h">  Dish Name </td> <td class = "t1_h"> Dish Price </td>
 
             {% for dish in counter_3 %}
             <tr><td id = "{{dish.id}}count3a" class="t1"> {{ dish.dish_name }} </td>
 			<td id = "{{dish.id}}count3b" class="t1"> {{ dish.dish_price }} </td>
-			<td class = "past7days"><img src="/pycourt/add.png" id = "{{dish.id}}count3" alt="order" title="Order" class = "add_to_cart"></td></tr>
+			<td class = "past7days"><img src="/pycourt/add.png" id = "{{dish.id}}count3" alt="order" title="Order" class = "add_to_cart" align="right"></td></tr>
             {% endfor %}
 			</table>
 			{% else %}
@@ -175,42 +176,59 @@
 		<form action="/order/" method="post" id="done-form">
 		{% csrf_token %}
 		<div class="add-success-input clearfix">
-			<div style= "padding-top:10px; padding-bottom:7px;">
-				<label style = "background-color:#EEEEEE; margin-left:15px; padding:15px; margin-top:10px; padding-top:7px;	padding-bottom:10px; font-size:12px; display:inline; color:#000; font-weight:bold;">Order</label>
+			<div  style= "padding-top:10px; padding-bottom:7px;">
+				
+				<label style = "background-color:#EEEEEE; margin-left:15px; padding:15px; margin-top:10px; padding-top:7px;	padding-bottom:10px; font-size:12px ; display:inline; color:#000; font-weight:bold;">Order</label>
 			</div>
 			<div id="order_cart">
+				<div id="t1-box">
 				<table id="t1" cellspacing="1" cellpadding="2" border="0" width="100%">
 				<tbody>
-				<tr><th class="t1_h">Item Ordered</th><th class = "t1_h">Price</th><th class = "t1_h">Quantity</th><th class = "t1_h">Counter No.</th></tr>
-				<tr id="row_1" class="hide"><th class="t1" id="1_1"></th><th class="t1" id="1_2"></th><th class="t1" id="1_3"></th><th class="t1" id="1_4"><th class="t1" id="1_5"><img src="/pycourt/delete.png" id = "img1" alt="order" title="Order" class = "add_to_cart"></th></tr>
+				<tr><th class="t1_h">Item Ordered</th><th class = "t1_h">Unit Price</th><th class = "t1_h">Quantity</th><th class = "t1_h">Total</th><th class = "t1_h">Counter No.</th><th class = "t1_h"></th></tr>
+				<tr id="row_1" class="hide"><th class="t1" id="1_1"></th><th class="t1" id="1_2"></th><th class="t1" id="1_3"></th><th class="t1" id="1_4"></th><th class="t1" id="1_5"><th class="t1" id="1_6"><img src="/pycourt/delete.png" id = "img1" alt="order" title="Order" class = "add_to_cart"></th></tr>
 				
-				<tr id="row_2" class="hide"><th class="t1" id="2_1"></th><th class="t1" id="2_2"></th><th class="t1" id="2_3"></th><th class="t1" id="2_4"><th class="t1" id="2_5"><img src="/pycourt/delete.png" id = "img2" alt="order" title="Order" class = "add_to_cart"></th></tr>
+				<tr id="row_2" class="hide"><th class="t1" id="2_1"></th><th class="t1" id="2_2"></th><th class="t1" id="2_3"></th><th class="t1" id="2_4"></th></th><th class="t1" id="2_5"><th class="t1" id="2_6"><img src="/pycourt/delete.png" id = "img2" alt="order" title="Order" class = "add_to_cart"></th></tr>
 				
-				<tr id="row_3" class="hide"><th class="t1" id="3_1"></th><th class="t1" id="3_2"></th><th class="t1" id="3_3"></th><th class="t1" id="3_4"><th class="t1" id="3_5"><img src="/pycourt/delete.png" id = "img3" alt="order" title="Order" class = "add_to_cart"></th></tr>
+				<tr id="row_3" class="hide"><th class="t1" id="3_1"></th><th class="t1" id="3_2"></th><th class="t1" id="3_3"></th><th class="t1" id="3_4"></th></th><th class="t1" id="3_5"><th class="t1" id="3_6"><img src="/pycourt/delete.png" id = "img3" alt="order" title="Order" class = "add_to_cart"></th></tr>
 				
-				<tr id="row_4" class="hide"><th class="t1" id="4_1"></th><th class="t1" id="4_2"></th><th class="t1" id="4_3"></th><th class="t1" id="4_4"><th class="t1" id="4_5"><img src="/pycourt/delete.png" id = "img4" alt="order" title="Order" class = "add_to_cart"></th></tr>
+				<tr id="row_4" class="hide"><th class="t1" id="4_1"></th><th class="t1" id="4_2"></th><th class="t1" id="4_3"></th><th class="t1" id="4_4"></th><th class="t1" id="4_5"><th class="t1" id="4_6"><img src="/pycourt/delete.png" id = "img4" alt="order" title="Order" class = "add_to_cart"></th></tr>
 				
-				<tr id="row_5" class="hide"><th class="t1" id="5_1"></th><th class="t1" id="5_2"></th><th class="t1" id="5_3"></th><th class="t1" id="5_4"><th class="t1" id="5_5"><img src="/pycourt/delete.png" id = "img5" alt="order" title="Order" class = "add_to_cart"> </th></tr>
+				<tr id="row_5" class="hide"><th class="t1" id="5_1"></th><th class="t1" id="5_2"></th><th class="t1" id="5_3"></th><th class="t1" id="5_4"></th><th class="t1" id="5_5"><th class="t1" id="5_6"><img src="/pycourt/delete.png" id = "img5" alt="order" title="Order" class = "add_to_cart"> </th></tr>
 				
-				<tr id="row_6" class="hide"><th class="t1" id="6_1"></th><th class="t1" id="6_2"></th><th class="t1" id="6_3"></th><th class="t1" id="6_4"><th class="t1" id="6_5"><img src="/pycourt/delete.png" id = "img6" alt="order" title="Order" class = "add_to_cart"></th></tr>
+				<tr id="row_6" class="hide"><th class="t1" id="6_1"></th><th class="t1" id="6_2"></th><th class="t1" id="6_3"><th class="t1" id="6_4"></th></th><th class="t1" id="6_5"><th class="t1" id="6_6"><img src="/pycourt/delete.png" id = "img6" alt="order" title="Order" class = "add_to_cart"></th></tr>
 				
-				<tr id="row_7" class="hide"><th class="t1" id="7_1"></th><th class="t1" id="7_2"></th><th class="t1" id="7_3"></th><th class="t1" id="7_4"><th class="t1" id="7_5"><img src="/pycourt/delete.png" id = "img7" alt="order" title="Order" class = "add_to_cart"></th></tr>
+				<tr id="row_7" class="hide"><th class="t1" id="7_1"></th><th class="t1" id="7_2"></th><th class="t1" id="7_3"></th><th class="t1" id="7_4"></th><th class="t1" id="7_5"><th class="t1" id="7_6"><img src="/pycourt/delete.png" id = "img7" alt="order" title="Order" class = "add_to_cart"></th></tr>
 				
-				<tr id="row_8" class="hide"><th class="t1" id="8_1"></th><th class="t1" id="8_2"></th><th class="t1" id="8_3"></th><th class="t1" id="8_4"><th class="t1" id="8_5"><img src="/pycourt/delete.png" id = "img8" alt="order" title="Order" class = "add_to_cart"></th></tr>
+				<tr id="row_8" class="hide"><th class="t1" id="8_1"></th><th class="t1" id="8_2"></th><th class="t1" id="8_3"></th><th class="t1" id="8_4"></th><th class="t1" id="8_5"><th class="t1" id="8_6"><img src="/pycourt/delete.png" id = "img8" alt="order" title="Order" class = "add_to_cart"></th></tr>
 				
-				<tr id="row_9" class="hide"><th class="t1" id="9_1"></th><th class="t1" id="9_2"></th><th class="t1" id="9_3"></th><th class="t1" id="9_4"><th class="t1" id="9_5"><img src="/pycourt/delete.png" id = "img9" alt="order" title="Order" class = "add_to_cart"></th></tr>
+				<tr id="row_9" class="hide"><th class="t1" id="9_1"></th><th class="t1" id="9_2"></th><th class="t1" id="9_3"></th><th class="t1" id="9_4"></th><th class="t1" id="9_5"><th class="t1" id="9_6"><img src="/pycourt/delete.png" id = "img9" alt="order" title="Order" class = "add_to_cart"></th></tr>
 				
-				<tr id="row_10" class="hide"><th class="t1" id="10_1"></th><th class="t1" id="10_2"></th><th class="t1" id="10_3"></th><th class="t1" id="10_4"><th class="t1" id="10_5"><img src="/pycourt/delete.png" id = "img10" alt="order" title="Order" class = "add_to_cart"></th></tr>
+				<tr id="row_10" class="hide"><th class="t1" id="10_1"></th><th class="t1" id="10_2"></th><th class="t1" id="10_3"></th><th class="t1" id="10_4"></th><th class="t1" id="10_5"><th class="t1" id="10_6"><img src="/pycourt/delete.png" id = "img10" alt="order" title="Order" class = "add_to_cart"></th></tr>
 				</tbody>
 				</table>
 				<input type="text" name="order" value="" id="orders" style="display:;"/>
-				<input type="submit" value="Order" style="float:left;"/>
+				
+				</div>
+				
+				<div class="cart-foot">
+				<ul><li>
+				<label id="left-total" class="total-last"><b> Total Price: Rs</label><label id ="total_disp" style="margin-left:5x;" class="total-last">0</b></label><label class="total-last">
+				</li>
+				<li>
+				<br><input type="submit" id="sub_order" value="Place Order"/>
+				</li></ul>
+				</div>
+				
+				
+				
 			</div>
 		</div>
 		</form>
 	</div>
 </div>
+</div>
     {% else %}     
+
     <!-- Executed if the profile is of counter -->
     <h3>Current Orders</h3>
 		<div id="done-nav">
@@ -260,7 +278,7 @@
 			<div class="do-something">database not populated!</div>
 			{% endif %}
 		</div>
-
+</div>
     {% endif %}
 {% endif %}
 {% endblock %}

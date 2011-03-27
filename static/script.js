@@ -8,7 +8,10 @@ var tempqty = '';
 var tempoid = '';
 var rowCounter = 0;
 var counter_no = '';
-//what is this function doing
+var total_price = '';
+var total_final = 0 ;
+
+
 $(document).ready(function() {
     $("#qty_no").keydown(function(event) {
     	if ( event.keyCode == 46 || event.keyCode == 8 )
@@ -27,7 +30,7 @@ $(document).ready(function() {
 				{
                     this.value = this.value.substring(0, 0);
                 }
-                $('#charLeft').text(150 - len);
+                
             });
 });
 
@@ -74,7 +77,7 @@ $(function() {
                                     var temp3 = ('#' + temp2);
                                     tempname = $(temp1).text(); 
                                     tempprice = $(temp3).text();
-                                    var temp7 = "#" + p;
+									var temp7 = "#" + p;
                                     var c = tempoid.split("count");
                                  
                                     var count_no = c[1].split("%");
@@ -86,27 +89,39 @@ $(function() {
 
 		$("#qty_sub").bind("click",function(){
                                     tempqty = $("#qty_no").attr("value"); 
-								/*	for(var j=0;j<tempqty;j++)
-									{
-									    orderlist = orderlist + tempoid + ','; 
-								    }*/
+									
                                     orderlist = orderlist + tempoid +'%'+tempqty+',';
-									$("#orders").val(orderlist);											  
-		                            if(rowCounter <= 10)
+									$("#orders").val(orderlist);
+									total_price = parseInt(tempqty) * parseInt(tempprice);
+									
+		                            if(rowCounter < 10)
 		   	                        {
                         				rowCounter = rowCounter+1;
                         				$('#' + rowCounter + '_1').text(tempname);
                         				$('#' + rowCounter + '_2').text(tempprice);
                         				$('#' + rowCounter + '_3').text(tempqty);
-                                        $('#' + rowCounter + '_4').text(counter_no);
-                        				$('#row_' + rowCounter).removeClass("hide");
+                                        $('#' + rowCounter + '_5').text(counter_no);
+										$('#' + rowCounter + '_4').text(total_price);
+                        				$('#row_' + rowCounter).fadeIn(1000);
 		                            }
-			                        else
+									else
                                     {
                         				alert("Maximum Order Limit Reached !!");
                                     }
-                                    if(rowCounter >0 )$('#add-success').fadeIn('6000','linear');
-                                	return false ;});
+                                    if(rowCounter >0 )$('#add-success').slideDown(1200);
+									
+									total_final = 0;
+                                	for(var k=1; k <= rowCounter;k++)
+									{
+										
+										
+										total_final = total_final + parseInt($('#' + k  + '_4').text());
+										
+									}
+									$('#total_disp').text(total_final);
+										
+									
+									return false ;});
 	
 		
 	$("#qty_sub").bind("click",function(){ $('#menu_t').css('display','');});
@@ -117,22 +132,53 @@ $(function() {
 
 $(document).ready(function(){
         rowCounter = 0;
-		$('#t1 img').bind("click", function(){
-		        					var img_id = $(this).attr("id").substring(3,4);
+		$('#t1 img').bind("click", function(){var img_id = '';
+											if(rowCounter < 10) {img_id = $(this).attr("id").substring(3,4);}
+											else {
+												img_id = $(this).attr("id").substring(3,5);
+												if(img_id == '10'){
+													}
+												else img_id = 1;
+												
+												}
+											total_final = total_final - parseInt($('#' + img_id + '_4').text());
+									
+									$('#total_disp').text(total_final);
 									slideRows(img_id);
+									
+									$('#row_' + rowCounter).fadeOut(1000);
                                     var temp = orderlist.split(",");
                                     var tem_orderlist = '';
+									
                                     for(var j=0;j<temp.length-1;j++){
-                                        if(j != img_id-1){
+                                        if(j != parseInt(img_id)-1){
                                             tem_orderlist += temp[j]+',';
                                         }
                                     } 
                                     orderlist = tem_orderlist;
-									$("#orders").val(orderlist);											  
-				    				$('#row_' + rowCounter).addClass("hide");
+									$("#orders").val(orderlist);
+									
+				    				
 									rowCounter = rowCounter - 1;
-                                    if(rowCounter ==0)$('#add-success').fadeOut('3000','swing','complete');
+									if(rowCounter ==0)$('#add-success').slideUp(1200);
 									return false;});
+		
+		
+		$('#sub_order').click(function(){
+								
+								$('#main').fadeTo(0,0.5);
+								if(confirm("Are you sure u want to place this order ? "))
+								{
+									$('#main').fadeTo(500,1);
+									return true;
+								}
+								else
+								{
+									$('#main').fadeTo(500,1);
+									return false;
+								}
+									  
+								});
 
 });						   
 
@@ -153,9 +199,10 @@ function SwapDone(current) {
     if (current != activeDone) {
         $('#' + current + '-nav').addClass('active');
         $('#' + activeDone + '-nav').removeClass('active');
-        $('#' + current).css('display', 'block');
-        $('#' + activeDone).css('display', 'none');
-        $('#' + current.toLowerCase().replace(' ','')).css('display','block');
+        //$('#' + current).css('display', 'block');
+        $('#' + activeDone).fadeOut(1000,function(){
+												  $('#' + current.toLowerCase().replace(' ','')).css('display','block');} );
+        
         activeDone = current;
         return false;
     } else {
@@ -171,7 +218,7 @@ function slideRows(number ){
 		{		
 			var j =  parseInt(i) + 1;
 			
-			for (var k=1;k<=3;k++)
+			for (var k=1;k<=5;k++)
 			{
 				var cell_1 = '#' + i + '_' + k;
 				var cell_2 = '#' + j + '_' + k;

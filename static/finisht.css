@@ -14,6 +14,7 @@ abbr, acronym {border: 0;}
 	height: 0;
 	clear: both;
 	visibility: hidden;
+
 }
 
 .clearfix {display:inline;}
@@ -102,10 +103,20 @@ em {
 	background-color:#EEEEEE;
 	padding:15px;
 	padding-top:25px;
+	padding-bottom:110px;
+	
+}
+#t1-box{
+	border:thin;
+	border-style:solid;
+	border-color:#CCCCCC;
+	height: 200px;
+	overflow:auto;
+	
 }
 .form{
 	font-size:12px;
-	font-color:#EFEFEF;
+	font-color:#EEEEEE;
 }
 #t1{
 	background-color:#EEEEEE;
@@ -117,7 +128,8 @@ em {
 	padding-left:15px;
 	font-size:12px;
 	font-weight:bolder;
-	background-color:#D8D8D8
+	background-color:#D8D8D8;
+	text-align:center;
 }
 
 .t1{
@@ -125,6 +137,7 @@ em {
 	padding-left:15px;
 	font-size:12px;
 	font-weight:lighter;
+	text-align:center;
 }
 
 .menu_list{
@@ -270,6 +283,7 @@ em {
 
 .add_to_cart{
 	margin-top:4px;
+	
 }
 
 #list{
@@ -460,7 +474,7 @@ em {
   padding: 15px;
 }
 
-#add-success label, #what-ive-done h3, #friends #main h3, #tools #main h3 {
+#what-ive-done h3, #friends #main h3, #tools #main h3 {
   font-size: 1.8em;
   font-weight: bold;
   color: #474747;
@@ -470,14 +484,7 @@ em {
   color: green;
 }
 
-#add-success textarea {
-  display: block;
-  margin-top: 5px;
-  width: 728px;
-  padding: 10px;
-  height: 51px;
-  font: 1.6em Helvetica, Verdana, Arial, Helvetica, sans-serif;
-}
+
 
 .success {
   float: left;
@@ -494,7 +501,7 @@ em {
 }
 
 .add-success-input {
-  padding: 15px;
+  padding: 10px;
 }
 
 #add-success input {
@@ -569,6 +576,14 @@ em {
   font-weight: bold;
 }
 
+.cart-foot{
+	float:right;
+	width:30%;
+	margin-top:30px;
+	margin-left:10px;
+	margin-right:0px;
+	
+}
 #thanks {
   background-color: #E4F2E4;
   border: 1px solid #C7F2C8;
@@ -576,6 +591,25 @@ em {
   font-size: 1.4em;
   margin-top: 15px;
   padding: 10px;
+}
+
+.total-last{
+	font:"Times New Roman", Times, serif;
+	text-align:left;
+	font-size:13px;
+	
+}
+
+#left-total{
+	margin-left:100px;
+}
+
+#sub_order{
+	
+	font-size:14px;
+	margin-left:145px;
+	
+	
 }
 
 #thanks span {
