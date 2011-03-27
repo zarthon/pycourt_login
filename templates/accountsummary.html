@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+{% for order in past_orders %}
+{{ order.status }}
+{{ order.quantity }}
+{{ order.dish.dish_name }}
+{{ order.dish.dish_price }}*{{ order.quantity }}
+{{ order.datetime }}
+{{ order.transaction_id }}
+{% endfor %}
+{% endblock %}
