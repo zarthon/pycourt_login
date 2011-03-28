@@ -1,11 +1,30 @@
 {% extends "base.html" %}
+
 {% block content %}
-{% for order in past_orders %}
-{{ order.status }}
-{{ order.quantity }}
-{{ order.dish.dish_name }}
-{{ order.dish.dish_price }}*{{ order.quantity }}
-{{ order.datetime }}
-{{ order.transaction_id }}
-{% endfor %}
+{% include "navigation.html" %}
+<div class = "frame">
+	<div class = "content-box">
+		<div id = "t3-frame" class="h-box">
+		<table id="t3"	cellspacing="1" cellpadding="1" border="0" width="100%">
+		<tr><td class="t1_h">  Transaction ID </td><td></td><td></td> <td class="t1_h"> Dish Name </td><td class="t1_h">Dish Price</td><td class="t1_h">Qty Ordered</td><td class="t1_h">Placed on</td><td class="t1_h">Status</td></tr>
+		</table>
+		</div>
+		<div class="t-box">
+		<table id="t4"	cellspacing="2" cellpadding="0" border="0" width="95%">
+			{% for order in past_orders %}
+			
+			<tr><td id = "{{dish.transaction_id}}_a" class="t1">{{ order.transaction_id }}</td>
+				<td id = "{{dish.transaction_id}}_b" class="t1"> {{ order.dish.dish_name }}</td>
+				<td id = "{{dish.transaction_id}}_c" class="t1"> {{ order.dish.dish_price}}*{{order.quantity }}</td>
+				<td id = "{{dish.transaction_id}}_d" class="t1"> {{ order.quantity }}</td>
+				<td id = "{{dish.transaction_id}}_e" class="t1"> {{ order.datetime }}</td>
+				<td id = "{{dish.transaction_id}}_f" class="t1"> {{ order.status }}</td>
+			</tr>		
+			
+		{% endfor %}
+		</table>
+		
+		</div>
+	</div>
+</div>
 {% endblock %}

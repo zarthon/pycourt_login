@@ -97,7 +97,7 @@
 			</div>
 			
 			<table id="foodlist_1" cellspacing="1" cellpadding="1" border="0" width="100%">
-			<tr><td class="t1_h">  Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td>
+			<tr><td class="t1_h">  Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td></tr>
 			
 			
 			{% for dish in counter_1 %}
@@ -156,7 +156,7 @@
 				</form> 
 			</div>
 			<table id="foodlist_3" cellspacing="1" cellpadding="2" border="0" width="100%">
-			<tr><td class="t1_h">  Dish Name </td> <td class = "t1_h"> Dish Price </td>
+			<tr><td class="t1_h">  Dish Name </td> <td class = "t1_h"> Dish Price </td></tr>
 
             {% for dish in counter_3 %}
             <tr><td id = "{{dish.id}}count3a" class="t1"> {{ dish.dish_name }} </td>
@@ -181,7 +181,7 @@
 				<label style = "background-color:#EEEEEE; margin-left:15px; padding:15px; margin-top:10px; padding-top:7px;	padding-bottom:10px; font-size:12px ; display:inline; color:#000; font-weight:bold;">Order</label>
 			</div>
 			<div id="order_cart">
-				<div id="t1-box">
+				<div class="t1-box">
 				<table id="t1" cellspacing="1" cellpadding="2" border="0" width="100%">
 				<tbody>
 				<tr><th class="t1_h">Item Ordered</th><th class = "t1_h">Unit Price</th><th class = "t1_h">Quantity</th><th class = "t1_h">Total</th><th class = "t1_h">Counter No.</th><th class = "t1_h"></th></tr>
@@ -276,6 +276,7 @@
 			</table>
 			{% else %}
 			<div class="do-something">database not populated!</div>
+			<label id="#pd"></label>
 			{% endif %}
 		</div>
 </div>

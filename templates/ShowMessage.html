@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="left-pane">
-    <div id="content-box">
-      <div class="standard-box-hdr">{{msg_heading}}</div>
+	{% include "navigation.html" %}
+<div id="insufficient-balance" class ="frame">
+    <div id="content-box-h" class="content-box" >
+      <div class="standard-box-hdr"><h1>{{msg_heading}}</h1></div>
       <div class="std-bordered-box">{{msg_html}} </div>
       <p>&nbsp;</p>
     </div>

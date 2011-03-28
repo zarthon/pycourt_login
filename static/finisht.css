@@ -106,14 +106,27 @@ em {
 	padding-bottom:110px;
 	
 }
-#t1-box{
+.t-box{
 	border:thin;
 	border-style:solid;
 	border-color:#CCCCCC;
 	height: 200px;
 	overflow:auto;
-	
+	margin-left:30px;
+	margin-right:30px;
+	padding:0px;
 }
+.h-box{
+	border:thin;
+	border-style:solid;
+	border-color:#CCCCCC;
+}
+#t3-frame{
+	margin-left:30px;
+	margin-right:30px;
+}
+
+
 .form{
 	font-size:12px;
 	font-color:#EEEEEE;
@@ -319,7 +332,15 @@ em {
     color: #474747;
     border-bottom: 1px solid #EEE;
 }
-
+.standard-box-hdr h1{
+	font-size: 2.4em;
+    font-weight: bold;
+    text-align: center;
+    padding: 30px;
+    padding-top: 40px;
+    color: #000000;
+	
+}
 #homepage p, #error-page p {
     padding: 0 80px;
     text-align: center;
@@ -335,6 +356,14 @@ em {
   padding: 50px 0;
 }
 
+.std-bordered-box{
+	font-size:12px;
+	text-align:center;
+	margin-bottom:40px;
+}
+#insufficient-balance{
+	margin-bottom:60px;
+}
 #auth-page #login-signup {
   width: 296px;
   margin: 0 auto;
@@ -409,14 +438,15 @@ em {
 	background-color:#DDD;
 }
 
-.logout1{
+.content-box{
 	font-size:14px;
 	display:block;
-	padding-bottom:140px;
+	padding-bottom:50px;
 	text-align:center;
 	background-color:#EEEEEE;
 	margin-bottom: 70px;
 	margin-top:51px;
+	padding-top:50px;
 }
 #wrong_msg{
 	padding-top:140px;
@@ -441,12 +471,32 @@ em {
 
 #navigation li, #done-nav li {
   display: inline;
+ 
 }
 
-#navigation li a, #navigation li.hi, #done-nav li a, .friends-back {
+#done-nav li a, .friends-back {
   float: left;
   display: block;
   padding: 10px 15px;
+  border-left-color:#DDD;
+  border-right-color:#DDD;
+  border-top-color:#DDD;
+  border-left-style:solid;
+  border-left-width:thin;
+  border-right-style:solid;
+  border-right-width:thin;
+  border-top-style:solid;
+  border-top-width:thin;
+}
+
+#navigation li a, #navigation li.hi{
+	float: left;
+  display: block;
+  padding: 10px 15px;
+  
+  
+ 
+	
 }
 
 
@@ -528,6 +578,7 @@ em {
   text-decoration: none;
   font-size: 1.1em;
   color: #8D8D8D;
+  background-color:#F8F8F8;
 }
 
 #friends-list, #tools-list {
@@ -566,14 +617,21 @@ em {
 }
 
 #done-nav a:hover {
-  text-decoration: none;
-  background-color: #F3F3F3;
+	font-weight:bolder;
+  background-color: #F8F8F8;
+  color:#000;
+  border-left-color:#DDD;
+  border-right-color:#DDD;
+  border-top-color:#DDD;
 }
 
 .active {
   background-color: #EEEEEE !important;
   color: #000 !important;
   font-weight: bold;
+  border-left-color:#DDD;
+  border-right-color:#DDD;
+  border-top-color:#DDD;
 }
 
 .cart-foot{
@@ -768,6 +826,11 @@ em {
   border: 1px solid #749880;
   color: #FFF;
 }
+#content-box-h{
+	background-color:#EEEEEE;
+	margin-top:70px;
+}
+
 
 #feedback-input input {
   float: left;

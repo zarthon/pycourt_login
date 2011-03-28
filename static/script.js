@@ -146,7 +146,7 @@ $(document).ready(function(){
 									$('#total_disp').text(total_final);
 									slideRows(img_id);
 									
-									$('#row_' + rowCounter).fadeOut(1000);
+									$('#row_' + img_id).fadeOut(1000);
                                     var temp = orderlist.split(",");
                                     var tem_orderlist = '';
 									
@@ -195,14 +195,18 @@ function SwapLogin(current) {
 
 
 function SwapDone(current) {
-    current = current.toLowerCase();
+	    current = current.toLowerCase();
+		var t = current;
+
     if (current != activeDone) {
-        $('#' + current + '-nav').addClass('active');
+  
         $('#' + activeDone + '-nav').removeClass('active');
-        //$('#' + current).css('display', 'block');
-        $('#' + activeDone).fadeOut(1000,function(){
-												  $('#' + current.toLowerCase().replace(' ','')).css('display','block');} );
-        
+       //  $('#' + current).fadeIn(200);
+        $('#' + activeDone).fadeOut(300,function(){
+												  $('#' + current + '-nav').addClass('active');
+												  $('#' + current.toLowerCase().replace(' ','')).fadeIn(300)
+												 });
+       
         activeDone = current;
         return false;
     } else {
