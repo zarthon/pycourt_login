@@ -12,21 +12,21 @@
 12) quantity in order carts
 24) Show current balance and revenue for student and counter homepages
 21) Common Show message.htm for error messages
+15) display students balances
+19) Error Messages for the invalid data
+23) generic Showmessage.htm 
+25) Remove BalanceAccount Error after Signup
 
 ========PENDING=========
 6) editing of dishes on each counter home page
 13) Position of your order
 14) account summary(vendor site)
-15) display students balances
 16) drop dwon menu
 17) change status of dish
 18) change availability of dish 
-19) Error Messages for the invalid data
 20) Check for 0 quantity
 22) Also bind the quatity enter function with the order (more user friendly)
-23) generic Showmessage.htm 
 24) Remove the for loop for userprof in views.home
-25) Remove BalanceAccount Error after Signup
 
 MYwork:
 implement account summary in both(navigation.html)

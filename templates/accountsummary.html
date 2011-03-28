@@ -2,6 +2,7 @@
 
 {% block content %}
 {% include "navigation.html" %}
+{% if past_orders %}
 <div class = "frame">
 	<div class = "content-box">
 		<div id = "t3-frame" class="h-box">
@@ -10,7 +11,7 @@
 		</table>
 		</div>
 		<div class="t-box">
-		<table id="t4"	cellspacing="2" cellpadding="0" border="0" width="95%">
+            <table id="t4"	cellspacing="2" cellpadding="0" border="0" width="95%">
 			{% for order in past_orders %}
 			
 			<tr><td id = "{{dish.transaction_id}}_a" class="t1">{{ order.transaction_id }}</td>
@@ -21,10 +22,14 @@
 				<td id = "{{dish.transaction_id}}_f" class="t1"> {{ order.status }}</td>
 			</tr>		
 			
-		{% endfor %}
-		</table>
-		
-		</div>
+            {% endfor %}
+        </table>
+        		</div>
 	</div>
 </div>
+{% else %}
+            NO ORDERS
+{% endif %}
+		
+
 {% endblock %}
