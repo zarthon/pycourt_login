@@ -26,6 +26,7 @@
 22) Also bind the quatity enter function with the order (more user friendly)
 23) generic Showmessage.htm 
 24) Remove the for loop for userprof in views.home
+25) Remove BalanceAccount Error after Signup
 
 MYwork:
 implement account summary in both(navigation.html)

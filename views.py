@@ -59,12 +59,16 @@ def register(request):
                 student = False
                 userprof = UserProfile(user = user,is_counter = counter,is_student=student)
                 userprof.save()
+                account = CounterAccount(account = user,balance =0)
+                account.save()
 
             else:
                 counter = False
                 student = True
                 userprof = UserProfile(user = user,is_counter = counter,is_student=student)
                 userprof.save()
+                account = BalanceAccount(account=user, counter1_balance=0,counter2_balance=0,counter3_balance=0)
+                account.save()
             auth_login(request,user)
             return HttpResponseRedirect('/')
         else:
