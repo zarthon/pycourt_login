@@ -234,7 +234,8 @@
 		<div id="done-nav">
 			<ul>
                 <li><a href="today" class="active" id="today-nav">{{user.username}}</a></li>
-                <li><a href="yesterday" class="active" id="yesterday-nav">Dish List</a></li>
+                <li><a href="yesterday" id="yesterday-nav">Dish List</a></li>
+                <li><a href="past7days" id="past7days-nav">Total Dishes</a></li>
 			</ul>
 		</div>
     <div id="done-list">
@@ -262,7 +263,7 @@
         <div id="yesterday" style="display: none;">
         
 			{% if counter%}
-			<table id="foodlist_2" cellspacing="1" cellpadding="2" border="0" width="100%">
+			<table id="orderlist_2" cellspacing="1" cellpadding="2" border="0" width="100%">
 			<tr><td class="t1_h"> dish id </td> <td class="t1_h"> dish name </td> <td class="t1_h"> dish price </td>
 
 			{% for dish in counter %}
@@ -278,7 +279,38 @@
 			<div class="do-something">database not populated!</div>
 			<label id="#pd"></label>
 			{% endif %}
+        </div>
+        <div id="past7days" style="display: none;">
+        
+			{% if counter%}
+			<table id="orderlist_3" cellspacing="1" cellpadding="2" border="0" width="100%">
+			<tr><td class="t1_h"> dish id </td> <td class="t1_h"> dish name </td> <td class="t1_h"> dish price </td><td
+                    class="t1_h"> Dish Availability </td>
+
+
+			{% for dish in dishes %}
+            <tr><td id = "{{dish.id}}counta" class="t1"> {{ dish.id }} </td>
+			<td id = "{{dish.id}}countb" class="t1"> {{ dish.dish_name }} </td>
+            <td id = "{{dish.id}}countc" class="t1"> {{ dish.dish_price }} </td>
+            {% if count == 0 %}
+            <td id = "{{dish.id}}countd" class="t1"> {{ dish.counter1 }} </td>
+            {% endif %}
+            {% if count == 1 %}
+            <td id = "{{dish.id}}countd" class="t1"> {{ dish.counter2 }} </td>
+            {% endif %}
+            {% if count == 2 %} 
+            <td id = "{{dish.id}}countd" class="t1"> {{ dish.counter3 }} </td>
+            {% endif %}
+
+            {% endfor %}
+
+			</table>
+			{% else %}
+			<div class="do-something">database not populated!</div>
+			<label id="#pd"></label>
+			{% endif %}
 		</div>
+
 </div>
     {% endif %}
 {% endif %}
