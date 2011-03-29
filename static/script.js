@@ -179,6 +179,10 @@ $(document).ready(function(){
 								}
 									  
 								});
+        $('#add_dish').click(function(){
+                document.location.href = '/addish';
+        });
+
 
 });						   
 

@@ -284,3 +284,11 @@ def history(request):
    else:
        return render_to_response("ShowMessage.html",{'msg_heading':'Trying to Hack this site!','msg_html':'UserProfile Does Not Exist'},contex_instance=RequestContext(request))
    return HttpResponse("hello")
+
+@login_required
+def add_dish(request):
+    userprof = UserProfile.objects.get(user=request.user)
+    if userprof.is_counter:
+        return HttpResponse("HAHAHA")
+    else:
+        return render_to_response("ShowMessage.html",{'msg_heading':'UnAuthorized Access','msg_html':'Only Counter Owners are authorized to add dishes not Students....:P'},context_instance=RequestContext(request))
