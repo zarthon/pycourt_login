@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 import hashlib
 from django.utils.translation import ugettext_lazy as _
-
+from pycourt_login.models import Dishes
 class ResetForm(forms.Form):
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
@@ -90,6 +90,15 @@ class SettingForm(forms.ModelForm):
             user.save()
         return user
 
+class AddDishForm(forms.Form):
+    dishname = forms.CharField(max_length=30)
+    dishprice = forms.IntegerField()
+    def clean_dishname(self):
+        dishname = self.cleaned_data.get("dishname")
+        dishes = Dishes.objects.all()
+        for dish in dishes:
+            if dish.dish_name.lower().replace(" ","") == dishname.lower().replace(" ",""):
+                raise forms.ValidationError(_("The specified Dish already exist"))
 
-
+        return dishname
     

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="/addish/" method="post" id="add-form">
+    {% csrf_token %}
+    {% if form.dishname.errors and data %}
+    <div class="error">Sorry Dish with same name already exists</div>
+    {% endif %}
+    <div id="dish-name" class="clearfix">
+        <label for="dish_name">Dish Name:</label>
+        <input type="text" name="dishname" value="" id="dishname" />
+    </div>
+    {% if form.dishprice.errors and data %}
+    <div class="error">Enter a Valid value</div>
+    {% endif %}
+
+    <div id="dish-price" class="clearfix">
+        <label for="dish_price">Dish Price:</label>
+        <input type="text" name="dishprice" value="" id="dishprice" />
+    </div>
+    <div id="add-submit" class="add clearify">
+        <input type="submit" value = "Add" class="submit" />
+    </div>
+</form>
+{% endblock %}

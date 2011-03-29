@@ -31,8 +31,8 @@ def login(request):
             #user.groups.add('temp')
             if user is not None:
                 auth_login(request,user)
-                request.session.set_expiry(300)
-                print request.session.get_expiry_date()
+                #request.session.set_expiry(300)
+                #print request.session.get_expiry_date()
                 request.session['member_id'] = user.id
                 temp = UserProfile.objects.get(user = user)
                 print temp.is_counter , temp.is_student
@@ -288,7 +288,42 @@ def history(request):
 @login_required
 def add_dish(request):
     userprof = UserProfile.objects.get(user=request.user)
+    user = request.user
     if userprof.is_counter:
-        return HttpResponse("HAHAHA")
+        if request.method == 'POST':
+            print "sdfasasdf"
+            form = myforms.AddDishForm(request.POST)
+            print request.POST
+            if form.is_valid():
+                print request.POST
+                dishname = request.POST["dishname"]
+                dishprice = request.POST["dishprice"]
+                if user.username == "123456789":
+                    counter1=True
+                    counter2 = False
+                    counter3 = False
+                elif user.username == "123456788":
+                    counter2=True
+                    counter1 = False
+                    counter3 = False
+                elif user.username == "123456777":
+                    counter1 = False
+                    counter2 = False
+                    counter3 = True
+                else:
+                    counter1 = False
+                    counter2 = False
+                    counter3 = False
+                dish = Dishes(dish_name = dishname, dish_price=int(dishprice),counter1 = counter1, counter2 = counter2, counter3 = counter3)
+                print dish.dish_name, dish.dish_price
+                dish.save()
+                return HttpResponseRedirect("/home/")
+            else:
+                print form
+                return render_to_response("adish.html",{'form':form,'data':request.POST},context_instance=RequestContext(request))
+        else:
+            form = myforms.AddDishForm()
+            print form
+            return render_to_response("adish.html",{'form':form},context_instance=RequestContext(request))
     else:
         return render_to_response("ShowMessage.html",{'msg_heading':'UnAuthorized Access','msg_html':'Only Counter Owners are authorized to add dishes not Students....:P'},context_instance=RequestContext(request))
