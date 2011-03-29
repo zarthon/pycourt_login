@@ -17,9 +17,10 @@ $(document).ready(function() {
     	if ( event.keyCode == 46 || event.keyCode == 8 )
 			{ }
         else {         
-			if (event.keyCode < 48 || event.keyCode > 57 )
+			if (event.keyCode < 49 || event.keyCode > 57 )
 				{
             	event.preventDefault(); 
+				('#qty_no').text('1');
               	}       
         	}
 
@@ -82,9 +83,13 @@ $(function() {
                                  
                                     var count_no = c[1].split("%");
                                     counter_no = count_no[0];
+                                    $('#done-nav').hide();
+                                    $('#menu_t').slideUp(1100);
+									$('#quantity-form').slideDown(1000);
+																	   
                                     
-                                    $('#menu_t').css('display','none');
-                                    $('#quantity-form').css('display','');
+									$('#done-nav').css('display','none');
+									$('#tab-qty').css('display','');
                                     return false;});
 
 		$("#qty_sub").bind("click",function(){
@@ -97,18 +102,21 @@ $(function() {
 		                            if(rowCounter < 10)
 		   	                        {
                         				rowCounter = rowCounter+1;
-                        				$('#' + rowCounter + '_1').text(tempname);
+										$('#' + rowCounter + '_1').text(tempname);
                         				$('#' + rowCounter + '_2').text(tempprice);
                         				$('#' + rowCounter + '_3').text(tempqty);
                                         $('#' + rowCounter + '_5').text(counter_no);
 										$('#' + rowCounter + '_4').text(total_price);
-                        				$('#row_' + rowCounter).fadeIn(1000);
+                        				$('#row_' + rowCounter).fadeIn(1200);
 		                            }
 									else
                                     {
                         				alert("Maximum Order Limit Reached !!");
                                     }
-                                    if(rowCounter >0 )$('#add-success').slideDown(1200);
+                                    if(rowCounter > 0 ){
+										$('#add-success').slideDown(1200);
+										$('#header-cart').fadeIn(200);
+									}
 									
 									total_final = 0;
                                 	for(var k=1; k <= rowCounter;k++)
@@ -120,12 +128,15 @@ $(function() {
 									}
 									$('#total_disp').text(total_final);
 										
-									
+									$('#done-nav').css('display','');
+									$('#tab-qty').css('display','none');
 									return false ;});
 	
 		
-	$("#qty_sub").bind("click",function(){ $('#menu_t').css('display','');});
-	$("#qty_sub").bind("click",function(){$('#quantity-form').css('display','none');});
+	$("#qty_sub").bind("click",function(){ $('#menu_t').slideDown(1000);});
+	$("#qty_sub").bind("click",function(){$('#quantity-form').slideUp(1000);
+											$('#done-nav').show();	
+																	  });
 
 	
 });
@@ -136,17 +147,33 @@ $(document).ready(function(){
 											if(rowCounter < 10) {img_id = $(this).attr("id").substring(3,4);}
 											else {
 												img_id = $(this).attr("id").substring(3,5);
-												if(img_id == '10'){
-													}
-												else img_id = 1;
+											}
 												
-												}
 											total_final = total_final - parseInt($('#' + img_id + '_4').text());
 									
 									$('#total_disp').text(total_final);
-									slideRows(img_id);
+									 
+									$('#order_cart').fadeOut(400,function(){
+																		  	slideRows(parseInt(img_id));
+																		   $('#row_' + rowCounter).hide()	
+																		  });
+														 
+									 $('#order_cart').fadeIn(500,function(){
+																		  
+									 rowCounter = rowCounter - 1;
+									  rowCounter = parseInt(rowCounter);
 									
-									$('#row_' + img_id).fadeOut(1000);
+								if( rowCounter == 0)$('#add-success').slideUp(1200,function(){
+																							$('#header-cart').fadeOut(300)
+																							});
+								
+																		  });
+									
+														
+									
+									
+									
+									
                                     var temp = orderlist.split(",");
                                     var tem_orderlist = '';
 									
@@ -159,8 +186,7 @@ $(document).ready(function(){
 									$("#orders").val(orderlist);
 									
 				    				
-									rowCounter = rowCounter - 1;
-									if(rowCounter ==0)$('#add-success').slideUp(1200);
+									
 									return false;});
 		
 		
@@ -220,9 +246,9 @@ function SwapDone(current) {
 
 function slideRows(number ){
 	
-	if(number<rowCounter)
+	if(number < rowCounter)
 	{
-    	for(var i=number;i <= rowCounter - 1;i++)
+    	for(var i=number ;i <= rowCounter - 1;i++)
 		{		
 			var j =  parseInt(i) + 1;
 			
@@ -232,6 +258,7 @@ function slideRows(number ){
 				var cell_2 = '#' + j + '_' + k;
 				
 				var temp = $(cell_2).text();
+				
 				$(cell_1).text(temp);		
 			}
 		}

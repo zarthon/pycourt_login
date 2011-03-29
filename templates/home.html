@@ -62,21 +62,28 @@
 <div id="what-ive-done" class="clearfix">
     {% if userprofile.is_student and not userprofile.is_counter %}
 <!-- Executed if the profile is of student -->
-		<h3>menu</h3>
+		<h3>Menu</h3>
   
   
   		<script type="text/javascript" src="/pycourt/filterfoodlist.js"></script>
 
-		<div id="done-nav">
+		<div id="done-nav" style="display:;">
 			<ul>
 			<li><a href="today" class="active" id="today-nav">Counter 1</a></li>
 			<li><a href="yesterday" id="yesterday-nav">Counter 2</a></li>
 			<li><a href="past7days" id="past7days-nav">Counter 3</a></li>
 			</ul>
 		</div>
+		<div id="tab-qty" style="display:none">
+			<ul>
+			<li><a  id="tab-qty-1">Enter Quantity</a></li>
+			</ul>
+		</div>
+
 	<div id="done-list">
 		
-		<form method="post" id="quantity-form" style="display:none;">
+			<form method="post" id="quantity-form" style="display:none;">
+			
 			<label for="qty">Enter the Quantity to order : </label>
 			<input type="text" id="qty_no" value="1" size="1" style="margin-bottom:15px">
 			<img src="/pycourt/add.png" id="qty_sub" style="padding-top:10px;">
@@ -96,16 +103,25 @@
 				</form> 
 			</div>
 			
-			<table id="foodlist_1" cellspacing="1" cellpadding="1" border="0" width="100%">
+			<table id="foodlist-1-h" cellspacing="1" cellpadding="2" border="0" width="100%">
+			<col width="40%"/><col width="30%"/><col width="30%" />
 			<tr><td class="t1_h">  Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td></tr>
 			
-			
+			</table>
+			<div id ="foodlist-1-div" class="t1-frame">
+			<table id="foodlist_1" cellspacing="1" cellpadding="2" border="0" width="100%">
+			<col width="40%"/><col width="30%"/><col width="30%" />
 			{% for dish in counter_1 %}
+			
 			
 			<tr><td id = "{{dish.id}}count1a" class="t1"> {{ dish.dish_name }} </td>
 				<td id = "{{dish.id}}count1b" class="t1"> {{ dish.dish_price }} </td>
-				<td class = "today"><img src="/pycourt/add.png" id = "{{dish.id}}count1" alt="order" title="Order" class = "add_to_cart" align="right"></td></tr>
+				<td class = "today"><img src="/pycourt/add.png" id = "{{dish.id}}count1" alt="order" title="Order" class = "add_to_cart" style="padding-left:60px;"align="center"></td></tr>
+				
+			
 			{% endfor %}
+			</table>
+			</div>
 		  	</table>
 			
 
@@ -126,16 +142,24 @@
 				<input type="text" onkeyup="foodlistfilter(this, 'foodlist_2', '1')" name="filt">
 				</form> 
 			</div>
+			<table id="foodlist-2-h" cellspacing="1" cellpadding="2" border="0" width="100%">
+			<col width="40%"/><col width="30%"/><col width="30%" />
+			<tr><td class="t1_h"> Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td></tr>
+			</table>
+			<div id ="foodlist-2-div" class="t1-frame">
 			<table id="foodlist_2" cellspacing="1" cellpadding="2" border="0" width="100%">
-			<tr><td class="t1_h"> Dish Name </td> <td class="t1_h"> Dish Price </td><td></td></tr>
-
+			<col width="40%"/><col width="30%"/><col width="30%" />
 			{% for dish in counter_2 %}
+			
             <tr><td id = "{{dish.id}}count2a" class="t1"> {{ dish.dish_name }} </td>
 			<td id = "{{dish.id}}count2b" class="t1"> {{ dish.dish_price }} </td>
-			<td class= "yesterday"><img src="/pycourt/add.png" id = "{{dish.id}}count2" alt="order" title="Order" class = "add_to_cart" align="right"></td></tr>
+			<td class= "yesterday"><img src="/pycourt/add.png" id = "{{dish.id}}count2" alt="order" title="Order" class = "add_to_cart" align="center" style="padding-left:60px;"></td></tr>
+					
 
             {% endfor %}
+			</table>
 
+			</div>
 			</table>
 			{% else %}
 			<div class="do-something">Database not populated!</div>
@@ -155,14 +179,21 @@
 		  		<input type="text" onkeyup="foodlistfilter(this, 'foodlist_3', '1')" name="filt">
 				</form> 
 			</div>
+			<table id="foodlist-3-h" cellspacing="1" cellpadding="2" border="0" width="100%">
+			<col width="40%"/><col width="30%"/><col width="30%" />
+			<tr><td class="t1_h"> Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td></tr>
+			</table>
+			<div id ="foodlist-3-div" class="t1-frame">
 			<table id="foodlist_3" cellspacing="1" cellpadding="2" border="0" width="100%">
-			<tr><td class="t1_h">  Dish Name </td> <td class = "t1_h"> Dish Price </td></tr>
+			<col width="40%"/><col width="30%"/><col width="30%" />
 
             {% for dish in counter_3 %}
             <tr><td id = "{{dish.id}}count3a" class="t1"> {{ dish.dish_name }} </td>
 			<td id = "{{dish.id}}count3b" class="t1"> {{ dish.dish_price }} </td>
-			<td class = "past7days"><img src="/pycourt/add.png" id = "{{dish.id}}count3" alt="order" title="Order" class = "add_to_cart" align="right"></td></tr>
+			<td class = "past7days"><img src="/pycourt/add.png" id = "{{dish.id}}count3" alt="order" title="Order" class = "add_to_cart" align="center" style="padding-left:60px;"></td></tr>
             {% endfor %}
+			</table>
+			</div>
 			</table>
 			{% else %}
 			<div class="do-something">Database not populated !</div>
@@ -170,9 +201,10 @@
 			</div>
 		</div>
 	</div>
-
-
+	
+	<div id="header-cart" style="display:none"><h3>Cart</h3></div>
 	<div id="add-success" style='display:none;'>
+	
 		<form action="/order/" method="post" id="done-form">
 		{% csrf_token %}
 		<div class="add-success-input clearfix">
@@ -180,8 +212,9 @@
 				
 				<label style = "background-color:#EEEEEE; margin-left:15px; padding:15px; margin-top:10px; padding-top:7px;	padding-bottom:10px; font-size:12px ; display:inline; color:#000; font-weight:bold;">Order</label>
 			</div>
+			<div class="height-fix">
 			<div id="order_cart">
-				<div class="t1-box">
+				<div class = "t1-frame" >
 				<table id="t1" cellspacing="1" cellpadding="2" border="0" width="100%">
 				<tbody>
 				<tr><th class="t1_h">Item Ordered</th><th class = "t1_h">Unit Price</th><th class = "t1_h">Quantity</th><th class = "t1_h">Total</th><th class = "t1_h">Counter No.</th><th class = "t1_h"></th></tr>
@@ -206,16 +239,17 @@
 				<tr id="row_10" class="hide"><th class="t1" id="10_1"></th><th class="t1" id="10_2"></th><th class="t1" id="10_3"></th><th class="t1" id="10_4"></th><th class="t1" id="10_5"><th class="t1" id="10_6"><img src="/pycourt/delete.png" id = "img10" alt="order" title="Order" class = "add_to_cart"></th></tr>
 				</tbody>
 				</table>
-				<input type="text" name="order" value="" id="orders" style="display:;"/>
+				<input type="text" name="order" value="" id="orders" style="display:none;"/>
 				
 				</div>
-				
+				</div>
 				<div class="cart-foot">
 				<ul><li>
-				<label id="left-total" class="total-last"><b> Total Price: Rs</label><label id ="total_disp" style="margin-left:5x;" class="total-last">0</b></label><label class="total-last">
+				<div id="total-box"><label id="left-total" class="total-last"><b> Total Price: Rs </label><label id ="total_disp" style="margin-right:5x;" class="total-last">0</b></label>
 				</li>
 				<li>
-				<br><input type="submit" id="sub_order" value="Place Order"/>
+				<input type="submit" id="sub_order" value="order"/>
+				</div>
 				</li></ul>
 				</div>
 				
@@ -234,7 +268,6 @@
 		<div id="done-nav">
 			<ul>
                 <li><a href="today" class="active" id="today-nav">{{user.username}}</a></li>
-                <li><a href="yesterday" id="yesterday-nav">Dish List</a></li>
                 <li><a href="past7days" id="past7days-nav">Total Dishes</a></li>
 			</ul>
 		</div>
@@ -260,26 +293,6 @@
 			{% endif %}
 
 		</div>
-        <div id="yesterday" style="display: none;">
-        
-			{% if counter%}
-			<table id="orderlist_2" cellspacing="1" cellpadding="2" border="0" width="100%">
-			<tr><td class="t1_h"> dish id </td> <td class="t1_h"> dish name </td> <td class="t1_h"> dish price </td>
-
-			{% for dish in counter %}
-            <tr><td id = "{{dish.id}}count2a" class="t1"> {{ dish.id }} </td>
-			<td id = "{{dish.id}}count2b" class="t1"> {{ dish.dish_name }} </td>
-			<td id = "{{dish.id}}count2c" class="t1"> {{ dish.dish_price }} </td>
-			<td><a id = "{{dish.id}}count2" href="/order"><img src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"></a></td></tr>
-
-            {% endfor %}
-
-			</table>
-			{% else %}
-			<div class="do-something">database not populated!</div>
-			<label id="#pd"></label>
-			{% endif %}
-        </div>
         <div id="past7days" style="display: none;">
         
 			{% if counter%}
