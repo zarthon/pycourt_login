@@ -39,4 +39,3 @@ class Ordersss(models.Model):
     status = models.BooleanField()
     datetime = models.DateTimeField()
     counterid = models.IntegerField()
-
