@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-
+from django.utils import simplejson
 from django.contrib.auth.models import Group
 from pycourt_login.models import *
 '''Import forms and User profile'''
@@ -334,7 +334,7 @@ def checkneworders(request):
 	loadedtime=request.GET["time"]
 	latestordertime = mktime(Ordersss.objects.order_by('datetime')[0].datetime.timetuple())
 
-	if (loadedtime < int(latestordertime)):		#Page contentis stale, send notification to refresh
+	if (int(loadedtime) < int(latestordertime)):		#Page content is stale, send notification to refresh
 		return HttpResponse("1")
 	else:
 		return HttpResponse("0")
