@@ -30,6 +30,7 @@ urlpatterns = patterns('',
 	(r'^complaint/',complaint),
 	(r'^orderhist/',history),
     (r'^addish/',add_dish),
+	(r'^mostrecenttransaction/$',mostRecentTransaction),
 )
 
 if settings.DEBUG:

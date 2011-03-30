@@ -327,3 +327,6 @@ def add_dish(request):
             return render_to_response("adish.html",{'form':form},context_instance=RequestContext(request))
     else:
         return render_to_response("ShowMessage.html",{'msg_heading':'UnAuthorized Access','msg_html':'Only Counter Owners are authorized to add dishes not Students....:P'},context_instance=RequestContext(request))
+
+def mostRecentTransaction(request):
+	return HttpResponse(Ordersss.objects.latest('transaction_id').transaction_id)
