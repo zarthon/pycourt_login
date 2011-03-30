@@ -278,11 +278,12 @@
                 <b>Current Revenue: Rs {{ counter_account.balance }} /-</b>
                 </div>
 			<table id="orderlist_1" cellspacing="1" cellpadding="2" border="0" width="100%">
-			<tr><td class="t1_h"> Dish Id </td> <td class="t1_h"> Student Id  </td> <td class="t1_h"> Status </td><td class="t1_h"></td>
+			<tr><td class="t1_h"> Dish Id </td> <td class="t1_h"> Student Id  </td> <td class="t1_h"> Status </td><td class="t1_h">Transaction id</td> 
 			{% for order in orders %}
 			<tr><td id = "{{order.order_id}}a" class="t1"> {{ order.dish.dish_name }} </td>
 				<td id = "{{dish.id}}count1b" class="t1"> {{ order.student_id }} </td>
 				<td id = "{{dish.id}}count1c" class="t1"> {{ order.status }} </td>
+				<td id = "{{dish.id}}" class="t1"> {{ order.transaction_id }} </td>
 				<td><a id = "{{dish.id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"></a></td></tr>
 			{% endfor %}
 		  	</table>

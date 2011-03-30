@@ -13,6 +13,7 @@ from pycourt_login.models import *
 from pycourt_login import forms as myforms
 from django.core.mail import *
 import datetime
+from time import mktime
 from pycourt_login.dataplus import *
 from django.core.mail import EmailMultiAlternatives
 from pycourt_login.models import PasswordCHangeRequest, Dishes
@@ -212,9 +213,8 @@ def order(request):
 
         #Student Account is account1
         account1 = BalanceAccount.objects.get(account=user)
-        now = datetime.datetime.now()
-        timestamp = now.strftime("%Y%m%d%H%M%S")
-        transid = request.user.username+timestamp
+        str(datetime.datetime.now().timetuple())
+        transid = request.user.username+str(mktime(datetime.datetime.now().timetuple()))[:-2]
         print transid
         for i in range(0,len(orderlist)-1):
             order_param = orderlist[i].split("%")

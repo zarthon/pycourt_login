@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import *
 from pycourt_login.views import *
 from pycourt_login.complaint.views import *
-from pycourt_login.jqchat.views import *
 from django.conf import settings
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -31,8 +30,6 @@ urlpatterns = patterns('',
 	(r'^complaint/',complaint),
 	(r'^orderhist/',history),
     (r'^addish/',add_dish),
-    url(r'^jqchat/',include('pycourt_login.jqchat.urls'))
-
 )
 
 if settings.DEBUG:
