@@ -27,8 +27,9 @@
 20) Check for 0 quantity
 22) Also bind the quatity enter function with the order (more user friendly)
 24) Remove the for loop for userprof in views.home
-26) Change PasswordRecovery button name
+--26) Change PasswordRecovery button name
 27) Remove unused tags in CSS and js file
+28) Recharge Account
 
 MYwork:
 implement account summary in both(navigation.html)
