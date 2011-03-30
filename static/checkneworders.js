@@ -1,10 +1,15 @@
 var loadedtime=new Date;
-var unixloadedtime=parseInt(loadedtime.getTime(),1000)
-function checkneworders()
+var unixloadedtime=parseInt(loadedtime.getTime()/1000)
+
+var loadUrl = "/checkneworders";
+
+requesttosend = "time="+unixloadedtime
+
+function checkAndNotify()
 {
-	t = setTimeout("checkneworders()",3000);
-	//alert("Foo");
+	$("#shownoti").load(loadUrl,requesttosend);
+	t = setTimeout("checkAndNotify()",3000)
 	return true;
 }
-$(document).ready(checkneworders())
 
+$(document).ready(checkAndNotify())

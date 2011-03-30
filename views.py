@@ -332,9 +332,9 @@ def add_dish(request):
 
 def checkneworders(request):
 	loadedtime=request.GET["time"]
-	latestordertime = mktime(Ordersss.objects.order_by('datetime')[0].datetime.timetuple())
 
+	#Get the latest order time in unix format
+	latestordertime = mktime(Ordersss.objects.latest('datetime').datetime.timetuple())
+	
 	if (int(loadedtime) < int(latestordertime)):		#Page content is stale, send notification to refresh
-		return HttpResponse("1")
-	else:
-		return HttpResponse("0")
+		return HttpResponse('<p style="font-family:verdana;color:red">Orders list is outdated, refresh required</p>')
