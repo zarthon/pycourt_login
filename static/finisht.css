@@ -140,15 +140,12 @@ em {
 
 .form{
 	font-size:12px;
-	font-color:#EEEEEE;
+	color:#EEEEEE;
 }
 #t1{
 	background-color:#EEEEEE;
 }
 
-#foodlist_1{
-
-}
 
 .t1_h{
 	
@@ -182,6 +179,12 @@ em {
 
 .menu_table{
 	font-size:10px;
+
+}
+
+#menu_t{
+	
+	margin-top:5px;
 }
 #header img {
     margin-left: 10px;
@@ -329,12 +332,15 @@ em {
 	
 }
 
-
+.foodlist-1-f{
+	margin-top:17px;
+	padding-top:10px;
+}
 .forgot1 {
 	size: 40px;
-	padding: 0;
-	margin-bottom: 20;
-	font:Verdana, Geneva, sans-serif;
+	padding: 0px;
+	margin-bottom: 20px;
+	
 	color:#474747;
 }
 #homepage h1, #error-page h1 {
@@ -445,12 +451,14 @@ em {
     margin-bottom: 20px;
 }
 
-.logout{
+#logout{
 	font-size:14px;
 	display:block;
 	padding-bottom:140px;
 	text-align:center;
-	background-color:#DDD;
+	background-color:#EEEEEE;
+	padding-top:100px;
+	
 }
 
 .content-box{
@@ -518,7 +526,7 @@ em {
 
 #navigation li a, .friends-back {
   text-decoration: none;
-  background-color: #497A32;
+  background-color: #4D8433;
   margin-left: 5px;
 }
 
@@ -625,6 +633,40 @@ margin-top: 20px;
 	display: inline;
 }
 
+
+#tab-acc{
+margin-top: 20px;
+  padding-left: 15px;
+  float: left;
+  display: block;
+  padding: 10px 15px;
+  border-left-color:#DDD;
+  border-right-color:#DDD;
+  border-top-color:#DDD;
+  border-left-style:solid;
+  border-left-width:thin;
+  border-right-style:solid;
+  border-right-width:thin;
+  border-top-style:solid;
+  border-top-width:thin;
+   background-color:#EEEEEE;
+   margin-left:20px;
+ }
+ 
+#tab-acc a{
+	text-decoration: none;
+  font-size: 1.1em;
+  color: #000;
+  font-weight: bold;;
+ 
+}
+
+#tab-acc li{
+	display: inline;
+}
+
+
+
 #done-nav a {
   text-decoration: none;
   font-size: 1.1em;
@@ -703,7 +745,7 @@ margin-top: 20px;
 }
 
 .total-last{
-	font:"Times New Roman", Times, serif;
+	
 	text-align:left;
 	font-size:13px;
 	
@@ -746,7 +788,7 @@ margin-top: 20px;
   background-color: #EEEEEE;
   padding: 15px;
   margin-bottom:50px;
-  height:260px;
+  height:300px;
 }
 
 #wrong_password{
@@ -822,7 +864,7 @@ margin-top: 20px;
 
 .line1 {
 	width: 300px;
-	align: left;
+	
 	size:1px;
 	margin-top: 20px;
 	color:#F9F9F9;

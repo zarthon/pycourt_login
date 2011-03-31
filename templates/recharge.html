@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="/recharge/" method="post" id="recharge-form">
+    {% csrf_token %}
+    {% if form.username.errors and data %}
+    <div class="error">{{ form.username.errors }}</div>
+    {% endif %}
+    {% if pass_inc and data %}
+    <div class="error">Password InCorrect</div>
+    {% endif %}
+    <div id="username" class="clearfix">
+        <label for="username">Username:</label>
+        <input type="text" name="username" value="" id="username" />
+    </div>
+    <div id="password" class="clearfix">
+        <label for="password">Password: </label>
+        <input type="password" name="password" value="" id="password">
+    </div>
+    {% if form.amount.errors and data %}
+    <div class="error">Only Integer Value Accepted</div>
+    {% endif %}
+        <div id="amount" class="clearfix">
+        <label for="amount">Recharge Amount:</label>
+        <input type="text" name="amount" value="" id="amount" />
+    </div>
+    <div id="recharge-submit" class="recharge clearify">
+        <input type="submit" value = "Recharge" class="submit" />
+    </div>
+</form>
+{% endblock %}
