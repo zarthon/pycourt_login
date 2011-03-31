@@ -67,7 +67,7 @@
   
   		<script type="text/javascript" src="/pycourt/filterfoodlist.js"></script>
 
-		<div id="done-nav" style="display:">
+		<div id="done-nav" style="display:;">
 			<ul>
 			<li><a href="today" class="active" id="today-nav">Counter 1</a></li>
 			<li><a href="yesterday" id="yesterday-nav">Counter 2</a></li>
@@ -89,7 +89,7 @@
 			<img src="/pycourt/add.png" id="qty_sub" style="padding-top:10px;">
                 
 			</form>
-	<div id="menu_t">
+		<div id="menu_t">
 		<div id="today">
             {% if counter_1 %}
             <!--Counter Balance of User -->
@@ -102,13 +102,12 @@
 				<input type="text" onkeyup="foodlistfilter(this, 'foodlist_1', '1')" name="filt">
 				</form> 
 			</div>
-			<div class ="foodlist-1-f" >
+			
 			<table id="foodlist-1-h" cellspacing="1" cellpadding="2" border="0" width="100%">
 			<col width="40%"/><col width="30%"/><col width="30%" />
 			<tr><td class="t1_h">  Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td></tr>
 			
 			</table>
-			</div>
 			<div id ="foodlist-1-div" class="t1-frame">
 			<table id="foodlist_1" cellspacing="1" cellpadding="2" border="0" width="100%">
 			<col width="40%"/><col width="30%"/><col width="30%" />
@@ -123,7 +122,7 @@
 			{% endfor %}
 			</table>
 			</div>
-		  	
+		  	</table>
 			
 
 			{% else %}
@@ -131,7 +130,7 @@
 			{% endif %}
         </div>
 
-        <div id="yesterday" style="display:none;">
+        <div id="yesterday" style="display:none">
         
             {% if counter_2 %}
             <div class="balance">
@@ -143,12 +142,10 @@
 				<input type="text" onkeyup="foodlistfilter(this, 'foodlist_2', '1')" name="filt">
 				</form> 
 			</div>
-			<div class ="foodlist-1-f" >
 			<table id="foodlist-2-h" cellspacing="1" cellpadding="2" border="0" width="100%">
 			<col width="40%"/><col width="30%"/><col width="30%" />
 			<tr><td class="t1_h"> Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td></tr>
 			</table>
-			</div>
 			<div id ="foodlist-2-div" class="t1-frame">
 			<table id="foodlist_2" cellspacing="1" cellpadding="2" border="0" width="100%">
 			<col width="40%"/><col width="30%"/><col width="30%" />
@@ -182,12 +179,10 @@
 		  		<input type="text" onkeyup="foodlistfilter(this, 'foodlist_3', '1')" name="filt">
 				</form> 
 			</div>
-			<div class ="foodlist-1-f" >
 			<table id="foodlist-3-h" cellspacing="1" cellpadding="2" border="0" width="100%">
 			<col width="40%"/><col width="30%"/><col width="30%" />
 			<tr><td class="t1_h"> Dish Name </td> <td class="t1_h"> Dish Price </td><td class="t1_h"></td></tr>
 			</table>
-			</div>
 			<div id ="foodlist-3-div" class="t1-frame">
 			<table id="foodlist_3" cellspacing="1" cellpadding="2" border="0" width="100%">
 			<col width="40%"/><col width="30%"/><col width="30%" />
@@ -208,7 +203,7 @@
 	</div>
 	
 	<div id="header-cart" style="display:none"><h3>Cart</h3></div>
-	<div id="add-success" style="display:none;">
+	<div id="add-success" style='display:none;'>
 	
 		<form action="/order/" method="post" id="done-form">
 		{% csrf_token %}
@@ -250,7 +245,7 @@
 				</div>
 				<div class="cart-foot">
 				<ul><li>
-				<div id="total-box"><label id="left-total" class="total-last"><b> Total Price: Rs </label><label id ="total_disp" style="margin-right:5px;" class="total-last">0</b></label>
+				<div id="total-box"><label id="left-total" class="total-last"><b> Total Price: Rs </label><label id ="total_disp" style="margin-right:5x;" class="total-last">0</b></label>
 				</li>
 				<li>
 				<input type="submit" id="sub_order" value="order"/>
@@ -269,7 +264,9 @@
     {% else %}     
 
     <!-- Executed if the profile is of counter -->
+	<script type="text/javascript" src="/pycourt/newordernotification.js"></script>
     <h3>Current Orders</h3>
+	<div id="shownoti" height=200 width=200></div>
 		<div id="done-nav">
 			<ul>
                 <li><a href="today" class="active" id="today-nav">{{user.username}}</a></li>
@@ -283,12 +280,12 @@
                 <b>Current Revenue: Rs {{ counter_account.balance }} /-</b>
                 </div>
 			<table id="orderlist_1" cellspacing="1" cellpadding="2" border="0" width="100%">
-			<tr><td class="t1_h"> Dish Id </td> <td class="t1_h"> Student Id  </td> <td class="t1_h"> Status </td><td class="t1_h"></td>
-			
+			<tr><td class="t1_h"> Dish Id </td> <td class="t1_h"> Student Id  </td> <td class="t1_h"> Status </td><td class="t1_h">Transaction id</td> 
 			{% for order in orders %}
 			<tr><td id = "{{order.order_id}}a" class="t1"> {{ order.dish.dish_name }} </td>
 				<td id = "{{dish.id}}count1b" class="t1"> {{ order.student_id }} </td>
 				<td id = "{{dish.id}}count1c" class="t1"> {{ order.status }} </td>
+				<td id = "{{dish.id}}" class="t1">{{ order.transaction_id }} </td>
 				<td><a id = "{{dish.id}}count1" href="/order"><img src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"></a></td></tr>
 			{% endfor %}
 		  	</table>

@@ -84,10 +84,8 @@ $(function() {
                                     var count_no = c[1].split("%");
                                     counter_no = count_no[0];
                                     $('#done-nav').hide();
-                                    $('#menu_t').fadeOut(400,function(){
-																	  $('#quantity-form').fadeIn(400);
-																	  });
-									
+                                    $('#menu_t').slideUp(1100);
+									$('#quantity-form').slideDown(1000);
 																	   
                                     
 									$('#done-nav').css('display','none');
@@ -116,7 +114,7 @@ $(function() {
                         				alert("Maximum Order Limit Reached !!");
                                     }
                                     if(rowCounter > 0 ){
-										$('#add-success').slideDown(1200);	
+										$('#add-success').slideDown(1200);
 										$('#header-cart').fadeIn(200);
 									}
 									
@@ -135,10 +133,8 @@ $(function() {
 									return false ;});
 	
 		
-
-	$("#qty_sub").bind("click",function(){$('#quantity-form').fadeOut(400,function(){
-																				   $('#menu_t').fadeIn(400);
-																				   });
+	$("#qty_sub").bind("click",function(){ $('#menu_t').slideDown(1000);});
+	$("#qty_sub").bind("click",function(){$('#quantity-form').slideUp(1000);
 											$('#done-nav').show();	
 																	  });
 
