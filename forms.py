@@ -101,4 +101,15 @@ class AddDishForm(forms.Form):
                 raise forms.ValidationError(_("The specified Dish already exist"))
 
         return dishname
-    
+ 
+class RechargeForm(forms.Form):
+    username = forms.RegexField(max_length = 10, regex=r'^[1-9][0-9]{8}')
+    password = forms.CharField(widget = forms.PasswordInput)
+    amount = forms.IntegerField()
+    def clean_username(self):
+        username = self.cleaned_data["username"]
+        try:
+            User.objects.get(username = username)
+        except User.DoesNotExist:
+            raise forms.ValidationError(_("The User does not exists."))
+        return username 

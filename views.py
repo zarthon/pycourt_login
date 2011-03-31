@@ -336,3 +336,48 @@ def mostRecentTransaction(request):
 		return HttpResponse('<p style="color:red">Food List outdated, please refresh</p>')
 	else:
 		return HttpResponse("")
+
+def recharge_acc(request):
+    userprof = UserProfile.objects.get(user =request.user)
+    if userprof.is_counter:
+        cnt_user = request.user
+        if request.method == "POST":
+            form = myforms.RechargeForm(request.POST)
+            if form.is_valid():
+                print request.POST
+                username = request.POST["username"]
+                password = request.POST["password"]
+                amount = request.POST["amount"]
+                print amount
+                stu_user = authenticate(username=request.POST["username"],password=request.POST["password"])
+                if stu_user is not None:
+                    account = BalanceAccount.objects.get(account = stu_user)
+                    print "asdasda"
+                    print account
+                    if cnt_user.username == "123456789":
+                        account.counter1_balance +=int(amount)
+                        print account.counter1_balance
+                    elif cnt_user.username == "123456788":
+                        account.counter2_balance += int(amount)
+                        print account.counter2_balance
+                    elif cnt_user.username == "123456777":
+                        account.counter3_balance += int(amount)
+                        print account.counter3_balance
+                    else:
+                        return render_to_response("ShowMessage.html",{'msg_heading':'UnAuthorized Access','msg_html':'Counter Owner is not Registered....:P'},context_instance=RequestContext(request))
+    
+                    account.save()
+                    return HttpResponseRedirect("/home/") 
+                else:
+                    pass_inc = True
+                    return render_to_response( "recharge.html", {'form':form,'pass_inc':pass_inc,'data':request.POST}, context_instance=RequestContext(request) )
+            else:
+                print form
+                return render_to_response( "recharge.html", {'form':form,'data':request.POST}, context_instance=RequestContext(request) )
+        else:
+            form = myforms.RechargeForm()
+            print form
+            return render_to_response("recharge.html",{'form':form},context_instance=RequestContext(request))
+    else:
+        return render_to_response("ShowMessage.html",{'msg_heading':'UnAuthorized Access','msg_html':'Only Counter Owners are authorized to Recharge Accounts....:P'},context_instance=RequestContext(request))
+

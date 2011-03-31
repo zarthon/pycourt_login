@@ -30,6 +30,7 @@ urlpatterns = patterns('',
 	(r'^complaint/',complaint),
 	(r'^orderhist/',history),
     (r'^addish/',add_dish),
+    (r'^recharge/',recharge_acc),
 	(r'^mostrecenttransaction/',mostRecentTransaction),
 )
 
