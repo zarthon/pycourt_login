@@ -1,7 +1,7 @@
 var data;
 function checkAndNotify()
 {
-    var rows = document.getElementById("orderlist_1").rows; var cell = rows[rows.length - 1].cells[3];
+    var rows = document.getElementById("orderlist-1").rows; var cell = rows[rows.length - 1].cells[4];
 	tosend = "id="+cell.innerHTML
 	jQuery.ajax({
     cache: false,
@@ -17,7 +17,7 @@ function checkAndNotify()
 }
 
 $(document).ready(function(){
-var rows = document.getElementById("orderlist_1").rows; var cell = rows[rows.length - 1].cells[3];
+var rows = document.getElementById("orderlist-1").rows; var cell = rows[rows.length - 1].cells[3];
 data = "id="+cell.innerHTML
 
 checkAndNotify();

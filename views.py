@@ -337,6 +337,19 @@ def mostRecentTransaction(request):
 	else:
 		return HttpResponse("")
 
+@login_required
+def changestatus(request):
+	if request.method == 'GET':
+		orderpid = request.GET["id"]
+		userprof = UserProfile.objects.get(user= request.user)
+		if userprof.is_counter:
+			currentOrder = Ordersss.objects.get(id=orderpid)
+			currentOrder.status=True
+			currentOrder.save()
+			return HttpResponse("success")
+		else:
+			return HttpResponse("Dont try to hack the site")
+
 def recharge_acc(request):
     userprof = UserProfile.objects.get(user =request.user)
     if userprof.is_counter:

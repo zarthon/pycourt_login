@@ -10,6 +10,7 @@ var rowCounter = 0;
 var counter_no = '';
 var total_price = '';
 var total_final = 0 ;
+var foodlist_deleted = '';
 
 
 $(document).ready(function() {
@@ -80,7 +81,11 @@ $(function() {
                                     tempprice = $(temp3).text();
 									var temp7 = "#" + p;
                                     var c = tempoid.split("count");
-                                 
+									
+									
+                                 	$(this).parent().parent().fadeOut(400);
+									
+									
                                     var count_no = c[1].split("%");
                                     counter_no = count_no[0];
                                     $('#done-nav').hide();
@@ -141,13 +146,32 @@ $(function() {
 																				   });
 											$('#done-nav').show();	
 																	  });
-
+	$('#orderlist-1 img').bind("click",function(){
+											  		var img_id = $(this).attr("id");
+													var img_id_1 = 'id=' + img_id;
+													alert(img_id);
+													var adds = '#' + img_id + 'c';
+													$(adds).text("True")
+													jQuery.ajax({
+    												cache: false,
+    												url: "/changestatus/",
+    												type: "GET",
+    												data: img_id_1,
+   	 												success: function(data) {
+        												jQuery(adds).text("True");
+        											},  
+    											}); 
+													
+													return false;
+											  }); 
 	
 });
 
 $(document).ready(function(){
         rowCounter = 0;
+		
 		$('#t1 img').bind("click", function(){var img_id = '';
+											
 											if(rowCounter < 10) {img_id = $(this).attr("id").substring(3,4);}
 											else {
 												img_id = $(this).attr("id").substring(3,5);
@@ -171,12 +195,7 @@ $(document).ready(function(){
 																							$('#header-cart').fadeOut(300)
 																							});
 								
-																		  });
-									
-														
-									
-									
-									
+																		  });						
 									
                                     var temp = orderlist.split(",");
                                     var tem_orderlist = '';
@@ -185,7 +204,14 @@ $(document).ready(function(){
                                         if(j != parseInt(img_id)-1){
                                             tem_orderlist += temp[j]+',';
                                         }
+										else
+										{
+											foodlist_deleted = temp[j];
+										}
                                     } 
+									foodlist_deleted = foodlist_deleted.substring(0,7);
+									$('#'+foodlist_deleted).parent().parent().fadeIn(400);
+									
                                     orderlist = tem_orderlist;
 									$("#orders").val(orderlist);
 									
@@ -212,6 +238,9 @@ $(document).ready(function(){
         $('#add_dish').click(function(){
                 document.location.href = '/addish';
         });
+		
+		
+		
 
 
 });						   

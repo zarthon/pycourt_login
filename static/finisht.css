@@ -121,7 +121,7 @@ em {
 	border:thin;
 	border-style:solid;
 	border-color:#CCCCCC;
-	height: 170px;
+	height: 200px;
 	overflow:auto;
 	padding:0px;
 	margin-bottom:20px;
@@ -333,7 +333,7 @@ em {
 }
 
 .foodlist-1-f{
-	margin-top:17px;
+	margin-top:20px;
 	padding-top:10px;
 }
 .forgot1 {
@@ -578,7 +578,7 @@ em {
 }
 
 .height-fix{
-	height:340px;
+	height:370px;
 	background-color:#EEEEEE;
 }
 #add-success input {
@@ -774,7 +774,7 @@ margin-top: 20px;
 	background-color:#D8D8D8;
 	padding-top:5px;
 	padding-bottom:5px;
-	margin-right:15px;
+	margin-right:10px;
 
 }
 
