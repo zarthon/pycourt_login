@@ -29,6 +29,7 @@
 24) Remove the for loop for userprof in views.home
 26) Change PasswordRecovery button name
 27) Remove unused tags in CSS and js file
+28) Recharge account
 
 MYwork:
 implement account summary in both(navigation.html)
@@ -36,3 +37,5 @@ implement account summary in both(navigation.html)
 Future:
 ratings
 favorites
+
+

@@ -99,7 +99,6 @@ INSTALLED_APPS = (
     'pycourt_login',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-	#'jqchat',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
