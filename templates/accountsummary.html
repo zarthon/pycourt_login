@@ -3,15 +3,25 @@
 {% block content %}
 {% include "navigation.html" %}
 {% if past_orders %}
+<div id="tab-qty" style="display:">
+			<ul>
+			<li><a  id="tab-qty-1">Enter Quantity</a></li>
+			</ul>
+		</div>
 <div class = "frame">
+
 	<div class = "content-box">
+	
 		<div id = "t3-frame" class="h-box">
 		<table id="t3"	cellspacing="1" cellpadding="1" border="0" width="100%">
-		<tr><td class="t1_h">  Transaction ID </td><td></td><td></td> <td class="t1_h"> Dish Name </td><td class="t1_h">Dish Price</td><td class="t1_h">Qty Ordered</td><td class="t1_h">Placed on</td><td class="t1_h">Status</td></tr>
+		<col width="25%"/><col width="15%"/><col width="10%" /><col width="8%"/><col width="20%"/><col width="20%" />
+		<tr><td class="t1_h">Transaction ID</td> <td class="t1_h" style="padding-right:25px;">Dish Name</td><td class="t1_h" style="padding-right:15px;">Dish Price</td><td class="t1_h">Qty Ordered</td><td class="t1_h" style="padding-left:35px;">Placed on </td><td class="t1_h" style="padding-right:15px;" >Status</td></tr>
+		
 		</table>
 		</div>
 		<div class="t-box">
             <table id="t4"	cellspacing="2" cellpadding="0" border="0" width="95%">
+			<col width="25%"/><col width="15%"/><col width="14%" /><col width="8%"/><col width="30%"/><col width="20%" />
 			{% for order in past_orders %}
 			
 			<tr><td id = "{{dish.transaction_id}}_a" class="t1">{{ order.transaction_id }}</td>
