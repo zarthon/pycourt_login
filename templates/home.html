@@ -1,9 +1,11 @@
+
 {% extends "base.html" %}
 
 {% block body_styles %} id="homepage"{% if user.is_authenticated %} class="logged-in"{% endif %}{% endblock %}
 
 
 {% block content %}
+
 {% if not user.is_authenticated %}
 <script type="text/javascript">
   var activeLogin = 'Login';
@@ -278,10 +280,12 @@
 </div>
 <div id="done-nav">
 	<ul>
-		<li><a href="today" class="active" id="today-nav">{{user.username}}</a></li>
+		<li><a href="today" class="active" id="today-nav">{{user.first_name}}</a></li>
 		<li><a href="past7days" id="past7days-nav">Total Dishes</a></li>
 	</ul>
 </div>
+
+
 <div id="done-list">
 	<div id="today">
 		{% if orders %}
@@ -293,25 +297,32 @@
 			<tr><td class="t1_h"> Dish Id </td> <td class="t1_h"> Student Id  </td> <td class="t1_h"> Status </td><td class="t1_h">Transaction id</td><td class="t1_h"></td></tr></table>
 			<col width="20%"/><col width="20%"/><col width="20%" /><col width="20%"/><col width="20%"/>
 		</div>
-		<div id ="foodlist-3-div" class="t1-frame">
+		<div id ="foodlist-3-1" class="t1-frame">
+			
+			{% if not order.status %}
 			<table id="orderlist-1" cellspacing="1" cellpadding="2" border="0" width="100%">
 			<col width="20%"/><col width="20%"/><col width="20%" /><col width="30%"/><col width="5%"/>
 			{% for order in orders %}
+			
 			<tr><td id = "{{order.id}}a" class="t1">{{ order.dish.dish_name }}</td>
 			<td id = "{{order.id}}e" class = "t1" style = "display:none">{{order.id}}</td>
 			<td id = "{{order.id}}b" class="t1">{{ order.student_id }}</td>
-			<td id = "{{order.id}}c" class="t1">{{ order.status }}</td>
+			<td id = "{{order.id}}c" class="t1">{{order.status}}</td>
 			<td id = "{{order.id}}d" class="t1">{{ order.transaction_id }}</td>
-			<td><img id = "{{order.id}}" src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"></td></tr>
+			<td><img id = "{{order.id}}m" src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"></td></tr>
+		
 			{% endfor %}
+			{% endif %}
 			</table>
+			
 		</div>
 			
-	</div>
 	
+
 	{% else %}
-	<div class="do-something">database not populated !</div>
-		{% endif %}
+	<div class="do-something">All orders have been prepared !</div>
+	{% endif %}
+	</div>
 		
 		
         <div id="past7days" style="display: none;">
@@ -319,29 +330,31 @@
 			{% if counter%}
 			<div class ="foodlist-1-f" >
 				<table id="orderlist_3" cellspacing="1" cellpadding="2" border="0" width="100%">
-				<col width="25%"/><col width="25%"/><col width="25%" /><col width="25%"/>
-				<tr><td class="t1_h"> dish id </td> <td class="t1_h"> dish name </td> <td class="t1_h"> dish price </td><td class="t1_h"> Dish Availability </td></tr></table>
+				<col width="23%"/><col width="23%"/><col width="23%" /><col width="23%"/><col width="8%"/>
+				<tr><td class="t1_h"> dish id </td> <td class="t1_h"> dish name </td> <td class="t1_h"> dish price </td><td class="t1_h"> Dish Availability </td><td class=t1_h></td></tr></table>
 			</div>
 			<div id ="foodlist-3-div" class="t1-frame">
-				<table id="orderlist_3" cellspacing="1" cellpadding="2" border="0" width="100%">
-				<col width="25%"/><col width="25%"/><col width="25%" /><col width="25%"/>
+				
+				<table id="orderlist-4" cellspacing="1" cellpadding="2" border="0" width="100%">
+				<col width="23%"/><col width="23%"/><col width="23%" /><col width="23%"/><col width="6%"/>
 				{% for dish in dishes %}
-				<tr><td id = "{{dish.id}}counta" class="t1"> {{ dish.id }} </td>
-				<td id = "{{dish.id}}countb" class="t1"> {{ dish.dish_name }} </td>
-				<td id = "{{dish.id}}countc" class="t1"> {{ dish.dish_price }} </td>
+				<tr id="{{order.id}}1"><td id = "{{dish.id}}counta" class="t1"> {{ dish.id }} </td>
+				<td id = "{{order.id}}2" class="t1"> {{ dish.dish_name }} </td>
+				<td id = "{{order.id}}3" class="t1"> {{ dish.dish_price }} </td>
 				{% if count == 0 %}
-				<td id = "{{dish.id}}countd" class="t1"> {{ dish.counter1 }} </td>
+				<td id = "{{dish.id}}4" class="t1">{{ dish.counter1 }}</td>
 				{% endif %}
 				{% if count == 1 %}
-				<td id = "{{dish.id}}countd" class="t1"> {{ dish.counter2 }} </td>
+				<td id = "{{dish.id}}4" class="t1">{{ dish.counter2 }}</td>
 				{% endif %}
 				{% if count == 2 %} 
-				<td id = "{{dish.id}}countd" class="t1"> {{ dish.counter3 }} </td>
+				<td id = "{{dish.id}}4" class="t1">{{ dish.counter3 }}</td>
 				{% endif %}
-
+				<td ><img id= "{{dish.id}}x" class = "a" src="/pycourt/images/del.png"> <img id = "{{dish.id}}y" class = "b" src="/pycourt/images/add.png"></td></tr>
 				{% endfor %}
             
 				</table>
+				
 			</div>
 		
         
@@ -354,9 +367,11 @@
 
 	</div>
 </div>
+
 </div>
     {% endif %}
 	
 {% endif %}
+
 {% endblock %}
 

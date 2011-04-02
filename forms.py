@@ -32,7 +32,7 @@ class ForgotForm(forms.Form):
             raise forms.ValidationError(_("The specified Username does not exist"))
 
 class LoginForm(forms.Form):
-    username = forms.RegexField(max_length = 10,regex=r'^[1-9][0-9]{8}')
+    username = forms.CharField(max_length = 10)
     password = forms.CharField(widget =forms.PasswordInput)
 
 class RegisterForm(forms.ModelForm):

@@ -30,13 +30,13 @@ class Dishes(models.Model):
 	counter2 = models.BooleanField()
 	counter3 = models.BooleanField()
 
-class Ordersss(models.Model):
-    transaction_id = models.CharField(max_length=30)
-    order_id = models.CharField(max_length=60)
-    quantity = models.IntegerField()
-    dish = models.ForeignKey(Dishes)
-    student_id = models.ForeignKey(User)
-    status = models.BooleanField()
-    datetime = models.DateTimeField()
-    counterid = models.IntegerField()
-
+class Orders(models.Model):
+	transaction_id = models.CharField(max_length=30)
+	order_id = models.CharField(max_length=60)
+	quantity = models.IntegerField()
+	dish = models.ForeignKey(Dishes)
+	student_id = models.ForeignKey(User)
+	status = models.IntegerField()
+	delivered = models.BooleanField()
+	datetime = models.DateTimeField()
+	counterid = models.CharField(max_length=9)

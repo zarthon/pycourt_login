@@ -98,6 +98,7 @@ $(function() {
 									$('#done-nav').css('display','none');
 									$('#tab-qty').css('display','');
                                     return false;});
+	
 
 		$("#qty_sub").bind("click",function(){
                                     tempqty = $("#qty_no").attr("value"); 
@@ -147,19 +148,23 @@ $(function() {
 											$('#done-nav').show();	
 																	  });
 	$('#orderlist-1 img').bind("click",function(){
-											  		var img_id = $(this).attr("id");
+											  		var img_id = $(this).attr("id").substring(0,$(this).attr("id").length - 1);
 													var img_id_1 = 'id=' + img_id;
-													alert(img_id);
+													var img_id_par = $(this).closest("tr").attr("id");
+													$(this).hide
+													
 													var adds = '#' + img_id + 'c';
-													$(adds).text("True")
+													
 													jQuery.ajax({
     												cache: false,
     												url: "/changestatus/",
     												type: "GET",
     												data: img_id_1,
    	 												success: function(data) {
-        												jQuery(adds).text("True");
+        											 	//	$(adds).parent().hide();
+														
         											},  
+													
     											}); 
 													
 													return false;
@@ -241,8 +246,63 @@ $(document).ready(function(){
 		
 		
 		
+		var counter1 = $('#orderlist-4 tr:last').get(0).rowIndex;
+		
+		
+		for (var l = 0; l <= counter1; l++){
+			var ABCD = $('#orderlist-4 tr:eq('+l+') td:eq(3)').text();
+			
+			if( ABCD == "False")
+			{
+				$('#orderlist-4 tr:eq('+l+') td:eq(4) .a').hide();
+				$('#orderlist-4 tr:eq('+l+') td:eq(3)').text("Not Available")
+				
+			}
+			else
+			{
+				
+				$('#orderlist-4 tr:eq('+l+') td:eq(4) .b').hide();
+				$('#orderlist-4 tr:eq('+l+') td:eq(3)').text("Available")
+			
+			}
+			
+			}
+			$('#orderlist-4 .a').click(function(){
+																
+																	var len = $(this).attr("id").length
+																	var id = $(this).attr("id").substring(0,parseInt(len)-1)
 
+																	$(this).hide();
+																	$('#orderlist-4 tr:eq('+(id-1)+') td:eq(3)').text("Not Available")
+																	$('#'+id+'y').show(); 
+																	jQuery.ajax({
+																	cache: false,
+																	url: "/changeavailability",
+																	typr: "GET",
+																	data: "id="+id,
+																	success: function(data){
+																		alert(data);
+																	 },
+																	 });					  })
+			$('#orderlist-4 .b').click(function(){
+																
+																	var len = $(this).attr("id").length
+																	var id = $(this).attr("id").substring(0,parseInt(len)-1)
+																	$(this).hide();
+																	$('#orderlist-4 tr:eq('+(id-1)+') td:eq(3)').text("Available")
+																	$('#'+id+'x').show();
+																	jQuery.ajax({
+																	cache: false,
+																	url: "/changeavailability",
+																	typr: "GET",
+																	data: "id="+id,
+																	success: function(data){
+																		alert(data);
+																	 },
+																	 });
+																	  })
 
+return false;
 });						   
 
 function SwapLogin(current) {
