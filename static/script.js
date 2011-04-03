@@ -147,28 +147,7 @@ $(function() {
 																				   });
 											$('#done-nav').show();	
 																	  });
-	$('#orderlist-1 img').bind("click",function(){
-											  		var img_id = $(this).attr("id").substring(0,$(this).attr("id").length - 1);
-													var img_id_1 = 'id=' + img_id;
-													var img_id_par = $(this).closest("tr").attr("id");
-													$(this).hide
-													
-													var adds = '#' + img_id + 'c';
-													
-													jQuery.ajax({
-    												cache: false,
-    												url: "/changestatus/",
-    												type: "GET",
-    												data: img_id_1,
-   	 												success: function(data) {
-        											 	//	$(adds).parent().hide();
-														
-        											},  
-													
-    											}); 
-													
-													return false;
-											  }); 
+ 
 	
 });
 
@@ -273,7 +252,8 @@ $(document).ready(function(){
 																	var id = $(this).attr("id").substring(0,parseInt(len)-1)
 
 																	$(this).hide();
-																	$('#orderlist-4 tr:eq('+(id-1)+') td:eq(3)').text("Not Available")
+																	var rowIndex = $(this).parent().parent().index()
+																	$('#orderlist-4 tr:eq('+(rowIndex)+') td:eq(3)').text("Not Available")
 																	$('#'+id+'y').show(); 
 																	jQuery.ajax({
 																	cache: false,
@@ -281,7 +261,7 @@ $(document).ready(function(){
 																	typr: "GET",
 																	data: "id="+id,
 																	success: function(data){
-																		alert(data);
+																		
 																	 },
 																	 });					  })
 			$('#orderlist-4 .b').click(function(){
@@ -289,7 +269,8 @@ $(document).ready(function(){
 																	var len = $(this).attr("id").length
 																	var id = $(this).attr("id").substring(0,parseInt(len)-1)
 																	$(this).hide();
-																	$('#orderlist-4 tr:eq('+(id-1)+') td:eq(3)').text("Available")
+																	var rowIndex = $(this).parent().parent().index()
+																	$('#orderlist-4 tr:eq('+(rowIndex)+') td:eq(3)').text("Available")
 																	$('#'+id+'x').show();
 																	jQuery.ajax({
 																	cache: false,
@@ -297,11 +278,103 @@ $(document).ready(function(){
 																	typr: "GET",
 																	data: "id="+id,
 																	success: function(data){
-																		alert(data);
+																		
 																	 },
 																	 });
 																	  })
-
+			
+			var rowCount = $('#orderlist-1 tr:last').index();
+			for(var l = 0 ; l <= rowCount ; l++)
+			{
+				var tempStatus = $('#orderlist-1 tr:eq('+l+') td:eq(3)').text();
+				if (tempStatus == '0')
+				{
+					$('#orderlist-1 tr:eq('+l+') td:eq(3)').text("In Queue");
+					$('#orderlist-1 tr:eq('+l+') td:eq(5) .b').hide();
+					$('#orderlist-1 tr:eq('+l+') td:eq(5) .c').hide();
+					
+				}
+				else if (tempStatus == '1')
+				{
+					$('#orderlist-1 tr:eq('+l+') td:eq(3)').text("Under Preparation");
+					$('#orderlist-1 tr:eq('+l+') td:eq(5) .a').hide();
+					$('#orderlist-1 tr:eq('+l+') td:eq(5) .c').hide();
+					
+				}
+				else if (tempStatus == '2')
+				{
+					$('#orderlist-1 tr:eq('+l+') td:eq(3)').text("Prepared");
+					$('#orderlist-1 tr:eq('+l+') td:eq(5) .a').hide();
+					$('#orderlist-1 tr:eq('+l+') td:eq(5) .b').hide();
+										
+				}
+			}
+			
+	$('#orderlist-1 .a').bind("click",function(){
+											  		var img_id = $(this).attr("id").substring(0,$(this).attr("id").length - 1);
+													 
+													$(this).hide();
+													var rowCount2 = $(this).parent().parent().index();
+													$('#orderlist-1 tr:eq('+rowCount2+') td:eq(5) .b').show();
+													jQuery.ajax({
+    												cache: false,
+    												url: "/changestatus",
+    												type: "GET",
+    												data: "id=" + img_id,
+   	 												success: function(data) {
+        											 	$('#orderlist-1 tr:eq('+rowCount2+') td:eq(3)').text("Under Preparation");
+														
+														
+        											},  
+													
+    											}); 
+													
+													return false;
+											  });	
+	$('#orderlist-1 .b').bind("click",function(){
+											  		var img_id = $(this).attr("id").substring(0,$(this).attr("id").length - 1);
+													 
+													$(this).hide();
+													var rowCount2 = $(this).parent().parent().index();
+													$('#orderlist-1 tr:eq('+rowCount2+') td:eq(5) .c').show();
+													jQuery.ajax({
+    												cache: false,
+    												url: "/changestatus",
+    												type: "GET",
+    												data: "id=" + img_id,
+   	 												success: function(data) {
+        											 	$('#orderlist-1 tr:eq('+rowCount2+') td:eq(3)').text("Prepared");
+														
+														
+        											},  
+													
+    											}); 
+													
+													return false;
+											  });	
+	
+	
+	$('#orderlist-1 .c').bind("click",function(){
+											  		var img_id = $(this).attr("id").substring(0,$(this).attr("id").length - 1);
+													 
+												
+													$(this).parent().parent().hide();
+													
+													jQuery.ajax({
+    												cache: false,
+    												url: "/changestatus",
+    												type: "GET",
+    												data: "id=" + img_id,
+   	 												success: function(data) {
+        											 	
+														
+														
+        											},  
+													
+    											}); 
+													
+													return false;
+											  });			
 return false;
 });						   
 

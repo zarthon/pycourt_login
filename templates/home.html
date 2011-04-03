@@ -288,7 +288,7 @@
 
 <div id="done-list">
 	<div id="today">
-		{% if orders %}
+		
 		<div class="balance">
 			<b>Current Revenue: Rs {{ counter_account.balance }} /-</b>
         </div>
@@ -309,7 +309,7 @@
 			<td id = "{{order.id}}b" class="t1">{{ order.student_id }}</td>
 			<td id = "{{order.id}}c" class="t1">{{order.status}}</td>
 			<td id = "{{order.id}}d" class="t1">{{ order.transaction_id }}</td>
-			<td><img id = "{{order.id}}m" src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"></td></tr>
+			<td><img id = "{{order.id}}m" class="a" src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"><img id = "{{order.id}}n" class="b" src="/pycourt/delete.png" alt="order" title="order" class = "add_to_cart"><img id = "{{order.id}}o" class="c" src="/pycourt/images/del.png" alt="order" title="order" class = "add_to_cart"></td></tr>
 		
 			{% endfor %}
 			{% endif %}
@@ -319,9 +319,7 @@
 			
 	
 
-	{% else %}
-	<div class="do-something">All orders have been prepared !</div>
-	{% endif %}
+	
 	</div>
 		
 		
