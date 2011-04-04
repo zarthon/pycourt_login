@@ -289,10 +289,10 @@ def history(request):
 	   past_orders = Orders.objects.filter(student_id = request.user)
 	   return render_to_response("accountsummary.html",locals(),context_instance=RequestContext(request))
    elif userprof.is_counter:
-	   pass
+        past_orders = Orders.objects.filter(counterid = request.user.username)
+        return render_to_response("accountsummary.html",locals(),context_instance=RequestContext(request))
    else:
-	   return render_to_response("ShowMessage.html",{'msg_heading':'Trying to Hack this site!','msg_html':'UserProfile Does Not Exist'},contex_instance=RequestContext(request))
-   return HttpResponse("hello")
+	    return render_to_response("ShowMessage.html",{'msg_heading':'Trying to Hack this site!','msg_html':'UserProfile Does Not Exist'},contex_instance=RequestContext(request))
 
 @login_required
 def add_dish(request):
