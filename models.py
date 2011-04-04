@@ -30,6 +30,9 @@ class Dishes(models.Model):
 	counter2 = models.BooleanField()
 	counter3 = models.BooleanField()
 
+	def __unicode__(self):
+		return self.dish_name
+
 class Orders(models.Model):
 	transaction_id = models.CharField(max_length=30)
 	order_id = models.CharField(max_length=60)
