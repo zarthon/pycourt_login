@@ -27,7 +27,7 @@ jQuery.ajax({
 		var count_total_prepared = 0;
 		$.each(json, function(i,dish){	
 			var dish_id = dish.fields.order_id[0];
-			if (dish.fields.delivered == true){
+			if (dish.fields.status == 2){
 				count_total_prepared++;
 				}
 			if (dish.fields.status > 0){
@@ -37,7 +37,7 @@ jQuery.ajax({
 				alert(dish.fields.dish+" is ready for you. "+"Get your ass to "+dish.fields.counterid);
 				}
 			})
-			alert("Total prepared dishes till now: "+count_total_prepared);
+			alert("Total dishes ready for you at the counter: "+count_total_prepared);
 		},
 	});
 });

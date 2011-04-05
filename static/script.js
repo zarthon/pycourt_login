@@ -312,6 +312,7 @@ $(document).ready(function(){
 			
 	$('#orderlist-1 .a').bind("click",function(){
 											  		var img_id = $(this).attr("id").substring(0,$(this).attr("id").length - 1);
+													 
 													$(this).hide();
 													var rowCount2 = $(this).parent().parent().index();
 													$('#orderlist-1 tr:eq('+rowCount2+') td:eq(5) .b').show();

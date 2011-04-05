@@ -59,10 +59,12 @@
 {% else %}
 
 <!-- Mark the "main" division. There can be only 1 in the document but only one of them is executed at a time -->
+
+    {% if userprofile.is_student and not userprofile.is_counter %}
 <div id="main" class="clearfix">
 {% include "navigation.html" %}
-	<div id="what-ive-done" class="clearfix">
-    {% if userprofile.is_student and not userprofile.is_counter %}
+	<div id="what-ive-done" class="clearfix" style="margin-top:30px;">
+	
 <!-- Executed if the profile is of student -->
 		
 		<h3>Menu</h3>
@@ -270,8 +272,9 @@
 {% else %}     
 
  <!-- Executed if the profile is of counter -->
-
-
+<div id="main" class="clearfix">
+{% include "navigation_counter.html" %}
+	<div id="what-ive-done" class="clearfix" style="margin-top:20px;">
 <script type="text/javascript" src="/pycourt/newordernotification.js"></script>
 <h3>Current Orders</h3>
 
@@ -309,7 +312,7 @@
 			<td id = "{{order.id}}b" class="t1">{{ order.student_id }}</td>
 			<td id = "{{order.id}}c" class="t1">{{order.status}}</td>
 			<td id = "{{order.id}}d" class="t1">{{ order.transaction_id }}</td>
-			<td><img id = "{{order.id}}m" class="a" src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"><img id = "{{order.id}}n" class="b" src="/pycourt/delete.png" alt="order" title="order" class = "add_to_cart"><img id = "{{order.id}}o" class="c" src="/pycourt/del.png" alt="order" title="order" class = "add_to_cart"></td></tr>
+			<td><img id = "{{order.id}}m" class="a" src="/pycourt/add.png" alt="order" title="order" class = "add_to_cart"><img id = "{{order.id}}n" class="b" src="/pycourt/delete.png" alt="order" title="order" class = "add_to_cart"><img id = "{{order.id}}o" class="c" src="/pycourt/images/del.png" alt="order" title="order" class = "add_to_cart"></td></tr>
 		
 			{% endfor %}
 			{% endif %}
@@ -348,7 +351,7 @@
 				{% if count == 2 %} 
 				<td id = "{{dish.id}}4" class="t1">{{ dish.counter3 }}</td>
 				{% endif %}
-				<td ><img id= "{{dish.id}}x" class = "a" src="/pycourt/del.png"> <img id = "{{dish.id}}y" class = "b" src="/pycourt/add.png"></td></tr>
+				<td ><img id= "{{dish.id}}x" class = "a" src="/pycourt/images/del.png"> <img id = "{{dish.id}}y" class = "b" src="/pycourt/images/add.png"></td></tr>
 				{% endfor %}
             
 				</table>

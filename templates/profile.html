@@ -2,9 +2,10 @@
 {% block title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
 
 {% block content %}
-<div id="main" class="clearfix">
-    {% include "navigation.html" %}
-	<div id = "profile">
+
+{% include "navigation.html" %}
+<div id="main" class="pos-fix" style="margin-top:80px";>
+	<div id = "profile" >
 		<h1>{{ user.first_name }} {{ user.last_name }}'s Profile</h1>
 		<br><br>
 		<p>

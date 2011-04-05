@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}My Dashboard{% endblock %}
+
 
 {% block content %}
 {% include "navigation.html" %}
-<div style ="margin-top:50px; margin-bottom:70px;">
-<b><font size="4"><label style = "background-color:#EEEEEE; margin-left:27px; padding:9px; margin-top:100px">Edit Profile</label></font></b>
+<div class="pos-fix" style="margin-top:60px;">
+<b><label style = "background-color:#EEEEEE; margin-left:33px; padding:10px; font-size:1.3em; padding-bottom:20px; ">Edit Profile</label></b>
 <form action="" method="post" id="profile-edit-form" class="clearfix">
     {% csrf_token %}
     {% for field in signup_form.visible_fields %}

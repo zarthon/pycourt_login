@@ -1,11 +1,45 @@
-<div id="navigation" class="clearfix">
+<style type="text/css">
 
-  <div id="hello">Welcome, <b>{{ user.first_name }} </b>!</div>
-  <ul>
-	<li><a class="setting" href="/complaint/">Complaints</a></li>
-    <li><a class="setting" href="/setting/">Edit Profile</a></li>
-    <li><a class="profile" href="/profile/">View Profile</a></li>
-    <li><a class="logout" href="/logout/">Logout</a></li>
-    <li><a class="logout" href="/orderhist/">Order History</a></li>
-  </ul>
+a, a:visited, a:hover, a:active, a:focus {direction:ltr; outline:0;}
+
+#nav {background:#4D8433; height:30px; font:normal 12px/28px arial, verdana, sans-serif;  position:relative;}
+#nav ul {margin:0; padding:0; list-style:none;}
+#nav ul.menu {position:absolute; overflow:hidden;}
+#nav .menu .level1-li {float:left; width:120px; margin-top:-300px;}
+#nav .menu a {display:block; width:120px; text-decoration:none; text-align:center; color:#fff;}
+#nav .menu a.level1-a {position:relative; float:left; margin-right:-119px; margin-top:300px;}
+#nav .menu .sub {background:#2B471D; float:left; margin-top:-28px; padding-top:28px; }
+#nav .menu .sub a {background:#4D8433; position:relative; margin-right:-1px;}
+#nav .menu a:hover,
+#nav .menu a:focus,
+#nav .menu a:active {background:#2B471D; margin-right:0;}
+#nav {padding:10px;}
+
+#nav .menu label {display:block; width:120px; text-decoration:none; text-align:center; color:#fff;}
+#nav .menu label {position:relative; float:left; margin-right:-119px; margin-top:300px; margin-left:-35px;}
+</style>
+<div>
+	
+<div id="nav">
+		
+		<ul class="menu">
+			
+			<li class="level1-li"><a class="level1-a" href="/home">Home</a></li>
+			<li class="level1-li"><label class="level1-b" style="width:200px" id="hi">Welcome, <b>{{ user.first_name }} </b>!</label></li>
+			
+			<li class="level1-li" style="margin-left:180px"><a class="level1-a" href="/orderhist">Order History</a>
+				<ul class="sub">
+					
+				</ul>
+			</li>
+			<li class="level1-li"><a class="level1-a" href="/recharge/">Recharge</a>
+				<ul class="sub">
+					
+				</ul>
+			</li>
+			
+			<li class="level1-li" ><a class="level1-a" href="/logout/" >Logout</a></li>
+		</ul>
+	</div> 
+	
 </div>
