@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if userprofile.is_student and not userprofile.is_counter %}
 {% include "navigation.html" %}
+{% else %}
+{% include "navigation_counter.html" %}
+{% endif %}
 {% if past_orders %}
-<div id="tab-qty" style="display:">
+
+	<div id="tab-qty" style="margin-top:45px;">
 			<ul>
-			<li><a  id="tab-qty-1">Enter Quantity</a></li>
+			<li><a  id="tab-qty-1">Order History</a></li>
 			</ul>
 		</div>
-<div class = "frame">
 
-	<div class = "content-box">
+	<div class = "content-box" style="margin-top:80px;">
 	
 		<div id = "t3-frame" class="h-box">
 		<table id="t3"	cellspacing="1" cellpadding="1" border="0" width="100%">
@@ -34,9 +38,9 @@
 			
             {% endfor %}
         </table>
-        		</div>
+        </div>
 	</div>
-</div>
+
 {% else %}
             NO ORDERS
 {% endif %}

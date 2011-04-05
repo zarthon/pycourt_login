@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+{% include "navigation.html" %}
+<div class="pos-fix">
 <form action="/recharge/" method="post" id="recharge-form">
     {% csrf_token %}
     {% if form.username.errors and data %}
@@ -27,4 +29,5 @@
         <input type="submit" value = "Recharge" class="submit" />
     </div>
 </form>
+</div>
 {% endblock %}
