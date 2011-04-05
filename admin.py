@@ -9,8 +9,8 @@ class UserProfileAdmin(admin.ModelAdmin):
 	list_display = ('user','is_counter','is_student')
 	search_fields = ('user.username',)
 class OrderssAdmin(admin.ModelAdmin):
-    list_display = ('id', 'order_id','student_id','counterid')
-    search_fields = ('student_id',)
+    list_display = ('id', 'order_id','student_id','counterid','transaction_id')
+    search_fields = ('student_id','transaction_id')
 
 admin.site.register(UserProfile,UserProfileAdmin)
 admin.site.register(Dishes,DishesAdmin)

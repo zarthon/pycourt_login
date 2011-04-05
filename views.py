@@ -336,7 +336,6 @@ def add_dish(request):
 
 def mostRecentTransaction(request):
 	cnt_user = request.user.username
-	print request.GET['id']
 	if request.GET['id'] == u'0':
 		order = Orders.objects.filter(counterid = cnt_user,delivered=False)
 		print len(order)
@@ -347,7 +346,11 @@ def mostRecentTransaction(request):
 			return HttpResponse('<p style="color:red">Food List outdated, please refresh</p>')
 	else:
 		transactid_lastdisplayed = request.GET['id'][9:]
-		latestid = Orders.objects.latest('transaction_id').transaction_id[9:]
+		cnt_orders = Orders.objects.filter(counterid=cnt_user,delivered=False)
+		latestid = cnt_orders.latest('transaction_id').transaction_id[9:]
+		#latestid = Orders.objects.latest('counterid').transaction_id[9:]
+		#print transactid_lastdisplayed 
+		print latestid
 		if latestid > transactid_lastdisplayed:
 			return HttpResponse('<p style="color:yellow">Food List outdated, please refresh</p>')
 		else:
