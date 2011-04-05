@@ -75,7 +75,8 @@
 			<ul>
 			<li><a href="today" class="active" id="today-nav">Counter 1</a></li>
 			<li><a href="yesterday" id="yesterday-nav">Counter 2</a></li>
-			<li><a href="past7days" id="past7days-nav">Counter 3</a></li>
+            <li><a href="past7days" id="past7days-nav">Counter 3</a></li>
+            <li><a href="pastmonth" id="pastmonth-nav">Order Status</a></li>
 			</ul>
 		</div>
 		<div id="tab-qty" style="display:none">
@@ -207,7 +208,35 @@
 				{% else %}
 				<div class="do-something">Database not populated !</div>
 				{% endif %}
+            </div>
+
+
+            <div id="pastmonth" style="display:none">
+                <div class ="foodlist-1-f" >
+					<table id="foodlist-3-h" cellspacing="1" cellpadding="2" border="0" width="100%">
+					<col width="40%"/><col width="30%"/><col width="30%" />
+					<tr><td class="t1_h"> Dish Name </td> <td class="t1_h"> Status </td><td class="t1_h"> Counter</td></tr>
+					</table>
+                </div>
+                <div id ="studentnotification" ></div>
+				<div id ="foodlist-3-div" class="t1-frame">
+					<table id="foodlist_3" cellspacing="1" cellpadding="2" border="0" width="100%">
+					<col width="40%"/><col width="30%"/><col width="30%" />
+
+					{% for dish in counter_3 %}
+				    <tr><td id = "{{dish.id}}count3a" class="t1"> {{ dish.dish_name }} </td>
+					<td id = "{{dish.id}}count3b" class="t1"> {{ dish.dish_price }} </td>
+					<td class = "past7days"><img src="/pycourt/add.png" id = "{{dish.id}}count3" alt="order" title="Order" class = "add_to_cart" align="center" style="padding-left:60px;"></td></tr>
+					{% endfor %}
+					</table>
+				</div>
+				
+				{% else %}
+				<div class="do-something">Database not populated !</div>
+				{% endif %}
+
 			</div>
+
 		</div>
 	</div>
 	
