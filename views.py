@@ -335,12 +335,23 @@ def add_dish(request):
 		return render_to_response("ShowMessage.html",{'msg_heading':'UnAuthorized Access','msg_html':'Only Counter Owners are authorized to add dishes not Students....:P'},context_instance=RequestContext(request))
 
 def mostRecentTransaction(request):
-	transactid_lastdisplayed = request.GET['id'][9:]
-	latestid = Orders.objects.latest('transaction_id').transaction_id[9:]
-	if latestid > transactid_lastdisplayed:
-		return HttpResponse('<p style="color:red">Food List outdated, please refresh</p>')
+	cnt_user = request.user.username
+	print request.GET['id']
+	if request.GET['id'] == u'0':
+		order = Orders.objects.filter(counterid = cnt_user,delivered=False)
+		print len(order)
+		if len(order) == 0:
+			return HttpResponse("")
+		else:
+			print "we have orders"
+			return HttpResponse('<p style="color:red">Food List outdated, please refresh</p>')
 	else:
-		return HttpResponse("")
+		transactid_lastdisplayed = request.GET['id'][9:]
+		latestid = Orders.objects.latest('transaction_id').transaction_id[9:]
+		if latestid > transactid_lastdisplayed:
+			return HttpResponse('<p style="color:yellow">Food List outdated, please refresh</p>')
+		else:
+			return HttpResponse("")
 
 @login_required
 def changeStatus(request):
