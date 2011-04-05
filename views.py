@@ -337,7 +337,6 @@ def add_dish(request):
 def mostRecentTransaction(request):
 	transactid_lastdisplayed = request.GET['id'][9:]
 	latestid = Orders.objects.latest('transaction_id').transaction_id[9:]
-	print latestid, transactid_atdocument
 	if latestid > transactid_lastdisplayed:
 		return HttpResponse('<p style="color:red">Food List outdated, please refresh</p>')
 	else:

@@ -16,29 +16,49 @@ function foodlistfilter (phrase, _id){
 		table.rows[r].style.display = displayStyle;
 	}
 }
-
-$(document).ready(function (){
-jQuery.ajax({
+var prev_row = ""; 
+function checkPendingOrders(){
+	
+	jQuery.ajax({
 	cache: false,
 	url: "/pendingorders",
 	type: "GET",
 	dataType: 'json',
-	success: function(json) {
+	success: function(json){ 
+		var row_shown = "";
 		var count_total_prepared = 0;
-		$.each(json, function(i,dish){	
+		$.each(json, function(i,dish){
 			var dish_id = dish.fields.order_id[0];
+			row_shown = row_shown + "<tr>";
+			row_shown = row_shown+'<td class="t1">'+dish.fields.dish+'</td class="t1">';
+			if (dish.fields.status == 0){
+				row_shown = row_shown+'<td class="t1">In Queue</td class="t1">';
+				}
+			if (dish.fields.status == 1){
+				row_shown = row_shown+'<td class="t1">Under Preparation</td class="t1">';
+				}
 			if (dish.fields.status == 2){
-				count_total_prepared++;
+				row_shown = row_shown + '<td class="t1">Prepare</td class="t1">';
 				}
-			if (dish.fields.status > 0){
-				alert("Your dish "+dish.fields.dish+"with transaction id "+dish.fields.transaction_id+" has already started preparing. Check order status for more details");
-				}
-			if (dish.fields.status == 2){
-				alert(dish.fields.dish+" is ready for you. "+"Get your ass to "+dish.fields.counterid);
-				}
+			row_shown = row_shown+'<td class="t1">' + dish.fields.counterid + '</td class="t1">';
+			row_shown = row_shown + "</tr>";
+			$("#notify_table").html(row_shown);
 			})
-			alert("Total dishes ready for you at the counter: "+count_total_prepared);
+			if (prev_row != row_shown && prev_row != ""){
+				$("#pastmonth-nav").css('color','red');
+				}
+			prev_row = row_shown;
+
 		},
 	});
+	t = setTimeout("checkPendingOrders()",3000);
+	};
+
+$(document).ready(function (){
+$("#pastmonth-nav").click(function (){
+	$(this).css('color','#8D8D8D');
 });
+checkPendingOrders();
+});
+
 
