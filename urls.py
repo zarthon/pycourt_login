@@ -32,7 +32,9 @@ urlpatterns = patterns('',
     (r'^addish/',add_dish),
     (r'^recharge/',recharge_acc),
 	(r'^mostrecenttransaction/',mostRecentTransaction),
-	(r'^changeavailability',changeavailability),
+	(r'^changeavailability',changeAvailability),
+	(r'^changestatus',changeStatus),
+	(r'pendingorders',pendingOrders),
 )
 
 if settings.DEBUG:

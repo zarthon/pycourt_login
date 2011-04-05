@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-
+from django.core import serializers
 from django.contrib.auth.models import Group
 from pycourt_login.models import *
 '''Import forms and User profile'''
@@ -107,7 +107,7 @@ def forgot_password(request):
 
 def resetpassword(request):
 	passkey = dictGetval(request.REQUEST,'passwordChangeKey')
-	change_req = returnIfExists(PasswordCHangeRequest.objects.filter(req_random_key=passkey,created_at__gte=(datetime.datetime.utcnow()-datetime.timedelta(1))))
+	change_req = returnIfExists(PasswordCHangeRequest.objects.filter(req_random_key=passkey,created_at__gte=(datetime.datetime.utcnow()-datetime.timedelta(2))))
 	if request.method == 'GET':
 		return render_to_response("resetpassword.html",{'passwordChangeKey':dictGetval(request.REQUEST,"passwordChangeKey"),'reset':True,'data':request.POST},context_instance=RequestContext(request))
 	elif request.method == 'POST':
@@ -335,22 +335,24 @@ def add_dish(request):
 		return render_to_response("ShowMessage.html",{'msg_heading':'UnAuthorized Access','msg_html':'Only Counter Owners are authorized to add dishes not Students....:P'},context_instance=RequestContext(request))
 
 def mostRecentTransaction(request):
-	transactid_atdocument = request.GET['id'][9:]
+	transactid_lastdisplayed = request.GET['id'][9:]
 	latestid = Orders.objects.latest('transaction_id').transaction_id[9:]
 	print latestid, transactid_atdocument
-	if latestid > transactid_atdocument:
+	if latestid > transactid_lastdisplayed:
 		return HttpResponse('<p style="color:red">Food List outdated, please refresh</p>')
 	else:
 		return HttpResponse("")
 
 @login_required
-def changestatus(request):
+def changeStatus(request):
 	if request.method == 'GET':
 		orderpid = request.GET["id"]
+		print "Order PK id --> "+orderpid
 		userprof = UserProfile.objects.get(user= request.user)
 		if userprof.is_counter:
-			currentOrder = Orders.objects.get(id=orderpid)
-			if currentOrder.status+1<2:
+			currentOrder = Orders.objects.get(id=int(orderpid))
+			print currentOrder.status
+			if currentOrder.status < 2:
 				currentOrder.status=currentOrder.status+1
 			elif currentOrder.status == 2:
 				currentOrder.delivered=True
@@ -406,7 +408,7 @@ def recharge_acc(request):
 		return render_to_response("ShowMessage.html",{'msg_heading':'UnAuthorized Access','msg_html':'Only Counter Owners are authorized to Recharge Accounts....:P'},context_instance=RequestContext(request))
 
 @login_required
-def changeavailability(request):
+def changeAvailability(request):
 	if request.method == 'GET':
 		orderpid = request.GET["id"]
 		userprof = UserProfile.objects.get(user= request.user)
@@ -414,18 +416,26 @@ def changeavailability(request):
 			cnt_user = request.user
 			dish_object = Dishes.objects.get(id=orderpid)
 			if cnt_user.username == "counter1":
-				#hack to toggle bool value 
-				dish_object.counter1 = bool((int(dish_object.counter1)+1)%2)
+				dish_object.counter1 = not dish_object.counter1
 				dish_object.save()
 				return HttpResponse("success")
 			if cnt_user.username == "counter2":
-				#hack to toggle bool value 
-				dish_object.counter2 = bool((int(dish_object.counter2)+1)%2)
+				dish_object.counter2 = not dish_object.counter2
 				dish_object.save()
 				return HttpResponse("success")
 			if cnt_user.username == "counter3":
-				#hack to toggle bool value 
-				dish_object.counter3 = bool((int(dish_object.counter3)+1)%2)
+				dish_object.counter3 = not dish_object.counter3
 				dish_object.save()
 				return HttpResponse("success")
 
+def pendingOrders(request):
+		userprof = UserProfile.objects.get(user= request.user)
+		if userprof.is_student:
+			student_account = request.user
+			dish = Dishes.objects.all()
+			#Getting all pending orders
+			order_all_pending = Orders.objects.filter(student_id = student_account,delivered = False)
+			#Returning JSON response to the objects obtained in above statement
+			return HttpResponse(serializers.serialize('json',order_all_pending,use_natural_keys=True),mimetype='application/json')
+		else:
+			return HttpResponse("Something went wrong")
