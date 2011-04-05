@@ -107,7 +107,7 @@ def forgot_password(request):
 
 def resetpassword(request):
 	passkey = dictGetval(request.REQUEST,'passwordChangeKey')
-	change_req = returnIfExists(PasswordCHangeRequest.objects.filter(req_random_key=passkey,created_at__gte=(datetime.datetime.utcnow()-datetime.timedelta(1))))
+	change_req = returnIfExists(PasswordCHangeRequest.objects.filter(req_random_key=passkey,created_at__gte=(datetime.datetime.utcnow()-datetime.timedelta(2))))
 	if request.method == 'GET':
 		return render_to_response("resetpassword.html",{'passwordChangeKey':dictGetval(request.REQUEST,"passwordChangeKey"),'reset':True,'data':request.POST},context_instance=RequestContext(request))
 	elif request.method == 'POST':
@@ -432,7 +432,10 @@ def pendingOrders(request):
 		userprof = UserProfile.objects.get(user= request.user)
 		if userprof.is_student:
 			student_account = request.user
+			dish = Dishes.objects.all()
 			#Getting all pending orders
 			order_all_pending = Orders.objects.filter(student_id = student_account,delivered = False)
 			#Returning JSON response to the objects obtained in above statement
-			return HttpResponse(serializers.serialize('json',order_all_pending),mimetype='application/json')
+			return HttpResponse(serializers.serialize('json',order_all_pending,use_natural_keys=True),mimetype='application/json')
+		else:
+			return HttpResponse("Something went wrong")

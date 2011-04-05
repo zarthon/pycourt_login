@@ -32,6 +32,9 @@ class Dishes(models.Model):
 
 	def __unicode__(self):
 		return self.dish_name
+	
+	def natural_key(self):
+		return (self.dish_name)
 
 class Orders(models.Model):
 	transaction_id = models.CharField(max_length=30)

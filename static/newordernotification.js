@@ -23,3 +23,6 @@ data = "id="+cell.innerHTML
 
 checkAndNotify();
 })
+
+
+

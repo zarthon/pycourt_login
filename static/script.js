@@ -225,8 +225,8 @@ $(document).ready(function(){
 		
 		
 		
-		var counter1 = $('#orderlist-4 tr:last').get(0).rowIndex;
-		
+		//var counter1 = $('#orderlist-4 tr:last').get(0).rowIndex;
+		var counter1 = $('#orderlist-4 tr:last').index();
 		
 		for (var l = 0; l <= counter1; l++){
 			var ABCD = $('#orderlist-4 tr:eq('+l+') td:eq(3)').text();
@@ -433,3 +433,4 @@ function slideRows(number ){
 	else  return false;
 
 }
+
