@@ -64,7 +64,24 @@
 <div id="main" class="clearfix">
 {% include "navigation.html" %}
 	<div id="what-ive-done" class="clearfix" style="margin-top:30px;">
-	
+		{% if request.GET.thanks == "orderdone" %}
+     		<div id="thanks" class="clearfix">
+       		<span>Thanks for doing order</span>
+       		<a href="#" id="no-problem">OK</a>
+			</div>
+		{% endif %}
+		{% if request.GET.thanks == "profilechange" %}
+     		<div id="thanks" class="clearfix">
+			<span> Your Profile has been successfully changed</span>
+       		<a href="#" id="no-problem">OK</a>
+			</div>
+		{% endif %}
+		{% if request.GET.thanks == "firsttime" %}
+     		<div id="thanks" class="clearfix">
+			<span> Your last login time was {{ request.user.last_login }}</span>
+			<a href="#" id="no-problem">OK</a>
+			</div>
+		{% endif %}
 <!-- Executed if the profile is of student -->
 		
 		<h3>Menu</h3>

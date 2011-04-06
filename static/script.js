@@ -248,38 +248,43 @@ $(document).ready(function(){
 			
 			}
 			$('#orderlist-4 .a').click(function(){
-																
 																	var len = $(this).attr("id").length
 																	var id = $(this).attr("id").substring(0,parseInt(len)-1)
-
-																	$(this).hide();
-																	var rowIndex = $(this).parent().parent().index()
-																	$('#orderlist-4 tr:eq('+(rowIndex)+') td:eq(3)').text("Not Available")
-																	$('#'+id+'y').show(); 
+																	var called_obj = $(this)
 																	jQuery.ajax({
 																	cache: false,
 																	url: "/changeavailability",
 																	typr: "GET",
 																	data: "id="+id,
+																	error: function(){
+																		alert("Network error. Counld not contact server")
+																	},
 																	success: function(data){
-																		
+																		called_obj.hide();
+																		var rowIndex = called_obj.parent().parent().index()
+																		$('#orderlist-4 tr:eq('+(rowIndex)+') td:eq(3)').text("Not Available")
+																		$('#'+id+'y').show(); 
 																	 },
 																	 });					  })
 			$('#orderlist-4 .b').click(function(){
-																
 																	var len = $(this).attr("id").length
 																	var id = $(this).attr("id").substring(0,parseInt(len)-1)
-																	$(this).hide();
-																	var rowIndex = $(this).parent().parent().index()
-																	$('#orderlist-4 tr:eq('+(rowIndex)+') td:eq(3)').text("Available")
-																	$('#'+id+'x').show();
+																	var called_obj = $(this)
 																	jQuery.ajax({
 																	cache: false,
 																	url: "/changeavailability",
 																	typr: "GET",
 																	data: "id="+id,
+																	error: function(){
+																		alert("Network error. Counld not contact server")
+																	},
 																	success: function(data){
-																		
+																		alert(len);
+																		called_obj.hide();
+																		var rowIndex = called_obj.parent().parent().index()
+																		alert(rowIndex)
+																		$('#orderlist-4 tr:eq('+(rowIndex)+') td:eq(3)').text("Available")
+																		$('#'+id+'x').show();
 																	 },
 																	 });
 																	  })
@@ -313,17 +318,20 @@ $(document).ready(function(){
 			
 	$('#orderlist-1 .a').bind("click",function(){
 											  		var img_id = $(this).attr("id").substring(0,$(this).attr("id").length - 1);
-													 
-													$(this).hide();
+													var called_obj = $(this); 
 													var rowCount2 = $(this).parent().parent().index();
-													$('#orderlist-1 tr:eq('+rowCount2+') td:eq(6) .b').show();
 													jQuery.ajax({
     												cache: false,
     												url: "/changestatus",
     												type: "GET",
     												data: "id=" + img_id,
-   	 												success: function(data) {
-        											 	$('#orderlist-1 tr:eq('+rowCount2+') td:eq(5)').text("Under Preparation");
+													error: function() {
+														alert("Network error. Counld not contact server");
+   	 												},
+													success: function(data) {
+        											 	called_obj.hide();
+														$('#orderlist-1 tr:eq('+rowCount2+') td:eq(6) .b').show();
+														$('#orderlist-1 tr:eq('+rowCount2+') td:eq(5)').text("Under Preparation");
 														
 														
         											},  
@@ -334,46 +342,38 @@ $(document).ready(function(){
 											  });	
 	$('#orderlist-1 .b').bind("click",function(){
 											  		var img_id = $(this).attr("id").substring(0,$(this).attr("id").length - 1);
-													 
-													$(this).hide();
+													var called_obj = $(this)
 													var rowCount2 = $(this).parent().parent().index();
-													$('#orderlist-1 tr:eq('+rowCount2+') td:eq(6) .c').show();
 													jQuery.ajax({
     												cache: false,
     												url: "/changestatus",
     												type: "GET",
     												data: "id=" + img_id,
+													error: function() {
+														alert("Network error. Counld not contact server");
+													},
    	 												success: function(data) {
-        											 	$('#orderlist-1 tr:eq('+rowCount2+') td:eq(5)').text("Prepared");
-														
-														
+	        											 called_obj.hide();	
+														 $('#orderlist-1 tr:eq('+rowCount2+') td:eq(6) .c').show();
+	 													 $('#orderlist-1 tr:eq('+rowCount2+') td:eq(5)').text("Prepared");
         											},  
-													
     											}); 
-													
 													return false;
 											  });	
 	
 	
 	$('#orderlist-1 .c').bind("click",function(){
 											  		var img_id = $(this).attr("id").substring(0,$(this).attr("id").length - 1);
-													 
-												
-													$(this).parent().parent().hide();
-													
+													var called_obj = $(this) 
 													jQuery.ajax({
     												cache: false,
     												url: "/changestatus",
     												type: "GET",
     												data: "id=" + img_id,
    	 												success: function(data) {
-        											 	
-														
-														
+													called_obj.parent().parent().hide();
         											},  
-													
     											}); 
-													
 													return false;
 											  });	
 	

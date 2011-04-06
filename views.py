@@ -37,7 +37,7 @@ def login(request):
 				request.session['member_id'] = user.id
 				temp = UserProfile.objects.get(user = user)
 				print temp.is_counter , temp.is_student
-				return HttpResponseRedirect('/home/')
+				return HttpResponseRedirect('/home/?thanks=firsttime')
 			else:
 				return render_to_response('wrong.html',{},context_instance=RequestContext(request))
 		else:
@@ -195,7 +195,7 @@ def setting(request):
 		print forms
 		if forms.is_valid():
 			forms.save()
-			return HttpResponseRedirect('/home/')
+			return HttpResponseRedirect('/home/?thanks=profilechange')
 		else:
 			request.user = user
 	  #	  return render_to_response('setting.html',{'signup_form':forms,'data':request.POST},context_instance=RequestContext(request))
@@ -279,7 +279,7 @@ def order(request):
 				account2_list[i].save()
 		account1.save()
 		order.save()
-		return HttpResponseRedirect('/?thanks')
+		return HttpResponseRedirect('/home/?thanks=orderdone')
 
 
 @login_required
