@@ -17,6 +17,18 @@ from time import mktime
 from pycourt_login.dataplus import *
 from django.core.mail import EmailMultiAlternatives
 from pycourt_login.models import PasswordCHangeRequest, Dishes
+import threading
+
+counterid_list = ['counter1','counter2','counter3']
+#Global Timer Object
+TIMER=None
+
+def disableCounter(user):
+	print "Inside disable counter"
+	print "User==>"+str(user.username)
+	counter_obj = LoginStatus.objects.get(counterid = user)
+	counter_obj.status = False
+	counter_obj.save()
 
 def index(request):
 	if request.user.is_authenticated():
@@ -29,15 +41,15 @@ def login(request):
 		forms = myforms.LoginForm(request.POST)
 		if forms.is_valid():
 			user = authenticate(username=request.POST["username"],password=request.POST["password"])
-			#user.groups.add('temp')
 			if user is not None:
 				auth_login(request,user)
-				#request.session.set_expiry(300)
-				#print request.session.get_expiry_date()
+				request.session.set_expiry(3000)
 				request.session['member_id'] = user.id
-				temp = UserProfile.objects.get(user = user)
-				print temp.is_counter , temp.is_student
-				return HttpResponseRedirect('/home/')
+				if user.username in counterid_list:
+					status_obj = LoginStatus.objects.get(counterid = user)
+					status_obj.status = True
+					status_obj.save()
+				return HttpResponseRedirect('/home/?thanks=firsttime')
 			else:
 				return render_to_response('wrong.html',{},context_instance=RequestContext(request))
 		else:
@@ -45,7 +57,11 @@ def login(request):
 	else:
 		return HttpResponseRedirect('/')
 
-def logout(request): 
+def logout(request):
+	if request.user.username in counterid_list:
+		status_obj = LoginStatus.objects.get(counterid = request.user)
+		status_obj.status = False
+		status_obj.save()
 	auth_logout(request)
 	return render_to_response('logout.html',{},context_instance=RequestContext(request))
 
@@ -168,6 +184,12 @@ def home(request):
 
 		elif userprofile.is_student == True:
 				student_account = BalanceAccount.objects.get(account=request.user)
+				counter1_obj = User.objects.get(username = 'counter1')
+				counter2_obj = User.objects.get(username = 'counter2')
+				counter3_obj = User.objects.get(username = 'counter3')
+				counter1_stat = LoginStatus.objects.get(counterid=counter1_obj)
+				counter2_stat = LoginStatus.objects.get(counterid=counter2_obj)
+				counter3_stat = LoginStatus.objects.get(counterid=counter3_obj)
 				print student_account.counter1_balance
 		return render_to_response('home.html',locals(),context_instance=RequestContext(request))
 	else:
@@ -195,7 +217,7 @@ def setting(request):
 		print forms
 		if forms.is_valid():
 			forms.save()
-			return HttpResponseRedirect('/home/')
+			return HttpResponseRedirect('/home/?thanks=profilechange')
 		else:
 			request.user = user
 	  #	  return render_to_response('setting.html',{'signup_form':forms,'data':request.POST},context_instance=RequestContext(request))
@@ -215,7 +237,6 @@ def order(request):
 
 		#Student Account is account1
 		account1 = BalanceAccount.objects.get(account=user)
-		str(datetime.datetime.now().timetuple())
 		transid = request.user.username+str(mktime(datetime.datetime.now().timetuple()))[:-2]
 		for i in range(0,len(orderlist)-1):
 			order_param = orderlist[i].split("%")
@@ -227,16 +248,22 @@ def order(request):
 				counter = 'counter2'
 			else:
 				counter = 'counter3'
-		
+
+			counter_obj = User.objects.get(username = counter)
+			counter_alive = LoginStatus.objects.get(counterid = counter_obj)
+
 			dish = Dishes.objects.get(id = int(orderid[0]))
 			
 			counterac = User.objects.get(username=counter)
 			account2 = CounterAccount.objects.get(account=counterac)
+
+			if not counter_alive.status:
+					return render_to_response("ShowMessage.html",{'msg_html':'Counter 1 is Closed','msg_heading':'Sorry'},context_instance = RequestContext(request))
 			
 			if orderid[1] == '1':
 				if not dish.counter1:
 					return render_to_response("ShowMessage.html",{'msg_html':'Dish'+dish.dish_name+' is not currently available at counter 1','msg_heading':'Dish Unavailable at the moment'},context_instance = RequestContext(request))
-
+				
 				if account1.counter1_balance >= int(quantity)*int(dish.dish_price):
 					account1.counter1_balance = account1.counter1_balance - int(quantity)*int(dish.dish_price)
 					account2.balance = account2.balance + int(quantity)*int(dish.dish_price)
@@ -279,18 +306,25 @@ def order(request):
 				account2_list[i].save()
 		account1.save()
 		order.save()
-		return HttpResponseRedirect('/?thanks')
+		return HttpResponseRedirect('/home/?thanks=orderdone&id='+transid)
 
 
 @login_required
 def history(request):
    userprof = UserProfile.objects.get(user= request.user) 
    if userprof.is_student:
-	   past_orders = Orders.objects.filter(student_id = request.user)
-	   return render_to_response("accountsummary.html",locals(),context_instance=RequestContext(request))
+	   	past_orders = Orders.objects.filter(student_id = request.user)
+	   	sum = 0
+		for order in past_orders:
+			sum += int(order.dish.dish_price)*int(order.quantity)
+
+	   	return render_to_response("accountsummary.html",locals(),context_instance=RequestContext(request))
    elif userprof.is_counter:
-        past_orders = Orders.objects.filter(counterid = request.user.username)
-        return render_to_response("accountsummary.html",locals(),context_instance=RequestContext(request))
+   		past_orders = Orders.objects.filter(counterid = request.user.username)
+		sum = 0
+		for order in past_orders:
+			sum += int(order.dish.dish_price)*int(order.quantity)
+		return render_to_response("accountsummary.html",locals(),context_instance=RequestContext(request))
    else:
 	    return render_to_response("ShowMessage.html",{'msg_heading':'Trying to Hack this site!','msg_html':'UserProfile Does Not Exist'},contex_instance=RequestContext(request))
 
@@ -335,7 +369,16 @@ def add_dish(request):
 		return render_to_response("ShowMessage.html",{'msg_heading':'UnAuthorized Access','msg_html':'Only Counter Owners are authorized to add dishes not Students....:P'},context_instance=RequestContext(request))
 
 def mostRecentTransaction(request):
+	global TIMER
 	cnt_user = request.user.username
+	if TIMER is not None:
+		TIMER.cancel()
+	TIMER = threading.Timer(5.0,disableCounter,[request.user]) 
+	TIMER.start()
+	counter_obj = LoginStatus.objects.get(counterid = request.user)
+	counter_obj.status = True
+	counter_obj.save()
+
 	if request.GET['id'] == u'0':
 		order = Orders.objects.filter(counterid = cnt_user,delivered=False)
 		print len(order)
@@ -343,7 +386,7 @@ def mostRecentTransaction(request):
 			return HttpResponse("")
 		else:
 			print "we have orders"
-			return HttpResponse('<p style="color:red">Food List outdated, please refresh</p>')
+			return HttpResponse('<p style="background-color: #E4F2E4">Food List outdated, please refresh</p>')
 	else:
 		transactid_lastdisplayed = request.GET['id'][9:]
 		cnt_orders = Orders.objects.filter(counterid=cnt_user,delivered=False)
@@ -352,9 +395,9 @@ def mostRecentTransaction(request):
 		#print transactid_lastdisplayed 
 		print latestid
 		if latestid > transactid_lastdisplayed:
-			return HttpResponse('<p style="color:yellow">Food List outdated, please refresh</p>')
+			return HttpResponse('<p style="background-color: #E4F2E4" >Food List outdated, please refresh</p>')
 		else:
-			return HttpResponse("")
+			return HttpResponse('')
 
 @login_required
 def changeStatus(request):
@@ -452,3 +495,5 @@ def pendingOrders(request):
 			return HttpResponse(serializers.serialize('json',order_all_pending,use_natural_keys=True),mimetype='application/json')
 		else:
 			return HttpResponse("Something went wrong")
+
+

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-{% include "navigation.html" %}
-<div class="pos-fix">
+{% include "navigation_counter.html" %}
+<div id="recharge">
 <form action="/recharge/" method="post" id="recharge-form">
     {% csrf_token %}
     {% if form.username.errors and data %}
@@ -25,8 +25,8 @@
         <label for="amount">Recharge Amount:</label>
         <input type="text" name="amount" value="" id="amount" />
     </div>
-    <div id="recharge-submit" class="recharge clearify">
-        <input type="submit" value = "Recharge" class="submit" />
+    <div id="recharge-submit">
+        <input type="submit" value = "Recharge" class="submit" style="float:right"/>
     </div>
 </form>
 </div>

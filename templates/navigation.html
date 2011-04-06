@@ -16,7 +16,7 @@ a, a:visited, a:hover, a:active, a:focus {direction:ltr; outline:0;}
 #nav .menu a:focus,
 #nav .menu a:active {background:#2B471D; margin-right:0;}
 #nav {padding:10px;}
-#nav .menu label {display:block; width:120px; text-decoration:none; text-align:center; color:#fff; font-size:1.2em;}
+#nav .menu label {display:block; text-decoration:none; text-align:center; color:#fff; font-size:1.2em;}
 #nav .menu label {position:relative; float:left; margin-right:-119px; margin-top:300px; margin-left:-35px;}
 </style>
 <div>
@@ -24,23 +24,20 @@ a, a:visited, a:hover, a:active, a:focus {direction:ltr; outline:0;}
 <div id="nav">
 		
 		<ul class="menu">
-			<li class="level1-li"><label class="level1-b" style="width:200px" id="hi">Welcome, <b>{{ user.first_name }} </b></label></li>
-			<li class="level1-li" style="margin-left:10px"><a class="level1-a" href="/home">Home</a></li>
+			<li class="level1-li" style="margin-left:10px; margin-right:40px;" ><a class="level1-a" href="/home">Home</a></li>
+			<li class="level1-li" style="width:230px;"><label class="level1-b" style="" id="hi">Welcome, <b>{{ user.first_name }}</b></label></li>
 			
 			
 			
-			<li class="level1-li" style="margin-left:55px"><a class="level1-a" href="">Profile</a>
+			
+			<li class="level1-li" ><a class="level1-a" href="">Profile</a>
 				<ul class="sub">
 					<li><a href="/setting/">Edit Profile</a></li>
 					<li><a href="/profile/">View Profile</a></li>
-					
+					<li><a href="/orderhist">Order History</a></li>
 				</ul>
 			</li>
-			<li class="level1-li"><a class="level1-a" href="/orderhist">Order History</a>
-				<ul class="sub">
-					
-				</ul>
-			</li>
+			
 			<li class="level1-li"><a class="level1-a" href="/complaint/">Complaints</a>
 				<ul class="sub">
 					

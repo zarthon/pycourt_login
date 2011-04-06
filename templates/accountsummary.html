@@ -1,11 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if userprofile.is_student and not userprofile.is_counter %}
+{% if userprof.is_student and not userprof.is_counter %}
+<div id = "top-head" class="frame" > 
+
+
 {% include "navigation.html" %}
+
+</div>
 {% else %}
+<div id = "top-head2" class="frame" >
+
 {% include "navigation_counter.html" %}
+
+</div>
 {% endif %}
+
+
 {% if past_orders %}
 
 	<div id="tab-qty" style="margin-top:45px;">
@@ -13,9 +24,15 @@
 			<li><a  id="tab-qty-1">Order History</a></li>
 			</ul>
 		</div>
-
 	<div class = "content-box" style="margin-top:80px;">
-	
+	 	<div class="balance">
+			{% if userprof.is_counter%}
+	    	<b>Current Revenue:{{ sum }}</b>
+			{% else %}
+			<b>Current Expenditure:{{ sum}}</b>
+			{% endif %}
+		</div>
+											 
 		<div id = "t3-frame" class="h-box">
 		<table id="t3"	cellspacing="1" cellpadding="1" border="0" width="100%">
 		<col width="25%"/><col width="15%"/><col width="10%" /><col width="8%"/><col width="20%"/><col width="20%" />
@@ -27,15 +44,15 @@
             <table id="t4"	cellspacing="2" cellpadding="0" border="0" width="95%">
 			<col width="25%"/><col width="15%"/><col width="14%" /><col width="8%"/><col width="30%"/><col width="20%" />
 			{% for order in past_orders %}
-			
+			{% if order.delivered %}
 			<tr><td id = "{{dish.transaction_id}}_a" class="t1">{{ order.transaction_id }}</td>
 				<td id = "{{dish.transaction_id}}_b" class="t1"> {{ order.dish.dish_name }}</td>
-				<td id = "{{dish.transaction_id}}_c" class="t1"> {{ order.dish.dish_price}}*{{order.quantity }}</td>
+				<td id = "{{dish.transaction_id}}_c" class="t1"> {{ order.dish.dish_price}}</td>
 				<td id = "{{dish.transaction_id}}_d" class="t1"> {{ order.quantity }}</td>
 				<td id = "{{dish.transaction_id}}_e" class="t1"> {{ order.datetime }}</td>
 				<td id = "{{dish.transaction_id}}_f" class="t1"> {{ order.status }}</td>
 			</tr>		
-			
+			{% endif %}
             {% endfor %}
         </table>
         </div>

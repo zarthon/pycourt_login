@@ -3,7 +3,8 @@ function checkAndNotify()
 {
     var rows = document.getElementById("orderlist-1").rows;
 	if (rows.length > 0){
-		var cell = rows[rows.length - 1].cells[4];
+		var cell = rows[rows.length - 1].cells[0];
+		
 		tosend = "id="+cell.innerHTML
 		jQuery.ajax({
 	    cache: false,
@@ -11,7 +12,7 @@ function checkAndNotify()
 	    type: "GET",
 	    data: tosend,
 	    success: function(data) {
-	        jQuery('#shownoti').html(data).hide().fadeIn(1500);
+	        jQuery('#shownoti').html(data).show();
     	    },  
 	    }); 
 		}
@@ -22,7 +23,7 @@ function checkAndNotify()
 	    type: "GET",
 	    data: "id=0",
 	    success: function(data) {
-			jQuery('#shownoti').html(data).hide().fadeIn(1500);
+			jQuery('#shownoti').html(data).show();
 		},
 		})
 		}
