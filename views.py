@@ -17,8 +17,18 @@ from time import mktime
 from pycourt_login.dataplus import *
 from django.core.mail import EmailMultiAlternatives
 from pycourt_login.models import PasswordCHangeRequest, Dishes
+import threading
 
 counterid_list = ['counter1','counter2','counter3']
+#Global Timer Object
+TIMER=None
+
+def disableCounter(user):
+	print "Inside disable counter"
+	print "User==>"+str(user.username)
+	counter_obj = LoginStatus.objects.get(counterid = user)
+	counter_obj.status = False
+	counter_obj.save()
 
 def index(request):
 	if request.user.is_authenticated():
@@ -238,16 +248,22 @@ def order(request):
 				counter = 'counter2'
 			else:
 				counter = 'counter3'
-		
+
+			counter_obj = User.objects.get(username = counter)
+			counter_alive = LoginStatus.objects.get(counterid = counter_obj)
+
 			dish = Dishes.objects.get(id = int(orderid[0]))
 			
 			counterac = User.objects.get(username=counter)
 			account2 = CounterAccount.objects.get(account=counterac)
+
+			if not counter_alive.status:
+					return render_to_response("ShowMessage.html",{'msg_html':'Counter 1 is Closed','msg_heading':'Sorry'},context_instance = RequestContext(request))
 			
 			if orderid[1] == '1':
 				if not dish.counter1:
 					return render_to_response("ShowMessage.html",{'msg_html':'Dish'+dish.dish_name+' is not currently available at counter 1','msg_heading':'Dish Unavailable at the moment'},context_instance = RequestContext(request))
-
+				
 				if account1.counter1_balance >= int(quantity)*int(dish.dish_price):
 					account1.counter1_balance = account1.counter1_balance - int(quantity)*int(dish.dish_price)
 					account2.balance = account2.balance + int(quantity)*int(dish.dish_price)
@@ -353,7 +369,16 @@ def add_dish(request):
 		return render_to_response("ShowMessage.html",{'msg_heading':'UnAuthorized Access','msg_html':'Only Counter Owners are authorized to add dishes not Students....:P'},context_instance=RequestContext(request))
 
 def mostRecentTransaction(request):
+	global TIMER
 	cnt_user = request.user.username
+	if TIMER is not None:
+		TIMER.cancel()
+	TIMER = threading.Timer(5.0,disableCounter,[request.user]) 
+	TIMER.start()
+	counter_obj = LoginStatus.objects.get(counterid = request.user)
+	counter_obj.status = True
+	counter_obj.save()
+
 	if request.GET['id'] == u'0':
 		order = Orders.objects.filter(counterid = cnt_user,delivered=False)
 		print len(order)
@@ -470,3 +495,5 @@ def pendingOrders(request):
 			return HttpResponse(serializers.serialize('json',order_all_pending,use_natural_keys=True),mimetype='application/json')
 		else:
 			return HttpResponse("Something went wrong")
+
+
