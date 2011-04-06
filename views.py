@@ -23,6 +23,12 @@ counterid_list = ['counter1','counter2','counter3']
 #Global Timer Object
 TIMER=None
 
+#Change status to False for all counters (in case its true due to server closing unexpectedly)
+loginstatus_all = LoginStatus.objects.all()
+for obj in loginstatus_all:
+	obj.status = False
+obj.save()
+
 def disableCounter(user):
 	print "Inside disable counter"
 	print "User==>"+str(user.username)

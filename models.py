@@ -50,4 +50,3 @@ class Orders(models.Model):
 class LoginStatus(models.Model):
 	counterid = models.ForeignKey(User)
 	status = models.BooleanField()
-
