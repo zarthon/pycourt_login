@@ -286,11 +286,18 @@ def order(request):
 def history(request):
    userprof = UserProfile.objects.get(user= request.user) 
    if userprof.is_student:
-	   past_orders = Orders.objects.filter(student_id = request.user)
-	   return render_to_response("accountsummary.html",locals(),context_instance=RequestContext(request))
+	   	past_orders = Orders.objects.filter(student_id = request.user)
+	   	sum = 0
+		for order in past_orders:
+			sum += int(order.dish.dish_price)*int(order.quantity)
+
+	   	return render_to_response("accountsummary.html",locals(),context_instance=RequestContext(request))
    elif userprof.is_counter:
-        past_orders = Orders.objects.filter(counterid = request.user.username)
-        return render_to_response("accountsummary.html",locals(),context_instance=RequestContext(request))
+   		past_orders = Orders.objects.filter(counterid = request.user.username)
+		sum = 0
+		for order in past_orders:
+			sum += int(order.dish.dish_price)*int(order.quantity)
+		return render_to_response("accountsummary.html",locals(),context_instance=RequestContext(request))
    else:
 	    return render_to_response("ShowMessage.html",{'msg_heading':'Trying to Hack this site!','msg_html':'UserProfile Does Not Exist'},contex_instance=RequestContext(request))
 

@@ -24,9 +24,15 @@
 			<li><a  id="tab-qty-1">Order History</a></li>
 			</ul>
 		</div>
-
 	<div class = "content-box" style="margin-top:80px;">
-	
+	 	<div class="balance">
+			{% if userprof.is_counter%}
+	    	<b>Current Revenue:{{ sum }}</b>
+			{% else %}
+			<b>Current Expenditure:{{ sum}}</b>
+			{% endif %}
+		</div>
+											 
 		<div id = "t3-frame" class="h-box">
 		<table id="t3"	cellspacing="1" cellpadding="1" border="0" width="100%">
 		<col width="25%"/><col width="15%"/><col width="10%" /><col width="8%"/><col width="20%"/><col width="20%" />
