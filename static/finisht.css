@@ -341,6 +341,64 @@ em {
 	float:center;
 }
 
+#add-dish{
+	margin-top:50px;
+	background-color:#EEE;
+	padding:40px;
+	margin-bottom:50px;
+	font-size:1.2em;
+	border-color:#444;
+	border-style:solid;
+	width:40%;
+	float:none;
+}
+
+#dish-price label{
+	
+	margin-right:36px;
+}
+
+#dish-name label{
+	
+	margin-right:30px;
+}
+
+#username label{
+	margin-right:70px;
+}
+
+#password label{
+	margin-right:73px;
+}
+
+#amount label{
+	margin-right:30px;
+}
+
+#recharge-submit{
+	margin-top:20px;
+	margin-right:20px;
+	
+}
+
+#add-dish div{
+	margin-bottom:10px;
+}
+
+#recharge{
+	background-color:#EEEEEE;
+	border-style:solid;
+	border-color:#777;
+	padding:40px;
+	margin-top:50px;
+	margin-bottom:50px;
+	font-size:1.2em;
+	width:38%;
+}
+
+#recharge div{
+	margin-bottom:10px;
+}
 
 #complaint_main
 {
@@ -868,7 +926,17 @@ margin-top: 20px;
 	padding-top:5px;
 	padding-bottom:5px;
 	margin-right:10px;
+}
 
+#shownoti{
+	border-color:#000;
+	border-style:solid;
+	border:thin;
+	background-color:#F78D1D;
+	
+	border-radius:20px;
+	margin-bottom:20px;
+	display:none;
 }
 
 #no-problem {

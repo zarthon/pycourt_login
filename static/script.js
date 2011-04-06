@@ -91,6 +91,7 @@ $(function() {
                                     $('#done-nav').hide();
                                     $('#menu_t').fadeOut(400,function(){
 																	  $('#quantity-form').fadeIn(400);
+																	 
 																	  });
 									
 																	   
@@ -286,26 +287,26 @@ $(document).ready(function(){
 			var rowCount = $('#orderlist-1 tr:last').index();
 			for(var l = 0 ; l <= rowCount ; l++)
 			{
-				var tempStatus = $('#orderlist-1 tr:eq('+l+') td:eq(3)').text();
+				var tempStatus = $('#orderlist-1 tr:eq('+l+') td:eq(5)').text();
 				if (tempStatus == '0')
 				{
-					$('#orderlist-1 tr:eq('+l+') td:eq(3)').text("In Queue");
-					$('#orderlist-1 tr:eq('+l+') td:eq(5) .b').hide();
-					$('#orderlist-1 tr:eq('+l+') td:eq(5) .c').hide();
+					$('#orderlist-1 tr:eq('+l+') td:eq(5)').text("In Queue");
+					$('#orderlist-1 tr:eq('+l+') td:eq(6) .b').hide();
+					$('#orderlist-1 tr:eq('+l+') td:eq(6) .c').hide();
 					
 				}
 				else if (tempStatus == '1')
 				{
-					$('#orderlist-1 tr:eq('+l+') td:eq(3)').text("Under Preparation");
-					$('#orderlist-1 tr:eq('+l+') td:eq(5) .a').hide();
-					$('#orderlist-1 tr:eq('+l+') td:eq(5) .c').hide();
+					$('#orderlist-1 tr:eq('+l+') td:eq(5)').text("Under Preparation");
+					$('#orderlist-1 tr:eq('+l+') td:eq(6) .a').hide();
+					$('#orderlist-1 tr:eq('+l+') td:eq(6) .c').hide();
 					
 				}
 				else if (tempStatus == '2')
 				{
-					$('#orderlist-1 tr:eq('+l+') td:eq(3)').text("Prepared");
-					$('#orderlist-1 tr:eq('+l+') td:eq(5) .a').hide();
-					$('#orderlist-1 tr:eq('+l+') td:eq(5) .b').hide();
+					$('#orderlist-1 tr:eq('+l+') td:eq(5)').text("Prepared");
+					$('#orderlist-1 tr:eq('+l+') td:eq(6) .a').hide();
+					$('#orderlist-1 tr:eq('+l+') td:eq(6) .b').hide();
 										
 				}
 			}
@@ -315,14 +316,14 @@ $(document).ready(function(){
 													 
 													$(this).hide();
 													var rowCount2 = $(this).parent().parent().index();
-													$('#orderlist-1 tr:eq('+rowCount2+') td:eq(5) .b').show();
+													$('#orderlist-1 tr:eq('+rowCount2+') td:eq(6) .b').show();
 													jQuery.ajax({
     												cache: false,
     												url: "/changestatus",
     												type: "GET",
     												data: "id=" + img_id,
    	 												success: function(data) {
-        											 	$('#orderlist-1 tr:eq('+rowCount2+') td:eq(3)').text("Under Preparation");
+        											 	$('#orderlist-1 tr:eq('+rowCount2+') td:eq(5)').text("Under Preparation");
 														
 														
         											},  
@@ -336,14 +337,14 @@ $(document).ready(function(){
 													 
 													$(this).hide();
 													var rowCount2 = $(this).parent().parent().index();
-													$('#orderlist-1 tr:eq('+rowCount2+') td:eq(5) .c').show();
+													$('#orderlist-1 tr:eq('+rowCount2+') td:eq(6) .c').show();
 													jQuery.ajax({
     												cache: false,
     												url: "/changestatus",
     												type: "GET",
     												data: "id=" + img_id,
    	 												success: function(data) {
-        											 	$('#orderlist-1 tr:eq('+rowCount2+') td:eq(3)').text("Prepared");
+        											 	$('#orderlist-1 tr:eq('+rowCount2+') td:eq(5)').text("Prepared");
 														
 														
         											},  
@@ -374,8 +375,22 @@ $(document).ready(function(){
     											}); 
 													
 													return false;
-											  });			
-return false;
+											  });	
+	
+	var rowNumber = 0;
+	rowNumber = $('#t4 tr:last').index()
+	
+	for(var j=0; j<=rowNumber;j++)
+	{
+		var tempStatus = $('#t4 tr:eq('+j+') td:eq(5)').html();
+		if(tempStatus == 2)
+		{
+			$('#t4 tr:eq('+j+') td:eq(5)').text("Delivered");
+		}
+	
+	}
+	$('#shownoti').hide();
+	
 });						   
 
 function SwapLogin(current) {

@@ -38,7 +38,7 @@ function checkPendingOrders(){
 				row_shown = row_shown+'<td class="t1">Under Preparation</td class="t1">';
 				}
 			if (dish.fields.status == 2){
-				row_shown = row_shown + '<td class="t1">Prepare</td class="t1">';
+				row_shown = row_shown + '<td class="t1">Prepared</td class="t1">';
 				}
 			row_shown = row_shown+'<td class="t1">' + dish.fields.counterid + '</td class="t1">';
 			row_shown = row_shown + "</tr>";
