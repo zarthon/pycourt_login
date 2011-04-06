@@ -242,7 +242,7 @@ def order(request):
 					account2.balance = account2.balance + int(quantity)*int(dish.dish_price)
 					counter = 'counter1'
 				else:
-					return render_to_response("ShowMessage.html",{'msg_html':'Insufficient Balance in Counter 1. Order						is Discarded. Place new Order','msg_heading':'Insufficient Balance'},context_instance = RequestContext(request))
+					return render_to_response("ShowMessage.html",{'msg_html':'Insufficient Balance in Counter 1. Order is Discarded. Please Recharge Your account','msg_heading':'Insufficient Balance'},context_instance = RequestContext(request))
 
 			elif orderid[1]=='2':
 				if not dish.counter2:
@@ -254,7 +254,7 @@ def order(request):
 					account2.balance = account2.balance + int(quantity)*int(dish.dish_price)
 					counter = 'counter2'
 				else:
-					return render_to_response("ShowMessage.html",{'msg_html':'Insufficient Balance in Counter 2. Order						is Discarded. Place new Order','msg_heading':'Insufficient Balance'},context_instance = RequestContext(request))
+					return render_to_response("ShowMessage.html",{'msg_html':'Insufficient Balance in Counter 2. Order is Discarded. Please Recharge your Account','msg_heading':'Insufficient Balance'},context_instance = RequestContext(request))
 			else:
 				if not dish.counter3:
 					return render_to_response("ShowMessage.html",{'msg_html':'Dish'+dish.dish_name+' is not currently available at counter 3','msg_heading':'Dish Unavailable at the moment'},context_instance = RequestContext(request))
@@ -265,7 +265,7 @@ def order(request):
 					account2.balance = account2.balance + int(quantity)*int(dish.dish_price)
 					counter = 'counter3'
 				else:
-					return render_to_response("ShowMessage.html",{'msg_html':'Insufficient Balance in Counter 3. Order						is Discarded. Place new Order','msg_heading':'Insufficient Balance'},context_instance = RequestContext(request))
+					return render_to_response("ShowMessage.html",{'msg_html':'Insufficient Balance in Counter 3. Order is Discarded. Please Recharge your Account','msg_heading':'Insufficient Balance'},context_instance = RequestContext(request))
 
 			order = Orders(order_id=orderlist[i],student_id=user,status=0,counterid=counter,datetime=datetime.datetime.now(),dish=dish,quantity=int(quantity),transaction_id=transid,delivered=False)
 
