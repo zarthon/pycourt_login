@@ -19,23 +19,23 @@
 	<!-- Start of "left" division which shows news -->
 	<div id="left">
 		<div id="header1" class="promo">
-      		<h2>Dynamic Dish Searching</h2>
+      		<h2>Realtime Dish Searching</h2>
        		<div class="promo-content">
-				Just type the keywords and the list will be automatically updated
+				Just type the keywords and the list will be updated in realtime
        		</div>
     	</div>
 		<hr class= "line1" align = "left" size="1">
 		<div class="promo">
-      		<h2>Dynamic Student Notification</h2>
+      		<h2>Realtime Student Notification</h2>
       		<div class="promo-content">
-          	When your order status changes you will be dynamically notified
+          	When your order status changes you will be notified in realtime
         	</div>
       	</div>
 		<hr class= "line1" align = "left" size="1">
       	<div class="promo">
-      		<h2>Dynamic Counter Notification</h2>
+      		<h2>Counter Notification</h2>
         	<div class="promo-content">
-          	Counter owners will be dynamically notified of new orders
+          	Counter owners will be notified of new orders with minor delays
         	</div>
       	</div>
 	</div>
@@ -66,7 +66,7 @@
 	<div id="what-ive-done" class="clearfix" style="margin-top:30px;">
 		{% if request.GET.thanks == "orderdone" %}
      		<div id="thanks" class="clearfix">
-       		<span>Thanks for doing order</span>
+       		<span>Your order has been successfully placed with transaction id:<b> {{ request.GET.id }}</b> </span>
        		<a href="#" id="no-problem">OK</a>
 			</div>
 		{% endif %}
@@ -309,8 +309,15 @@
 <div id="main" class="clearfix">
 {% include "navigation_counter.html" %}
 	<div id="what-ive-done" class="clearfix" style="margin-top:20px;">
+	{% if request.GET.thanks == "firsttime" %}
+     		<div id="thanks" class="clearfix">
+			<span> Your last login time was {{ request.user.last_login }}</span>
+			<a href="#" id="no-problem">OK</a>
+			</div>
+	{% endif %}
+
 <script type="text/javascript" src="/pycourt/newordernotification.js"></script>
-<div id="shownoti" >
+<div id="shownoti">
 </div>
 
 <h3>Current Orders</h3>

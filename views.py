@@ -29,14 +29,11 @@ def login(request):
 		forms = myforms.LoginForm(request.POST)
 		if forms.is_valid():
 			user = authenticate(username=request.POST["username"],password=request.POST["password"])
-			#user.groups.add('temp')
 			if user is not None:
 				auth_login(request,user)
-				#request.session.set_expiry(300)
-				#print request.session.get_expiry_date()
+				request.session.set_expiry(3000)
 				request.session['member_id'] = user.id
 				temp = UserProfile.objects.get(user = user)
-				print temp.is_counter , temp.is_student
 				return HttpResponseRedirect('/home/?thanks=firsttime')
 			else:
 				return render_to_response('wrong.html',{},context_instance=RequestContext(request))
@@ -215,7 +212,6 @@ def order(request):
 
 		#Student Account is account1
 		account1 = BalanceAccount.objects.get(account=user)
-		str(datetime.datetime.now().timetuple())
 		transid = request.user.username+str(mktime(datetime.datetime.now().timetuple()))[:-2]
 		for i in range(0,len(orderlist)-1):
 			order_param = orderlist[i].split("%")
@@ -279,7 +275,7 @@ def order(request):
 				account2_list[i].save()
 		account1.save()
 		order.save()
-		return HttpResponseRedirect('/home/?thanks=orderdone')
+		return HttpResponseRedirect('/home/?thanks=orderdone&id='+transid)
 
 
 @login_required
@@ -350,7 +346,7 @@ def mostRecentTransaction(request):
 			return HttpResponse("")
 		else:
 			print "we have orders"
-			return HttpResponse('<p style="color:red">Food List outdated, please refresh</p>')
+			return HttpResponse('<p style="background-color: #E4F2E4">Food List outdated, please refresh</p>')
 	else:
 		transactid_lastdisplayed = request.GET['id'][9:]
 		cnt_orders = Orders.objects.filter(counterid=cnt_user,delivered=False)
@@ -359,9 +355,9 @@ def mostRecentTransaction(request):
 		#print transactid_lastdisplayed 
 		print latestid
 		if latestid > transactid_lastdisplayed:
-			return HttpResponse('<p style="color:yellow">Food List outdated, please refresh</p>')
+			return HttpResponse('<p style="background-color: #E4F2E4" >Food List outdated, please refresh</p>')
 		else:
-			return HttpResponse("")
+			return HttpResponse('')
 
 @login_required
 def changeStatus(request):

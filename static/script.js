@@ -12,7 +12,6 @@ var total_price = '';
 var total_final = 0 ;
 var foodlist_deleted = '';
 
-
 $(document).ready(function() {
     $("#qty_no").keydown(function(event) {
     	if ( event.keyCode == 46 || event.keyCode == 8 )
@@ -55,7 +54,7 @@ $(function() {
     }
 
 
-    $('#no-problem').bind("click", function() { $(this).parent().css('display', 'none'); });
+    $('#no-problem').bind("click", function() { $(this).parent().slideUp(400); });
     
     $('#done-list li:last-child').css('border-bottom', '1px solid #E5E5E5');
     $('#add-friend, #add-friend-link').click(function() { $('#add-friend-form').toggle(); });
