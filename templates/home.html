@@ -113,7 +113,7 @@
 			</div>
 			<div id="menu_t">
 				<div id="today">
-					{% if counter_1 %}
+					{% if counter_1 and counter1_stat.status %}
 					<!--Counter Balance of User -->
 					<div class="balance">
 					<b>Current Balance: Rs {{ student_account.counter1_balance }} /-</b>
@@ -149,14 +149,14 @@
 			
 
 					{% else %}
-					<div class="do-something">Database not populated !
+					<div class="do-something">Either Counter is Closed or there are no dishes available in counter 1
 					</div>
 					{% endif %}
 				</div>
 
 				<div id="yesterday" style="display:none;">
         
-					{% if counter_2 %}
+					{% if counter_2 and counter2_stat.status %}
 				    <div class="balance">
 					    <b>Current Balance: Rs {{ student_account.counter2_balance }} /-</b>
 					</div>
@@ -187,14 +187,14 @@
 					</div>
 			
 					{% else %}
-					<div class="do-something">Database not populated!</div>
+					<div class="do-something">Either Counter is Closed or there are no dishes available in counter2 </div>
 					{% endif %}
 				</div>
 
 
 
 				<div id="past7days" style="display:none">
-					{% if counter_3 %}
+					{% if counter_3 and counter3_stat.status %}
 					<div class="balance">
 						<b>Current Balance: Rs {{ student_account.counter3_balance }} /-</b>
 					</div>
@@ -223,7 +223,7 @@
 				</div>
 				
 				{% else %}
-				<div class="do-something">Database not populated !</div>
+				<div class="do-something">Either Counter is Closed or there are no dishes available in counter3 </div>
 				{% endif %}
             </div>
 

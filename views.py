@@ -18,6 +18,8 @@ from pycourt_login.dataplus import *
 from django.core.mail import EmailMultiAlternatives
 from pycourt_login.models import PasswordCHangeRequest, Dishes
 
+counterid_list = ['counter1','counter2','counter3']
+
 def index(request):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect('/home')
@@ -33,7 +35,10 @@ def login(request):
 				auth_login(request,user)
 				request.session.set_expiry(3000)
 				request.session['member_id'] = user.id
-				temp = UserProfile.objects.get(user = user)
+				if user.username in counterid_list:
+					status_obj = LoginStatus.objects.get(counterid = user)
+					status_obj.status = True
+					status_obj.save()
 				return HttpResponseRedirect('/home/?thanks=firsttime')
 			else:
 				return render_to_response('wrong.html',{},context_instance=RequestContext(request))
@@ -42,7 +47,11 @@ def login(request):
 	else:
 		return HttpResponseRedirect('/')
 
-def logout(request): 
+def logout(request):
+	if request.user.username in counterid_list:
+		status_obj = LoginStatus.objects.get(counterid = request.user)
+		status_obj.status = False
+		status_obj.save()
 	auth_logout(request)
 	return render_to_response('logout.html',{},context_instance=RequestContext(request))
 
@@ -165,6 +174,12 @@ def home(request):
 
 		elif userprofile.is_student == True:
 				student_account = BalanceAccount.objects.get(account=request.user)
+				counter1_obj = User.objects.get(username = 'counter1')
+				counter2_obj = User.objects.get(username = 'counter2')
+				counter3_obj = User.objects.get(username = 'counter3')
+				counter1_stat = LoginStatus.objects.get(counterid=counter1_obj)
+				counter2_stat = LoginStatus.objects.get(counterid=counter2_obj)
+				counter3_stat = LoginStatus.objects.get(counterid=counter3_obj)
 				print student_account.counter1_balance
 		return render_to_response('home.html',locals(),context_instance=RequestContext(request))
 	else:

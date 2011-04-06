@@ -46,3 +46,8 @@ class Orders(models.Model):
 	delivered = models.BooleanField()
 	datetime = models.DateTimeField()
 	counterid = models.CharField(max_length=9)
+
+class LoginStatus(models.Model):
+	counterid = models.ForeignKey(User)
+	status = models.BooleanField()
+
