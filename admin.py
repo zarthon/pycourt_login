@@ -8,9 +8,14 @@ class DishesAdmin(admin.ModelAdmin):
 class UserProfileAdmin(admin.ModelAdmin):
 	list_display = ('user','is_counter','is_student')
 	search_fields = ('user.username',)
+
 class OrderssAdmin(admin.ModelAdmin):
     list_display = ('id', 'order_id','student_id','counterid','transaction_id','delivered')
     search_fields = ('student_id','transaction_id')
+
+class LoginStatusAdmin(admin.ModelAdmin):
+	list_display = ('counterid','status')
+
 class LoginStatusAdmin(admin.ModelAdmin):
 	list_display = ('counterid','status')
 
@@ -19,5 +24,4 @@ admin.site.register(Dishes,DishesAdmin)
 admin.site.register(Orders,OrderssAdmin)
 admin.site.register(BalanceAccount)
 admin.site.register(CounterAccount)
-admin.site.register(LoginStatus)
-
+admin.site.register(LoginStatus,LoginStatusAdmin)

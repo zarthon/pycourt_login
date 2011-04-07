@@ -6,6 +6,12 @@ class UserProfile(models.Model):
 	user = models.ForeignKey(User)
 	is_counter = models.BooleanField()
 	is_student = models.BooleanField()
+	
+	def save(self):
+		if self.is_counter != self.is_student:
+			super(UserProfile, self).save()
+		else:
+			return False
 
 class PasswordCHangeRequest(models.Model):
 	account  = models.ForeignKey(User)
@@ -50,4 +56,3 @@ class Orders(models.Model):
 class LoginStatus(models.Model):
 	counterid = models.ForeignKey(User)
 	status = models.BooleanField()
-

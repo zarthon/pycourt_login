@@ -83,11 +83,12 @@ em {
 .balance{
 	font-size:13px;
 	float:left;
-	margin-bottom:10px;
+	margin-top:0px;
 	background-color:#D8D8D8;
 	padding:6px;
 	border:thin;
 	border-color:#000;
+	margin-bottom:20px;
 }
 
 .t-box{
@@ -120,6 +121,8 @@ em {
 	border:thin;
 	border-style:solid;
 	border-color:#CCCCCC;
+	border-top:thin;
+
 }
 
 .form{
@@ -427,6 +430,7 @@ em {
 #t3-frame{
 	margin-left:30px;
 	margin-right:30px;
+	margin-top:10px;
 }
 
 
@@ -968,6 +972,11 @@ margin-top: 20px;
 #friends-list li p {
   float: left;
   padding-top: 4px;
+}
+
+#history{
+	margin-top:90px;
+	margin-left:-95px;
 }
 
 #done-list li p span, #done-list li a, #friends-list li a.delete {
