@@ -32,7 +32,7 @@ function checkPendingOrders(){
 			row_shown = row_shown + "<tr>";
 			row_shown = row_shown+'<td class="t1">'+dish.fields.dish+'</td class="t1">';
 			if (dish.fields.status == 0){
-				row_shown = row_shown+'<td class="t1">In Queue</td class="t1">';
+				row_shown = row_shown+'<td class="t1">In Queue ('+ dish.fields.quantity +')</td class="t1">';
 				}
 			if (dish.fields.status == 1){
 				row_shown = row_shown+'<td class="t1">Under Preparation</td class="t1">';

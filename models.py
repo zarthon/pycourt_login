@@ -53,6 +53,9 @@ class Orders(models.Model):
 	datetime = models.DateTimeField()
 	counterid = models.CharField(max_length=9)
 
+	def __unicode__(self):
+		return str(self.id)
+
 class LoginStatus(models.Model):
 	counterid = models.ForeignKey(User)
 	status = models.BooleanField()
