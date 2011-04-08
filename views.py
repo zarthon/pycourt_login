@@ -9,6 +9,7 @@ from django.template import RequestContext
 from django.core import serializers
 from django.contrib.auth.models import Group
 from pycourt_login.models import *
+from django.db.models import Q
 '''Import forms and User profile'''
 from pycourt_login import forms as myforms
 from django.core.mail import *
@@ -497,6 +498,11 @@ def pendingOrders(request):
 			dish = Dishes.objects.all()
 			#Getting all pending orders
 			order_all_pending = Orders.objects.filter(student_id = student_account,delivered = False)
+			pending_orders = Orders.objects.filter(~Q(status = 2),delivered = False)
+			for order in order_all_pending:
+				#Hack to change QuerySet to pass as JSON 
+				order.quantity = pending_orders.filter(id__lt = order.id,counterid= order.counterid).count() + 1
+			
 			#Returning JSON response to the objects obtained in above statement
 			return HttpResponse(serializers.serialize('json',order_all_pending,use_natural_keys=True),mimetype='application/json')
 		else:
