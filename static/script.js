@@ -77,7 +77,7 @@ $(function() {
     }
 
 	
-    //$('#no-problem').bind("click", function() { $(this).parent().slideUp(400); });
+    $('#no-problem').bind("click", function() { $(this).parent().slideUp(400); });
     
     // border for last row in Order table
     $('#done-list li:last-child').css('border-bottom', '1px solid #E5E5E5');
