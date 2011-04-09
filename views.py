@@ -56,7 +56,7 @@ def login(request):
 					status_obj = LoginStatus.objects.get(counterid = user)
 					status_obj.status = True
 					status_obj.save()
-				return HttpResponseRedirect('/home/?thanks=firsttime')
+				return HttpResponseRedirect('/home/')
 			else:
 				return render_to_response('wrong.html',{},context_instance=RequestContext(request))
 		else:
@@ -388,7 +388,6 @@ def mostRecentTransaction(request):
 
 	if request.GET['id'] == u'0':
 		order = Orders.objects.filter(counterid = cnt_user,delivered=False)
-		print len(order)
 		if len(order) == 0:
 			return HttpResponse("")
 		else:
@@ -397,10 +396,9 @@ def mostRecentTransaction(request):
 	else:
 		transactid_lastdisplayed = request.GET['id'][9:]
 		cnt_orders = Orders.objects.filter(counterid=cnt_user,delivered=False)
-		latestid = cnt_orders.latest('transaction_id').transaction_id[9:]
+		latestid = cnt_orders.latest('id').transaction_id[9:]
 		#latestid = Orders.objects.latest('counterid').transaction_id[9:]
 		#print transactid_lastdisplayed 
-		print latestid
 		if latestid > transactid_lastdisplayed:
 			return HttpResponse('<p style="background-color: #E4F2E4" >Food List outdated, please refresh</p>')
 		else:
@@ -508,4 +506,5 @@ def pendingOrders(request):
 		else:
 			return HttpResponse("Something went wrong")
 
-
+def help(request):
+	return render_to_response("help.html")

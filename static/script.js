@@ -35,6 +35,18 @@ $(document).ready(function() {
             });
 });
 
+$(document).ready(function(){
+	
+	$(".accordion pre").hide();
+
+	$(".accordion h3").click(function(){
+		$(this).next("pre").slideToggle("normal")
+		//.siblings("pre:visible").slideUp("normal");
+		$(this).toggleClass("active");
+		//$(this).siblings("h3").removeClass("active");
+	});
+
+});
 
 $(function() {
     $("a").click(function() {this.blur();});

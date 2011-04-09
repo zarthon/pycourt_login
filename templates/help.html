@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 style="font-size:4em;text-align:center"> Help </h1>
+
+<div class="accordion">
+
+<h3>1.Introduction</h3>
+<pre>
+PyCourt is an independent web interface that provides students of DA-IICT to order food online and receive their dish after some time and in order save their valuable time, on the other end provide counter owners to maintain their records in more efficient manner.
+
+The interface will provide functionalities to recharge own account for specific counter, choose dishes according to availability, obtain daily revenue, total dishes sold, see complaints ,etc. to users depending upon the group the user belongs to.
+
+It's an individual tool to aid students as well as counter owners with the flow of work in the cafeteria of DA-IICT.
+
+So basically there are two types of Accounts
+	1. Student Account
+	2. Counter Owner Account
+
+This page outlines what user needs to run the interface and what are the different functionalities of the interface and how to use each of its functionality.
+</pre>
+
+<h3>2.System Requirements</h3>
+<pre>
+<b>2.1.Minimum Hardware Requirements</b>
+
+	• Intel Pentium IV or above
+
+	• 512 MB of RAM
+
+	• Keyboard Mouse and Modem
+
+<b>2.2. Operating System</b>
+
+	• Microsoft windows 2000 / XP / Vista / 7
+
+	• Linux/BSD/Macintosh
+
+<b>2.3. Software Requirements</b>
+
+	• Internet Explorer 8 and above
+	• Firefox 4 and above
+	• Google Chrome 10 and above
+	• Opera 11 and above
+
+</pre>
+
+<h3>3.Accounts</h3>
+<pre>
+Now for the accounts sections, the website has two kinds of users
+	1.Students
+	2.Counter Owners
+There is also a third kind of user who handles the running of the backend Django which is just for information. Admins are fixed and no one else can become an admin.
+
+Now both the accounts mentioned above have some common features which are 
+	1.Login
+	2.Logout
+	3.Register
+	4.Forgot Password
+	5.View/Edit profile
+	6.Accessing Help
+
+But there are some other user specific features mentioned in the Student Specific Feature Section and the Counter Owner Specific Feature Section.
+</pre>
+
+<h3>4.Common Features</h3>
+<pre>
+<b>4.1. Login</b>
+
+For Logging in go to home page. You will find a box with two text fields with title username and password. Enter your username and password and click on Login button. You will be logged in to your home page.
+
+<b>4.2 Logout</b>
+
+You need to be logged in first. To logout go to the navigation tab present under the header of the website, click on logout, you will be logged out. To login again click on the link give on the logout page or go to home page.
+
+<b>4.3. Register</b>
+
+If you are a new user then you will have to register to use the services of the website.
+To create an account you need to go to the homepage and then on the box at the right hand side, you will find a link call Signup, click it, then enter the mentioned details and then click register. Thats it, your account has been created.
+	
+<b>NOTE: All the registrations done by this method will come under the Student user group. If you want to register a Counter Owner then you will have to contact the admin.</b>
+	
+<b>4.4. Forgot Password</b>
+
+If you have forgotten your password then go to homepage, there you will find a link "forgotten your password?" in the Login Box, click the link, you will be redirected to the password recovery page. Now you will be asked for your username, enter it and click recover password. A mail will be sent to the mail ID that you have given during registration, you will find a link in that mail to reset your password. 
+This link is valid only for a day, so, if you do not reset your password in a day after receiving the mail then you will have to follow the procedure from the beginning.
+Now, after clicking the link in your mail, you will be redirected to a password reset page, enter a new password twice and then click submit, this will reset your password to the new password. 
+
+<b>4.5. View/Edit Profile</b>
+
+If you want to <b>view</b> your profile, you need to log in first, then in the navigation bar you will find a menu item named "Accounts". A drop-down menu will appear. Click on view profile, then you will be redirected to the view profile page where you can see your profile.
+
+If you want to <b>edit</b> your profile, you need to log in first, then in the navigation bar you will find a menu item named "Accounts". A drop-down menu will appear. Click on edit profile, you will be then redirected to the edit profile page where you can change the details of your profile like e-mail and name. After you finish editing your profile, click on the Change button, your profile will be edited.
+ 
+<b>4.6. Accessing Help</b>
+
+If you are Logged out the link to the help page is present in the box at the right hand side beside the Forgot password link. Click it, and access help.
+If your are Logged in then the help is present under the Utilities tab on the navigation bar, click the link "Help" and you will be redirected here.
+
+But there are some other user specific features mentioned in the Student Specific Feature Section and the Counter Owner Specific Feature Section.
+
+</pre>
+
+<h3>5. Student Specific Features</h3>
+
+<pre>
+Now the student account has some specific features that allow student to order food and check status and many other functions.
+Here are the features specific to the student account.
+
+<b>5.1.Placing an order</b>
+
+To place an order first you must login. After logging in you will find 4 tabs in the main box under the navigation bar. These 4 tabs are:
+1. Counter 1
+2. Counter 2
+3. Counter 3
+4. Order History
+
+Now to place an order go to any one of the counter. If the counter is closed then there will be an error message saying that the counter is closed. If the counter is open then you will see a list of food items. Click the "+" sign beside the item you want to order than you will see a page asking for quantity of items, enter the quantity, click on the cart. Now you will be redirected to the home page but if you scroll down, you will find a cart which contains the item you just ordered with the quantity and total price. Now to confirm the order and to send the order to the counter click the order button at the bottom of the cart and your order will be placed. If you want to remove an item from the cart click on the cart button beside the item in the cart window and that item will be removed from your cart.
+
+<b>5.2.Checking the status of your order</b>
+
+Now in the homepage you will find 4 tabs the last tab will be "Order Status", click it. Now here you'll find the list of items that you have ordered and their status and the counter number. Now there are 3 types of status.
+1.In Queue(No.): Your item is in queue and the queue number is displayed in the braces.
+2.Under preparation: Your item is the item that is being prepared.
+3.Prepared: Your item has been prepared. You can now go and have your meal.
+
+<b>5.3.Order History</b>
+
+In the navigation bar you'll find a link called accounts. Clicking it will open a drop-down menu, in the menu you'll find a link called "Order History", click it. Here you find a list that contains transaction ID's, Dish name, price and time of order. At the top of the box there will be a field called current expenditure. Which shows the money you have spent on food after you first logged in.
+
+<b>5.4.Complaints</b>
+
+Students also have the facility to report complaints about the food or hygiene or anything related to the cafeteria. Click the "Utilities" button on the navigation bar, a drop down menu will appear, click complaints, you will be redirected to a complaints page, there will be 3 fields, the first is the subject, enter the subject of the complaint, next enter the counter you want to complain against and then enter your complaint, when you are describing your complaint, click the submit button, your complaint will be sent to e-mail of the cafeteria management committee. They will take care of your complaint.
+
+<b>5.5.Recharge Facility</b>
+
+For a student to recharge his account at a counter, the student must go to the counter and then show his/her ID to the counter owner and then give the amount to be recharged, then you must wait until the counter owner recharges your account. He will click a tab in his homepage called Utilities where there will be alink call recharge. Then enter your ID and password then your account will be recharged with the amount you gave the owner. You must ensure that the counter owner has entered the right amount.
+</pre>
+
+<h3>6. Counter Owner Specific Features</h3>
+<pre>
+<b>6.1.Current orders</b>
+
+The homepage of the counter account contains two tabs 
+1. Counter number
+2. Total dishes
+
+The counter tab contains a list of pending orders that have not been delivered. The table contains the transaction ID, dish name, quantity, student ID, status. Now when a student orders a dish it will appear on this page, beside the item you will find a waiting symbol, click it when you have started preparing the dish. The status then changes to "under preparation", you will see that a cooking smiley replaces the waiting symbol, click the cooking when the food has been prepared, the student will be notified when his dish is ready. You will see that the cooking symbol will be replaced by an 'x' when the student has taken his dish from the counter click the 'x' then the item will be shifted to the order history, and it will be removed from the current orders.
+This tab also contains a current revenue which shows the total amount of money earned from first login.
+
+<b>NOTE: If you receive a new order then a message will appear saying that the food list is outdated please refresh. Then you will have to refresh your page by pressing 'F5' or by clicking the refresh button on the browsers toolbar.</b>
+
+<b>6.2.Order History</b>
+
+To view all the orders that you have attended to since your first login, go to navigation bar and click the order history, you will find a table containing every dish that you have attended to with the quantity and the price. At the top of the table you will find a Current Revenue which shows the total money you have earned since first login.
+
+<b>6.3.Menu Editor</b>
+
+In the home page you will find a tab called "Total dishes". Click the tab, then you will find a list of all the items in your counter. You can edit this if you are out of stock.
+To edit the menu of your counter.
+If you want to remove a dish due to unavailability then click the 'x' button beside the item, then this item will still be visible in your account and the 'x' will be changed to a '+' symbol, but this dish will be removed from the menu that the student sees.
+If you want to add a dish when it is available the click the '+' symbol beside the item, the '+' will change to an 'x' and the item will be visible in the menu of the student account.
+
+<b>6.4.How to recharge a student account</b>
+
+The student will come to your counter and ask for recharge, go to utilities button on the navigation bar and then click help, the student will enter his username and password, then enter the amount and click submit, the student account will be recharged. Don't forget to take the cash from the student.
+</pre>
+</div>
+
+{% endblock %}
