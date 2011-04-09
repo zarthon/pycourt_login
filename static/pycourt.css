@@ -11,7 +11,7 @@ q:before, q:after {content: '';}
 abbr, acronym {border: 0;}
 
 body {
-    font: 62.5% Helvetica, Verdana, Arial, Helvetica, sans-serif;
+    font: 62.5% Verdana;
 	background-color:#FEFEFE;
 	
 }
@@ -26,20 +26,18 @@ em {
 
 /*      class attributes        */
 
-.clearfix:after {
+/* clearfix is used for forms */
+.clearfix:after { 
 	content: ".";
 	display: block;
 	height: 0;
 	clear: both;
 	visibility: hidden;
-	
-
 }
 
-.clearfix {display:inline;
+.clearfix {
+	display:inline;
 }
-
-
 
 * html .clearfix {height: 1%;}
 
@@ -48,12 +46,13 @@ em {
 	outline-style:none;
 }
 
-
+/* used for setting the width of the page */
 .frame {
 	width: 800px;
 	margin: 0 auto;
 }
 
+/* horizontal line attribute in home page */
 .line1 {
 	width: 300px;
 	
@@ -63,11 +62,13 @@ em {
 	
 }
 
+/* text attribute in home page */
 .promo {
   margin-top: 30px;
   margin-right: 30px;
 }
 
+/* search box dynamic searching on student side */
 .search_box{
 	font-size:13px;
 	float:right;
@@ -80,6 +81,7 @@ em {
 	
 }
 
+/* balance div attribute on student home page */
 .balance{
 	font-size:13px;
 	float:left;
@@ -102,6 +104,7 @@ em {
 	padding:0px;
 }
 
+/* menu frame for student */
 .t1-frame{
 	border:thin;
 	border-style:solid;
@@ -113,6 +116,7 @@ em {
 	border-top-color:#EEEEEE;
 }
 
+/* text box div highlighting attr */
 .focused {
   background-color: #FFFCE0;
 }
@@ -125,22 +129,13 @@ em {
 
 }
 
+/* form attrributes */
 .form{
 	font-size:12px;
 	color:#EEEEEE;
 }
 
-.loser-no-friends {
-  background-color: #EEE;
-  padding: 30px !important;
-}
-
-
-.menu_table{
-	font-size:10px;
-
-}
-
+/* table header row attributes */
 .t1_h{
 	
 	padding:4px;
@@ -151,6 +146,7 @@ em {
 	text-align:center;
 }
 
+/*row attributs for tables */
 .t1{
 	padding:4px;
 	padding-left:15px;
@@ -159,6 +155,7 @@ em {
 	text-align:center;
 }
 
+
 .menu_list{
 	float:left;
 	width: 0px;
@@ -166,30 +163,22 @@ em {
 	
 }
 
-.friend {
-  background-color: #E0E0E0;
-}
-
-.friend p {
-  color: #3B628A !important;
-}
-
-.friend .done-on {
-  margin-right: 35px;
-}
-
+/* attribute for logged in text */
 .logged-in #content {
   padding: 0 !important;
 }
 
+/* logged in main screen attributes */
 .logged-in #main {
   margin-top: 0 !important;
 }
 
+/* img attributes for menu table student side */
 .add_to_cart{
 	margin-top:4px;
 	
 }
+
 
 .standard-box-hdr h1{
 	font-size: 2.4em;
@@ -198,41 +187,38 @@ em {
     padding: 30px;
     padding-top: 40px;
     color: #000000;
-	
 }
 
 .first {
   margin-top: 0 !important;
 }
 
+/* home page sub-heading characteristics */
 .promo h2 {
   font-size: 2.2em;
   color: #A0A0A0;
 }
 
+/* home page promo text characteristics */
 .promo-content {
   margin-top: 10px;
   line-height: 1.4em;
   font-size: 1.6em;
 }
 
-.promo img {
-  float: right;
-  margin-left: 15px;
-  border: 5px solid #EEEEEE;
-}
-
-.do-something, .loser-no-friends {
+/* if menu table is empty characteristics of message */
+.do-something{
   padding: 15px;
   font-size: 1.4em;
   font-style: italic;
   color: #474747;
 }
 
+/* attributes of order cart total value */
 .total-last{
 	text-align:left;
 	font-size:13px;
-	
+	margin-left:10px;
 }
 
 .content-box{
@@ -244,9 +230,9 @@ em {
 	margin-bottom: 70px;
 	margin-top:51px;
 	padding-top:50px;
-	
 }
 
+/* attributes of the tab that is selected */
 .active {
   background-color: #EEEEEE !important;
   color: #000 !important;
@@ -256,21 +242,23 @@ em {
   border-top-color:#DDD;
 }
 
+/* order cart footer div attributes */ 
 .cart-foot{
 	float:right;
 	width:30%;
-	
 	margin-left:10px;
 	margin-right:0px;
 	
 }
 
+/* bordered frame for box */
 .std-bordered-box{
 	font-size:12px;
 	text-align:center;
 	margin-bottom:40px;
 }
 
+/* base.html footer on every page */
 .footer_base {
 	width: 100%;
 }
@@ -289,6 +277,7 @@ em {
   float: right;
 }
 
+/* error attributes on forms*/
 .error {
   padding: 10px !important;
   background-color: #EEC7C7;
@@ -297,6 +286,7 @@ em {
   margin: 10px !important;
 }
 
+/* hidden classes */
 .hide{
 	display:none;
 }
@@ -305,32 +295,40 @@ em {
   padding: 10px;
 }
 
+/* div boxes with a fixed height */
 .height-fix{
 	height:370px;
 	background-color:#EEEEEE;
 }
+
+/* div boxes with fixed postion */
 .pos-fix{
 	margin-top:70px;
 }
 
+/* container for menu and order cart */
 .foodlist-1-f{
 	margin-top:20px;
 	padding-top:10px;
 }
+
 .forgot1 {
-	size: 40px;
+	size: 50px;
 	padding: 0px;
-	margin-bottom: 20px;
-	
+	margin-bottom: 10px;
+	margin-right:10px;
 	color:#474747;
 }
 
-
+/* help container characteristics*/
 .accordion {
-	width: 600px;
+	width: 900px;
 	border-bottom: solid 1px #c4c4c4;
+	margin-bottom:80px;
+	margin-top:40px;
 }
 
+/* help sub-header */
 .accordion h3 {
 	background: #e9e7e7 url(arrow-square.gif) no-repeat right -51px;
 	padding: 7px 15px;
@@ -338,18 +336,20 @@ em {
 	font: bold 120%/100% Arial, Helvetica, sans-serif;
 	border: solid 1px #c4c4c4;
 	border-bottom: none;
-	
 	cursor: pointer;
 }
 
+/* help subheader on mouse hover */
 .accordion h3:hover {
 	background-color: #e3e2e2;
 }
 
+/* help sub-header on click */
 .accordion h3.active {
 	background-position: right 5px;
 }
 
+/* preformatted help text */
 .accordion pre{
 	background: #f7f7f7;
 	margin: 0;
@@ -367,7 +367,7 @@ em {
 
 
 
-
+/* base.html header class */
 #header {
     padding-bottom: 25px;
     border-bottom: 4px solid #497A32;
@@ -376,11 +376,14 @@ em {
 	margin-bottom: 30px;
 		
 }
+
+/* base logo for pyCourt */
 #img_header{
 	background-color:#4D8433;
 	float:center;
 }
 
+/* add-dish for for vendor side */
 #add-dish{
 	margin-top:50px;
 	background-color:#EEE;
@@ -393,16 +396,18 @@ em {
 	float:none;
 }
 
+/* add dish label characteristics */
 #dish-price label{
-	
 	margin-right:36px;
 }
 
+/* dish name label characteristics */
 #dish-name label{
 	
 	margin-right:30px;
 }
 
+/* form label characteristics */
 #username label{
 	margin-right:70px;
 }
@@ -415,16 +420,23 @@ em {
 	margin-right:30px;
 }
 
+/* recharge account vendor side characteristics */
 #recharge-submit{
 	margin-top:20px;
 	margin-right:20px;
-	
 }
 
+/*forgot password characteristics */
+#forgot3{
+	margin-left:20px;
+}
+
+/* add dish container characteristics */
 #add-dish div{
 	margin-bottom:10px;
 }
 
+/* recharge container characteristics */
 #recharge{
 	background-color:#EEEEEE;
 	border-style:solid;
@@ -436,10 +448,12 @@ em {
 	width:38%;
 }
 
+/*recharge all inner-container characteristics */
 #recharge div{
 	margin-bottom:10px;
 }
 
+/* complaint form characteristics */
 #complaint_main
 {
 	background-color:#EEEEEE;
@@ -447,47 +461,52 @@ em {
 	margin-bottom:70px;
 }
 
+/* complaint form inner container characteristics */
 #inner_complaint{
 	padding:20px;
 }
 
+/* inner-form characteristics */
 #innerform{
 	margin-top:20px;
 }
+
+/* complaint form header characteristics */
 #complaint_header{
 	font-size: 14px;
 }
 
+/* order cart container characteristics */
 #order_cart{
 	background-color:#EEEEEE;
 	padding:15px;
 	padding-top:25px;
-	
-	
 }
+
+/* order history container characteristics */
 #t3-frame{
 	margin-left:30px;
 	margin-right:30px;
 	margin-top:10px;
 }
 
-
+/* menu table characetristics */
 #t1{
 	background-color:#EEEEEE;
 }
 
-
-
+/* student menu table container characteristics */
 #menu_t{
 	
 	margin-top:5px;
 }
+
+/* base.html pyCourt logo characteristics */
 #header img {
     margin-left: 10px;
 }
 
-
-
+/* user profile characteristics */
 #profile{
 	font-size:16px;
 	margin-top:30px;
@@ -496,44 +515,19 @@ em {
 	margin-bottom:30px;
 }
 
+/* user profile header characteristics */
 #profile h1{
 	font-size:20px;
 	text-transform:capitalize;
 }
-#add-friend {
-  background: #487858 url('/media/images/add.png') 10px 50% no-repeat;
-  color: #FFF;
-  float: right;
-  display: block;
-  font-size: 1.3em;
-  padding: 8px 15px;
-  padding-left: 35px;
-  margin: 9px 0;
-  text-decoration: none;
-}
 
-#add-friend:hover {
-  text-decoration: underline;
-}
-
-#add-friend-form {
-  background-color: #487858;
-  margin: -10px 0 10px 0;
-  padding: 15px;
-  font-size: 1.4em;
-  color: #FFF;
-}
-
-#add-friend-form select {
-  margin-left: 10px;
-}
-
-
+/* errors and homepage default characteristics */
 #homepage #content, #error-page #content {
     padding: 50px 0;
 	padding-top: 10px;
 }
 
+/* user profile edit form */
 #profile-edit-form{
 	font-size: 1.4em;
  	font-weight: bold;
@@ -545,31 +539,36 @@ em {
 	margin-top:0;
 }
 
+/* main class characteristics */
 #main {
   margin-top: 1px;
 }
 
-
+/* form left label characteristics */
 #left {
   float: left;
   width: 60%;
 }
 
+/* form right text box characteristics */
 #right {
   float: left;
   width: 40%;
 }
 
+/* settings form label characteristics */
 #left_setting{
 	float:left;
 	width:39%;
 }
 
+/* settings form text box characteristics */
 #right_setting{
 	float:left;
 	width:30%;
 }
-	
+
+/* left div box for list */
 #left_list {
   float: left;
   width: 40%;
@@ -578,32 +577,32 @@ em {
   margin-bottom:3px;
 }
 
+/* right div box for list */
 #right_list{
   float: left;
   width: 10%;
   padding-left:10px;
   padding-right:10px;
   margin-bottom:3px;
- 
 }
 
-
+/* list of menu items */
 #list{
 	margin-bottom: 15px;
-	
 }
 
-
+/* forgot password characteristics */
 #forgot2{
 	float:left;
 	width:60%;
 }
+
+
 #forgot3{
 	float:left;
-	
 }
 
-
+/* base.html header and error meassage characteristics */
 #homepage h1, #error-page h1 {
     font-size: 2.4em;
     font-weight: bold;
@@ -614,6 +613,8 @@ em {
     color: #474747;
     border-bottom: 1px solid #EEE;
 }
+
+/*homepage content characteristics */
 #homepage p, #error-page p {
     padding: 0 80px;
     text-align: center;
@@ -621,23 +622,28 @@ em {
     line-height: 1.4em;
 }
 
+/* login-signup form div box background */
 #login-signup, #logged-in {
   background-color: #EEEEEE;
 }
 
+/* authuentication form background */
 #auth-page {
   padding: 50px 0;
 }
 
+/* insufficient balance message background */ 
 #insufficient-balance{
 	margin-bottom:60px;
 }
+
+/* auth page and login-signup page charateristics */
 #auth-page #login-signup {
   width: 296px;
   margin: 0 auto;
 }
 
-
+/* login-signup subheading */
 #login-signup h3 {
   font-size: 1.8em;
   font-weight: bold;
@@ -645,26 +651,30 @@ em {
   padding: 20px;
 }
 
+/* login signup anchor tag */
 #login-signup h3 a {
   color: #528936;
   text-decoration: none;
 }
 
+/* login signup span class */
 #login-signup h3 span {
-  background: url('/media/images/login-active.gif') bottom center no-repeat;
+  background: url('/pycourt/login-active.gif') bottom center no-repeat;
   padding-bottom: 14px;
 }
 
+/* login signup on hover */
 #login-signup h3 a:hover {
   color: #416D2A;
 }
 
+/* login-signup container */
 #login-signup div {
   padding: 5px 10px;
   margin: 0 10px;
 }
 
-
+/* login-signup label characteristics */
 #login-signup label {
   float: left;
   width: 100px;
@@ -672,22 +682,25 @@ em {
   padding-top: 4px;
 }
 
+/* login signup input box */
 #login-signup input {
   float: left;
   width: 149px;
 }
 
+/* login signup on submit charactristic change */
 #login-signup div.submit {
   padding: 0;
   padding-left: 214px;
-  
-}
+ }
 
+/* login signup container on sibmit input box */
 #login-signup div.submit input {
   	width: auto;
     margin-bottom: 20px;
 }
 
+/* logout message box characteristics */
 #logout{
 	font-size:14px;
 	display:block;
@@ -695,20 +708,22 @@ em {
 	text-align:center;
 	background-color:#EEEEEE;
 	padding-top:100px;
-	
 }
 
-
+/* wrong password or username message */
 #wrong_msg h2{
 	font-size:18px;
 }
 
+/* worng passwprd or username message */
 #wrong_msg{
 	padding-top:60px;
 	font-size:12px;
 	float:inherit;
 	padding-bottom:60px;
 }
+
+/* hello meesage nav bar characteristics */
 #hello {
   float: left;
   padding: 15px;
@@ -716,31 +731,44 @@ em {
   text-transform:capitalize;
 }
 
+/* navigation bar characteristics */
 #navigation {
   font-size: 1.2em;
   background-color: #4D8433;
   color: #FFF;
 }
 
+/* navigation bar ul characteristics */
 #navigation ul {
   float: right;
   padding: 5px 0;
 }
 
+/* navigation li and navigation li characteristics */
 #navigation li, #done-nav li {
   display:inline;
- 
 }
 
+#navigation li a, #navigation li.hi, #done-nav li a{
+  float: left;
+  display: block;
+  padding: 10px 15px;
+  border-style:solid;
+  border-color:#D8D8D8;
+  border-bottom:none;
+  border-width:thin;
+}
+
+/* navigation sub header characteristics */
 #navigation-lvl-2 li{
 	display:block;	
 	font-size: 1.2em;
 	background-color: #4D8433;
 	color: #FFF;
-	
 }
 
-#done-nav li a, .friends-back {
+/* navigation tab characteristics */
+#done-nav li a,{
   float: left;
   display: block;
   padding: 10px 15px;
@@ -755,35 +783,24 @@ em {
   border-top-width:thin;
 }
 
+/* navigation bar characteristics */
 #navigation li a, #navigation li.hi{
 	float: left;
   display: block;
   padding: 10px 15px;
-  
-  
- 
-	
-}
+ }
 
 
-
-#navigation li a, .friends-back {
+#navigation li a,{
   text-decoration: none;
   background-color: #4D8433;
   margin-left: 5px;
 }
 
+/* navigation bar characteristics on hover bar */
 #navigation li a:hover, .friends-back:hover {
   text-decoration: none;
   background-color: #2B471D;
-}
-
-.friends-back {
-  margin-top: 5px;
-}
-
-#navigation li a.logout {
-  margin-right: 5px;
 }
 
 #what-ive-done {
@@ -796,33 +813,24 @@ em {
   color: #474747;
 }
 
-#friends-list li span {
-  color: green;
-}
-
-
-
+/* form text box */
 #add-success input {
   margin-top: 10px;
   float: right;
-
 }
 
-#what-ive-done h3, #friends #main h3, #tools #main h3 {
+#what-ive-done h3, #friends #main h3,{
   padding-bottom: 15px;
   border-bottom: 1px solid #EEE;
 }
 
-#friends #main h3, #tools #main h3 {
-  margin: 15px 0 0 15px;
-  border-bottom: 0;
-}
-
+/* navigation bar characteristics */
 #done-nav {
   margin-top: 20px;
   padding-left: 15px;
 }
 
+/* quantity form characteristics */
 #tab-qty{
 margin-top: 20px;
   padding-left: 15px;
@@ -838,8 +846,8 @@ margin-top: 20px;
   border-right-width:thin;
   border-top-style:solid;
   border-top-width:thin;
-   background-color:#EEEEEE;
-   margin-left:20px;
+  background-color:#EEEEEE;
+  margin-left:20px;
  }
  
 #tab-qty a{
@@ -847,7 +855,6 @@ margin-top: 20px;
   font-size: 1.1em;
   color: #000;
   font-weight: bold;;
- 
 }
 
 #tab-qty li{
@@ -870,23 +877,20 @@ margin-top: 20px;
   border-right-width:thin;
   border-top-style:solid;
   border-top-width:thin;
-   background-color:#EEEEEE;
-   margin-left:20px;
- }
+  background-color:#EEEEEE;
+  margin-left:20px;
+}
  
 #tab-acc a{
 	text-decoration: none;
-  font-size: 1.1em;
-  color: #000;
-  font-weight: bold;;
- 
+	font-size: 1.1em;
+	color: #000;
+	font-weight: bold;;
 }
 
 #tab-acc li{
 	display: inline;
 }
-
-
 
 #done-nav a {
   text-decoration: none;
@@ -894,35 +898,6 @@ margin-top: 20px;
   color: #8D8D8D;
   background-color:#F8F8F8;
 }
-
-#friends-list, #tools-list {
-  margin-bottom: 15px;
-}
-
-#friends-list li, #tools-list li {
-  border-top: 1px solid #E5E5E5;
-  color: #000000;
-  display: block;
-  font-size: 1.2em;
-  padding: 10px;
-  text-decoration: none;
-  padding-left: 45px;
-  background: #F0F0F0 url('/media/images/user-green.png') 15px 50% no-repeat;
-}
-
-#tools-list li {
-  background: #F0F0F0 url('/media/images/tool.png') 15px 50% no-repeat;
-}
-
-#tools-list li p {
-  padding-top: 4px;
-}
-
-#tools-list li span {
-  color: #AAAAAA;
-  margin-left: 4px;
-}
-
 
 #done-nav a:hover {
 	font-weight:bolder;
@@ -945,11 +920,11 @@ margin-top: 20px;
 
 
 #left-total{
-	margin-left:90px;
+	margin-left:40px;
 }
 
+/* order submission div characteristics */
 #sub_order{
-	
 	font-size:14px;
 	margin-left:145px;
 	margin-right:20px;
@@ -959,7 +934,9 @@ margin-top: 20px;
   float: left;
 }
 
+/* total revenue characteristics */
 #total-box{
+	width:90%;
 	margin-top:30px;
 	border:thin;
 	border-style:solid;
@@ -970,22 +947,24 @@ margin-top: 20px;
 	margin-right:10px;
 }
 
+/*show notification characteristics */
 #shownoti{
 	color: #33AA33;
 	font-size: 1.4em;
 	margin-top: 15px;
 	padding: 10px;
-
 	border-radius:20px;
 	margin-bottom:20px;
 	display:none;
 }
 
+/* no-problem div box */
 #no-problem {
   float: right;
   font-weight: bold;
 }
 
+/* menu table characteristics */
 #done-list {
   clear: left;
   background-color: #EEEEEE;
@@ -994,6 +973,7 @@ margin-top: 20px;
   height:300px;
 }
 
+/* wrong password characteristics */
 #wrong_password{
 	background-color:#EEEEEE;
 }
@@ -1007,46 +987,30 @@ margin-top: 20px;
 	color: #000;
 }
 
-#friends-list li p {
-  float: left;
-  padding-top: 4px;
-}
-
+/* order history characteristics */
 #history{
 	margin-top:90px;
 	margin-left:-95px;
 }
 
-#done-list li p span, #done-list li a, #friends-list li a.delete {
+/* menu table characteristics */ 
+#done-list li p span, #done-list li a{
   display: block;
 	width: 21px;
 	height: 16px;
 	margin-right: 10px;
 	margin-bottom: 4px;
 	float: left;
-	background: transparent url('/media/images/check.png') 50% 0 no-repeat;
 }
 
-#with-friends-form {
-  float: right;
-  margin: 15px;
-  margin-top: 23px;
-  color: #8D8D8D;
-  font-size: 1.1em;
-}
-
-#with-friends label {
-  vertical-align: 3px;
-  margin-left: 3px;
-}
-
-#done-list li a, #friends-list li a.delete {
+#done-list li a{
   background-image: none;
   width: 16px;
   float: right;
   margin-left: 10px;
 }
 
+/* base.html footer characteristics */
 #footer {
     font-style: italic;
     color: #8D8D8D;
@@ -1070,15 +1034,16 @@ margin-top: 20px;
 	width: 100%;
 }
 
-
+/* quantity form characteristics */
 #quantity-form{
 	font-size:13px;
 	margin:50px;
 	margin-left:250px;
 	height:105px;
 	padding-top:50px;
-	
 }
+
+/* sub footer characteristics */
 #sub-footer {
   height: 99px;
   background-color: #487858;
@@ -1090,11 +1055,10 @@ margin-top: 20px;
   padding: 15px;
 }
 
-
+/* header characteristics */
 #header1{
 	margin-top: 1px;
 }
-
 
 #id_message {
   margin-left: 15px;
@@ -1107,38 +1071,20 @@ margin-top: 20px;
   border: 1px solid #749880;
   color: #FFF;
 }
+
+/* header for content table */
 #content-box-h{
 	background-color:#EEEEEE;
 	margin-top:70px;
 }
 
-
-#feedback-input input {
-  float: left;
-  margin-top: 9px;
-  margin-left: 10px;
- 
-}
-
+/* sub-footer characteristics */
 #sub-footer img {
   float: right;
   margin-top: 22px;
 }
 
-#stats {
-  text-align: center;
-  padding: 20px;
-  color: white;
-  margin-bottom: 10px;
-  line-height: 1.4em;
-  font-size: 1.6em;
-  border-top: 8px solid #497A32;
-}
-
-#stats strong {
-  font-weight: bold;
-}
-
+/* code promo text */
 #code-promo {
   float: right;
   font-weight: bold;
