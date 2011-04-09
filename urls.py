@@ -14,33 +14,30 @@ urlpatterns = patterns('',
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
+    (r'^admin/$', include(admin.site.urls)),
     (r'^$',index),
-    (r'^login/',login),
-    (r'^signup/',register),
-    (r'^logout/',logout),
+    (r'^login/$',login),
+    (r'^signup/$',register),
+    (r'^logout/$',logout),
     (r'^forget/',forgot_password),
-#    (r'^resetpassword\.htm',resetpassword),
-    (r'^resetpass/$',resetpassword),
-    (r'^home/',home),
-    (r'^profile/',profile),
-    (r'^setting/',setting),
+    (r'^resetpass/',resetpassword),
+    (r'^home/$',home),
+    (r'^profile/$',profile),
+    (r'^setting/$',setting),
     (r'^accounts/login',home),
-    (r'^order/',order),
-	(r'^complaint/',complaint),
-	(r'^orderhist/',history),
-    (r'^addish/',add_dish),
-    (r'^recharge/',recharge_acc),
+    (r'^order/$',order),
+	(r'^complaint/$',complaint),
+	(r'^orderhist/$',history),
+    (r'^addish/$',add_dish),
+    (r'^recharge/$',recharge_acc),
 	(r'^mostrecenttransaction/',mostRecentTransaction),
-	(r'^changeavailability',changeAvailability),
-	(r'^changestatus',changeStatus),
-	(r'pendingorders',pendingOrders),
+	(r'^changeavailability/',changeAvailability),
+	(r'^changestatus/',changeStatus),
+	(r'pendingorders/',pendingOrders),
 	(r'^help/$',help),
 )
 
-if settings.DEBUG:
-    urlpatterns += patterns('',(r'^pycourt/(?P<path>.*)$', 'django.views.static.serve', {'document_root':
-        settings.MEDIA_ROOT}),)
+urlpatterns += patterns('',(r'^pycourt/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),)
 
 
 
