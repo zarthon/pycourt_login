@@ -35,6 +35,7 @@ urlpatterns = patterns('',
 	(r'^changeavailability',changeAvailability),
 	(r'^changestatus',changeStatus),
 	(r'pendingorders',pendingOrders),
+	(r'^help/$',help),
 )
 
 if settings.DEBUG:
