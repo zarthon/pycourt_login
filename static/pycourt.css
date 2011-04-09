@@ -325,7 +325,7 @@ em {
 	width: 900px;
 	border-bottom: solid 1px #c4c4c4;
 	margin-bottom:80px;
-	margin-top:40px;
+	margin-top:0px;
 }
 
 /* help sub-header */
@@ -333,10 +333,11 @@ em {
 	background: #e9e7e7 url(arrow-square.gif) no-repeat right -51px;
 	padding: 7px 15px;
 	margin: 0;
-	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	font: bold  Arial, Helvetica, sans-serif;
 	border: solid 1px #c4c4c4;
 	border-bottom: none;
 	cursor: pointer;
+	font-size:1.4em;
 }
 
 /* help subheader on mouse hover */
@@ -359,6 +360,7 @@ em {
 	overflow: auto;
 	white-space: pre-wrap;
 	font-family: Verdana, Arial, sans serif;
+	font-size:1.3em;
 }
 
 
