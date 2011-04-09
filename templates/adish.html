@@ -4,6 +4,7 @@
 <div class="frame">
 <div id = "add-dish" >
 <form action="/addish/" method="post" id="add-form">
+	<!-- if dish already exists -->
     {% csrf_token %}
     {% if form.dishname.errors and data %}
     <div class="error">Sorry Dish with same name already exists</div>
@@ -15,9 +16,9 @@
     {% if form.dishprice.errors and data %}
     <div class="error">Enter a Valid value</div>
     {% endif %}
-
+	<!-- new dish form -->
     <div id="dish-price" class="clearfix">
-        <label for="dish_price">Dish Price:</label>
+        <label for="dish_price">Dish Price :</label>
         <input type="text" name="dishprice" value="" id="dishprice" />
     </div>
     <div id="add-submit" class="add clearify">

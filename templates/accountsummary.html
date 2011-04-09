@@ -3,13 +3,15 @@
 {% block content %}
 {% if userprof.is_student and not userprof.is_counter %}
 <div id = "top-head" class="frame" > 
-
+<!-- include navigation.html if user is student -->
 
 {% include "navigation.html" %}
 
 </div>
 {% else %}
 <div id = "top-head2" class="frame" >
+
+<!-- include navigation_counter if user is counter -->
 
 {% include "navigation_counter.html" %}
 
@@ -24,6 +26,8 @@
 			<li><a  id="tab-qty-1">Order History</a></li>
 			</ul>
 		</div>
+
+		<!-- total balance -->
 		<div id = "history" class="balance">
 			{% if userprof.is_counter%}
 	    	<b>Current Revenue:{{ sum }}</b>
@@ -31,6 +35,8 @@
 			<b>Current Expenditure:{{ sum}}</b>
 			{% endif %}
 		</div>
+
+		<!-- order history table -->
 	<div class = "content-box" style="margin-top:80px;">
 	 	
 											 

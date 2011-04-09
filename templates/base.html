@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-
+<!--    Title of the web page      -->
 <title>PyCourt | Online Food Ordering System.{% if title %} - {{ title }}{% endif %}</title>
 
 <meta name="keywords" content="Pycourt" />
@@ -12,6 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Language" content="en" />
 
+<!-- Including CSS and all Js Files -->
 <link rel="stylesheet" href="/pycourt/pycourt.css" media="all" type="text/css" />
 <link rel="icon" href="/pycourt/favicon.ico" />
 <script type="text/javascript" src="/pycourt/jquery.js"></script>
@@ -24,6 +25,7 @@
 
 <body{% block body_styles %}{% endblock %}>
 
+<!--	logo and top banner -->
 <div id="header">
   <div id ="img_header" class="frame">
     <a href="/home/"><img src="/pycourt/logo.jpeg" alt="Online Cafeteria Management System" title="PyCourt" /></a>    
@@ -36,6 +38,8 @@
     {% block content %}{% endblock %}
   </div>
 </div>
+
+<!--	footer banner block		-->
 <div id="footer" class="frame">
   <div id="footer-inner">PyCourt is an online cafeteria management system developed in <a href="http://www.djangoproject.com"><i>Django</i></a>.
   </div>

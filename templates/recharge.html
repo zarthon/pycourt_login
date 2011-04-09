@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 {% include "navigation_counter.html" %}
+
+		<!--Recharge form for Counter-->
 <div id="recharge">
 <form action="/recharge/" method="post" id="recharge-form">
     {% csrf_token %}
