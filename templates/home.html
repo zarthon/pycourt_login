@@ -96,6 +96,9 @@
             <li><a href="pastmonth" id="pastmonth-nav">Order Status</a></li>
 			</ul>
 		</div>
+
+		<!-- Quantity form tab -->
+
 		<div id="tab-qty" style="display:none">
 			<ul>
 			<li><a  id="tab-qty-1">Enter Quantity</a></li>
@@ -110,7 +113,8 @@
 			<input type="text" id="qty_no" value="1" size="1" style="margin-bottom:15px">
 			<img src="/pycourt/add.gif" alt="Click To add to Cart" title="Click To add to Cart" id="qty_sub" style="margin-top:10px; margin-left:20px;">
                 
-			</div>
+		</div>
+			<!-- Counter 1 menu -->
 			<div id="menu_t">
 				<div id="today">
 					{% if counter_1 and counter1_stat.status %}
@@ -153,7 +157,8 @@
 					</div>
 					{% endif %}
 				</div>
-
+				
+				<!-- Counter 2 menu -->
 				<div id="yesterday" style="display:none;">
         
 					{% if counter_2 and counter2_stat.status %}
@@ -192,7 +197,7 @@
 				</div>
 
 
-
+				<!-- Counter 3 Menu -->
 				<div id="past7days" style="display:none">
 					{% if counter_3 and counter3_stat.status %}
 					<div class="balance">
@@ -227,7 +232,7 @@
 				{% endif %}
             </div>
 
-
+			<!-- current order status -->
             <div id="pastmonth" style="display:none">
                 <div class ="foodlist-1-f" >
 					<table id="foodlist-3-h" cellspacing="1" cellpadding="2" border="0" width="100%">
@@ -245,6 +250,8 @@
 		</div>
 	</div>
 	
+
+	<!-- Order Cart -->
 	<div id="header-cart" style="display:none"><h3>Cart</h3></div>
 	<div id="add-success" style="display:none;">
 	
@@ -320,9 +327,9 @@
 <div id="shownoti">
 </div>
 
+
+<!-- Counter Current Order -->
 <h3>Current Orders</h3>
-
-
 
 <div id="done-nav">
 	<ul>
@@ -343,6 +350,8 @@
 			<tr><td class="t1_h">Transaction id</td><td class="t1_h"> Dish Name </td><td class="t1_h"> Quantity</td> <td class="t1_h"> Student Id  </td> <td class="t1_h"> Status </td><td class="t1_h"></td><td class="t1_h"></td></tr></table>
 			<col width="20%"/><col width="10%"/><col width="10%" /><col width="10%"/><col width="10%"/><col width="40%"/>
 		</div>
+
+		<!-- Counter total Dishes -->
 		<div id ="foodlist-3-1" class="t1-frame">
 			
 			{% if not order.status %}
