@@ -65,12 +65,12 @@ def login(request):
 		return HttpResponseRedirect('/')
 
 def logout(request):
-	if request.user.username in counterid_list:
-		status_obj = LoginStatus.objects.get(counterid = request.user)
-		status_obj.status = False
-		status_obj.save()
-	auth_logout(request)
-	return render_to_response('logout.html',{},context_instance=RequestContext(request))
+    if request.user.username in counterid_list:
+	    status_obj = LoginStatus.objects.get(counterid = request.user)
+	    status_obj.status = False
+	    status_obj.save()
+    auth_logout(request)
+    return render_to_response('logout.html',{},context_instance=RequestContext(request))
 
 def register(request):
 	if not request.user.is_authenticated():
@@ -100,32 +100,32 @@ def register(request):
 
 
 def forgot_password(request):
-	if not request.user.is_authenticated():
-		form = myforms.ForgotForm(request.POST)
-		if form.is_valid():
-			user = User.objects.get(username = request.POST["username"])
-			password_change_req = models.PasswordCHangeRequest()
-			password_change_req.account = user
-			uniqueId = getUniqueId()
-			password_change_req.req_random_key = uniqueId
-			password_change_req.created_at = datetime.datetime.utcnow()
-			password_change_req.save()
+    if not request.user.is_authenticated():
+        form = myforms.ForgotForm(request.POST)
+        if form.is_valid():
+            user = User.objects.get(username = request.POST["username"])
+            password_change_req = models.PasswordCHangeRequest()
+            password_change_req.account = user
+            uniqueId = getUniqueId()
+            password_change_req.req_random_key = uniqueId
+            password_change_req.created_at = datetime.datetime.utcnow()
+            password_change_req.save()
 
-			mail_subject = 'Reset your Pycourt password'
-			mail_body = '<p>Hello,</p>'
-			mail_body += '<p>You received this email because a Password Reset was requested for your Pycourt account. <br />'
-			mail_body += 'Just click the link <a href="http://127.0.0.1:8000/resetpass/?passwordChangeKey='+ uniqueId + '"><strong>Reset My Password</strong></a> to change your password.</p>'
-			mail_body += '<p>If you did not request it, you can safely ignore this mail.</p>'
-			mail_body += '<p>Regards,<br />from Pycourt</p>'		   
-			msg = EmailMessage(mail_subject,mail_body,"200801066@daiict.ac.in",[str(user.email)])
-			msg.content_subtype = "html"
+            mail_subject = 'Reset your Pycourt password'
+            mail_body = '<p>Hello,</p>'
+            mail_body += '<p>You received this email because a Password Reset was requested for your Pycourt account. <br />'
+            mail_body += 'Just click the link <a href="http://'+str(request.get_host())+'/resetpass/?passwordChangeKey='+ uniqueId + '"><strong>Reset My Password</strong></a> to change your password.</p>'
+            mail_body += '<p>If you did not request it, you can safely ignore this mail.</p>'
+            mail_body += '<p>Regards,<br />from Pycourt</p>'		   
+            msg = EmailMessage(mail_subject,mail_body,"200801066@daiict.ac.in",[str(user.email)])
+            msg.content_subtype = "html"
 #			msg.send()
 #			return HttpResponse(str(user.email))
 #			user.email_user(mail_subject,mail_body,"200801066@daiict.ac.in")
-			return HttpResponse(mail_body)
-		else:
-			return render_to_response('forget.html',{'form':form,'forget':True,'data':request.POST},context_instance=RequestContext(request))
-			#return HttpResponseRedirect('/login')
+            return HttpResponse(mail_body)
+        else:
+            return render_to_response('forget.html',{'form':form,'forget':True,'data':request.POST},context_instance=RequestContext(request))
+            #return HttpResponseRedirect('/login')
 
 
 def resetpassword(request):
